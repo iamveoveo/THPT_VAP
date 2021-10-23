@@ -1,0 +1,101 @@
+*{
+    font-family: "Roboto-Condensed",sans-serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+html{
+    font-family: "Roboto-Condensed",sans-serif;
+    font-size: 15px;
+    color: #5a5a5a;
+    background-color: #ffffff;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face{
+    font-family: Roboto-Condensed;
+    src: url(../CSS/font/roboto/RobotoCondensed-Regular.ttf);
+}
+
+body{
+    background-color: #f3f3f3;
+}
+
+/* HEADER */
+.logo-header{
+    height: 50px;
+    width: 150px;
+}
+
+.small-ava{
+    height: 38px;
+    width: 38px;
+    border-radius: 100%;
+    background-color: #fff;
+}
+
+.nav-item .nav-link{
+    font-size: 20px;
+}
+
+.header-menu{
+    background-image: url(../images/studying.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    filter: brightness(50%);
+    background-attachment: fixed;
+}
+
+.big-title{
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+  
+.searchTerm {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 4px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC;
+}
+
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid #ffffff 3px;
+    padding: 4rem 5rem;
+}
