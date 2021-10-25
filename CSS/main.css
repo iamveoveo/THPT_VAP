@@ -23,6 +23,16 @@ body{
     background-color: #f3f3f3;
 }
 
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #000;
+}
+
 /* HEADER */
 .logo-header{
     height: 50px;
@@ -98,4 +108,91 @@ body{
     transform: translate(-50%, -50%);
     border: solid #ffffff 3px;
     padding: 4rem 5rem;
+}
+
+/* TREE */
+.tree ul .list-group-item{
+    padding: 0;
+    margin-bottom: 2px;
+    border-radius: 5px;
+    border: none;
+}
+
+.tree ul .list-group-item a{
+    width: 100%;
+    font-size: 19px;
+}
+
+.tree ul .list-group-item ul li a{
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+}
+
+.tree ul .list-group-item ul li{
+    list-style: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tree-table{
+    width: 90%;
+    border-radius: 10px;
+    padding: 30px 25px 30px 15px;
+    background-image: linear-gradient(to top left, #14279B, #3D56B2, #5C7AEA);
+}
+
+.my-table{
+    padding: 10px;
+    background-color: #ffffff;
+    border: solid 3px #e0e0e0;
+    border-radius: 10px;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.tree{
+    padding: 12px;
+}
+
+.tree ul li{
+    background-color: #f4f4f4;
+}
+
+.my-table-item.row{
+    margin: 0 !important;
+    padding:10px;
+    border:solid 2px #000;
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-bottom: 10px !important;
+    background-color: #f4f4f4;
+}
+
+.item-ava{
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    background-color: #000;
+}
+
+.item-detail{
+    align-items: self-start;
+    justify-content: space-around;
+}
+
+.item-class{
+    justify-content: center;
+    align-items: center;
+}
+
+.box-shadow:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    background-color: #ffffff;
+}
+
+.navbar-fixed-top.scrolled {
+    background-color: #00000099 !important;
+    transition: background-color 200ms linear;
 }
