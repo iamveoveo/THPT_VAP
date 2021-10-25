@@ -15,4 +15,4 @@
     <link rel="stylesheet" href="./CSS/main.css">
     <link rel="stylesheet" href="./CSS/login.css">
 </head>
-<body style="background-color:#f3f6f8;">
+<body style="background-color:#eeeeee;">

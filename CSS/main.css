@@ -136,7 +136,8 @@ a:hover{
 }
 
 .tree-table{
-
+    width: 90%;
+    border-radius: 10px;
     padding: 30px 25px 30px 15px;
     background-image: linear-gradient(to top left, #14279B, #3D56B2, #5C7AEA);
 }
@@ -189,4 +190,9 @@ a:hover{
 .box-shadow:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
     background-color: #ffffff;
+}
+
+.navbar-fixed-top.scrolled {
+    background-color: #00000099 !important;
+    transition: background-color 200ms linear;
 }
