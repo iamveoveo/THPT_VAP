@@ -17,4 +17,4 @@
     <link rel="stylesheet" href="./CSS/user-profile.css">
 
 </head>
-<body>
+<body style="background-color:#eeeeee;">
