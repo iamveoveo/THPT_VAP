@@ -1,0 +1,10 @@
+.back {
+    background: #6a11cb;
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right,rgba(98, 40, 161, 0.445),rgba(12, 71, 172, 0.438) );
+    height: 660px;
+}
+.mess a .fa-facebook-messenger{
+    color: #00BFFF;
+}
