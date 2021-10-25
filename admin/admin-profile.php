@@ -164,7 +164,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn"style="background: #6600CC     ; color:#fff;" >Lưu thay đổi</button>
+                                        <button type="button" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
                                     </div>
                                     </div>
                                 </div>

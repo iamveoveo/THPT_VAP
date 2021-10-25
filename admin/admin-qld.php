@@ -9,7 +9,7 @@
             <div class="col-5"><a href="#!" class="menu-toggle "><i class="fas fa-bars"></i></a></div>
             <div class="row height d-flex justify-content-center align-items-center col-7">
                 <div class="form"> 
-                    <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone"></i></span> 
+                    <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone "></i></span> 
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                     </div>
                     <div class='card-body'>      
                         <div>
-                            <a class="btn btn-primary m-3 btn-lg" href="#" style="background-color:#9a94ee; color: #373274" role="button">Thêm mới</a>
+                            <a class="btn m-3 btn-lg" href="#" style="background-color:#9a94ee; color: #373274" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
                             <div id="table">
@@ -72,11 +72,41 @@
                         <!-- btn import và export -->
                         <div class="center row">
                             <div class="btn-1 col-5">
-                                <a href=""><span>Nhập file</span></a>
+                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <span>Nhập file</span></a>
+                                
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <a href=""><span>Xuất file</span></a>
+                                <form action="#" method="POST" enctype="multipart/form-data" >             
+                                    <a href="" type="submit" data-mdb-ripple-color="dark">
+                                    <span>Xuất file</span></a> 
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                    <!--up file  -->
+                                    <form action="#" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
+                                        <input type="file" name="file_import" >   
+                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
+                                    </form>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                    </div>
+
+                                    <!-- btn hủy và lưu -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
+                                        <button type="button" class="btn" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         

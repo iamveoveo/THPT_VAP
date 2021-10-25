@@ -455,6 +455,11 @@ h1, .h1 {
     color: #9ca3af
 }
 
+.form .fa-microphone{
+    color: rgb(170, 25, 170);
+    margin-right: 1px;
+}
+
 .form span {
     position: absolute;
     right: 17px;
@@ -491,19 +496,19 @@ h1, .h1 {
 .btn-1,
 .btn-2 {
     float: right ;
-    width: 200px;
+    width: 150px;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column
+    flex-direction: column;
   }
 
   .btn-1 a,
   .btn-2 a {
     text-decoration: none;
     border: 2px solid #390b58;
-    padding: 12px;
+    padding: 9px;
     color: #000;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -586,3 +591,6 @@ span {
     transform: scaleX(1);
   }
 
+.btn-cancel:hover{
+    background-color: black;
+}
