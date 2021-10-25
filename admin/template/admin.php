@@ -1,20 +1,19 @@
 <div class="dashboard-nav">
         <!-- logo -->
-        <header><a href="#!" class="menu-toggle"><i class="fas fa-bars">
-
-        </i></a><a href="#" class="brand-logo "><i class="fas fa-school"></i> <span>Trường THPT Chu văn An</span></a>
+        <header>
+            <a href="#" class="menu-toggle"><i class="fas fa-bars"></i> </a>
+            <a href="#" class="brand-logo "><i class="fas fa-school"></i> <span>Trường THPT Chu văn An</span></a>
         </header>
         
         <!-- avtar -->
-        <div class="avatar_admin">
+        <div class="avatar_admin ">
             <img src="../images/ava.png" alt="" id="avatar-admin" margin="auto" width="85px" height="85px" alt="user avatar">
         </div>
 
         <!-- navbar -->
         <nav class="dashboard-nav-list">
             <a href="admin-home.php" class="dashboard-nav-item"><i class="fas fa-home"></i>Trang chủ </a>
-            <a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
-            <div class='dashboard-nav-dropdown'><a href="admin-qld.php" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Quản lý điểm </a>
+            <div class='dashboard-nav-dropdown'><a href="admin-qld.php" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý điểm </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="#" class="dashboard-nav-dropdown-item">Lớp 10</a>
                     <a href="#" class="dashboard-nav-dropdown-item">Lớp 11</a>
@@ -22,7 +21,7 @@
                 </div>
             </div>
            
-            <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Quản lý người dùng </a>
+            <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý người dùng </a>
                 <div class='dashboard-nav-dropdown-menu'>
                     <a href="admin-qlgv.php" class="dashboard-nav-dropdown-item">Quản lý Giáo viên</a>
                     <a href="admin-qlhs.php" class="dashboard-nav-dropdown-item">Quản lý học sinh</a>
