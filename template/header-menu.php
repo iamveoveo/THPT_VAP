@@ -1,5 +1,5 @@
 <header>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#ffffff00;" aria-label="Eighth navbar example">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-fixed-top" style="background-color:#ffffff00;" aria-label="Eighth navbar example">
     <div class="container">
         <a class="navbar-brand" href="#"><img src="images/logo.jpg" class="logo-header" alt="Logo"></a>
 
