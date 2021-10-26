@@ -1,4 +1,4 @@
-<footer class="container-fluid " style="height:25px;background-color:#919191;">
+<footer class="container-fluid" style="height:25px;background-color:#919191;">
     <div class="d-flex justify-content-center align-items-center" style="font-size:17px;color:white;">
         produce by Veo
     </div>

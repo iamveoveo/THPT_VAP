@@ -20,7 +20,7 @@
     <div class="d-flex justidy-content-center">
         <h2 style="margin:50px auto;">Danh sách học sinh</h2>
     </div>
-    <div class="row m-auto tree-table">
+    <div class="row m-auto tree-table mb-5">
         <div class="tree col-2">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -68,7 +68,8 @@
                                     <div class="col-5"><b>Giời tính: </b>Nam</div>
                                 </div>
                             </div>
-                            <div class="item-class col-2 d-flex">
+                            <div class="item-class col-2 d-flex flex-column">
+                                <div>Học sinh</div>
                                 <div>Lớp: 10A1</div>
                             </div>
                         </div>
@@ -88,7 +89,8 @@
                                     <div class="col-5"><b>Giời tính: </b>Nam</div>
                                 </div>
                             </div>
-                            <div class="item-class col-2 d-flex">
+                            <div class="item-class col-2 d-flex flex-column">
+                                <div>Học sinh</div>
                                 <div>Lớp: 10A1</div>
                             </div>
                         </div>
@@ -108,7 +110,8 @@
                                     <div class="col-5"><b>Giời tính: </b>Nam</div>
                                 </div>
                             </div>
-                            <div class="item-class col-2 d-flex">
+                            <div class="item-class col-2 d-flex flex-column">
+                                <div>Học sinh</div>
                                 <div>Lớp: 10A1</div>
                             </div>
                         </div>
@@ -128,7 +131,8 @@
                                     <div class="col-5"><b>Giời tính: </b>Nam</div>
                                 </div>
                             </div>
-                            <div class="item-class col-2 d-flex">
+                            <div class="item-class col-2 d-flex flex-column">
+                                <div>Học sinh</div>
                                 <div>Lớp: 10A1</div>
                             </div>
                         </div>
