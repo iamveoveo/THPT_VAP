@@ -1,46 +1,14 @@
-<?php include("template/header.php"); ?>
-
-<div class="back">
+<?php 
+include("template/header.php"); 
+include("template/header-menu.php"); 
     
-    <header class="p-3 mb-3 border-bottom " style="background:rgb(87, 24, 155)">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <!-- logo -->
-                <a class="navbar-brand" href="#">
-                    <img src="images/logo.jpg" class="logo-header d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                </a>
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary text-light fs-5 text">Trang chủ</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark text-light fs-5 text">Phản hồi</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark text-light fs-5 text">Thông báo </a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark text-light fs-5 text">Thành tích</a></li>
-                </ul>
-                <div class="row">
-                    
-                    <div class="col-md-4 mess">
-                        <a href="#"><i class="fab fa-facebook-messenger" style="font-size: 38px;"></i></a>
+?>
 
-                    </div>
-                    <div class="dropdown text-end  col-md-5">
-                        
-                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="images/ava.png" alt="mdo" width="42" height="42" class="rounded-circle">
-                        </a>
-                        <ul class="dropdown-menu text-small text-light" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                            <li><a class="dropdown-item" href="#">Tài khoản</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-                        </ul>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
+<div class="back ">
+    
+    
     <!-- profile -->
-    <div class="container rounded-3 bg-white mt-4 mb-5 my-3 col-md-8">
+    <div class="container rounded-3 bg-white my-3 col-md-8">
         <div class="row">
             <div class="col-md-4 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -83,18 +51,26 @@
                         </div>
                     </div>
                     <!-- Button trigger modal -->
-                    <div class="mt-4 text-center">
-                        <button type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Sửa thông tin
-                        </button>
+                    <div class="d-flex flex-row">
+                        <div class="mt-4 text-center me-3">
+                            <button type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
+                                Sửa thông tin
+                            </button>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                Thêm điểm
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <!-- Modal suửa thông tin -->
+    <div class="modal fade " id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +83,7 @@
                     <!-- avatar -->
                     <div class="col-md-4 border-right">
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-                        <form action="update-profile.php" method="POST" enctype="multipart/form-data" id="form_avatar">
+                        <form action="" method="POST" enctype="multipart/form-data" id="form_avatar">
                             <div class="row justify-content-center align-items-center w-100 m-auto rounded" style="background-color:#e4e4e4;">
                                 <div class="col-8 ps-4" style="font-weight: 500; color: #223035; font-size:16px; line-height: 16px;"> Chọn ảnh đại diện:</div>
                                 <div class="col-4 file-upload">
@@ -169,6 +145,8 @@
             </div>
         </div>
     </div>
+
+    <!-- model transcripc -->
 
 </div>
 
