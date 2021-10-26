@@ -1,11 +1,9 @@
 <?php 
 include("template/header.php"); 
-include("template/header-menu.php"); 
-    
+include("template/header-menu.php");  
 ?>
 
 <div class="back ">
-    
     
     <!-- profile -->
     <div class="container rounded-3 bg-white my-3 col-md-8">

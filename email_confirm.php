@@ -22,6 +22,7 @@
 
               <p class="mb-5" style="color:#00FF00;">Đã gửi mã xác thực tới email của bạn</p>
 
+
               <div class="d-flex justify-content-center mb-3">
                 <div class="form-outline form-white w-50 mb-4">
                     <label class="form-label" for="typePasswordX">Mã xác thực</label>
