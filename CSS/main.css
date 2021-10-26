@@ -139,7 +139,8 @@ a:hover{
     width: 90%;
     border-radius: 10px;
     padding: 30px 25px 30px 15px;
-    background-image: linear-gradient(to top left, #14279B, #3D56B2, #5C7AEA);
+    background: #6a11cb;
+    background: linear-gradient(to right,rgba(98, 40, 161, 0.445),rgba(12, 71, 172, 0.438) );
 }
 
 .my-table{
@@ -214,7 +215,7 @@ a:hover{
     margin: 3px;
     text-align: center;
     border-radius: 5px;
-    background-image: linear-gradient(to bottom left, #C400FF, #AE00FB, #A239EA);
+    background-image: linear-gradient(to top left, #C400FF, #AE00FB, #A239EA);
     cursor: pointer;
 }
 
@@ -224,5 +225,39 @@ a:hover{
 
 .list-roll-item:hover{
     box-shadow: 0 0 11px rgba(255, 255, 255); 
-    background-image: linear-gradient(to top left, #C400FF, #AE00FB, #A239EA) !important;
+    background-image: linear-gradient(to bottom left, #C400FF, #AE00FB, #A239EA) !important;
+}
+
+/* mess */
+.mess-container{
+    width: 83%;
+    height: 83vh;
+    background-color: #ffffff;
+}
+
+.mess-item{
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+}
+
+.mess-item .mess-ava{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 0;
+}
+.mess-item .mess-ava img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.mess-container .list-group-item{
+    padding: 0;
+}
+
+.mess-container .list-group{
+    padding-top: 10px;
+
 }

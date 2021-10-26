@@ -65,7 +65,8 @@ include("template/header-menu.php");
                                         <div class="col-5"><b>Giời tính: </b>Nam</div>
                                     </div>
                                 </div>
-                                <div class="item-class col-2 d-flex">
+                                <div class="item-class col-2 d-flex flex-column">
+                                    <div>Học sinh</div>
                                     <div>Lớp: 10A1</div>
                                 </div>
                             </div>
@@ -85,7 +86,8 @@ include("template/header-menu.php");
                                         <div class="col-5"><b>Giời tính: </b>Nam</div>
                                     </div>
                                 </div>
-                                <div class="item-class col-2 d-flex">
+                                <div class="item-class col-2 d-flex flex-column">
+                                    <div>Học sinh</div>
                                     <div>Lớp: 10A1</div>
                                 </div>
                             </div>
@@ -105,7 +107,8 @@ include("template/header-menu.php");
                                         <div class="col-5"><b>Giời tính: </b>Nam</div>
                                     </div>
                                 </div>
-                                <div class="item-class col-2 d-flex">
+                                <div class="item-class col-2 d-flex flex-column">
+                                    <div>Học sinh</div>
                                     <div>Lớp: 10A1</div>
                                 </div>
                             </div>
@@ -125,7 +128,8 @@ include("template/header-menu.php");
                                         <div class="col-5"><b>Giời tính: </b>Nam</div>
                                     </div>
                                 </div>
-                                <div class="item-class col-2 d-flex">
+                                <div class="item-class col-2 d-flex flex-column">
+                                    <div>Học sinh</div>
                                     <div>Lớp: 10A1</div>
                                 </div>
                             </div>
