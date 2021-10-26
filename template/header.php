@@ -15,6 +15,6 @@
     <link rel="stylesheet" href="./CSS/main.css">
     <link rel="stylesheet" href="./CSS/login.css">
     <link rel="stylesheet" href="./CSS/user-profile.css">
-    
+
 </head>
 <body style="background-color:#eeeeee;">
