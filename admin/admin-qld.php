@@ -46,8 +46,8 @@
                                             <td>C</td>
                                             <td>D</td>
                                             <td>G</td>
-                                            <td><a href="#"><i class="fas fa-edit icon-admin"></i> </a></td>
-                                            <td><a href="#"><i class="fas fa-trash-alt icon-admin"></i></i></a></td>
+                                            <td><a href="#"><button type="button" class="btn icon-admin" ><i class="fas fa-edit " ></i></button> </a></td>
+                                            <td><a href="#"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>
                                                 
                                         </tr>
 
@@ -58,10 +58,8 @@
                                             <td>C</td>
                                             <td>D</td>
                                             <td>G</td>
-                                            <td>
-                                                 <a href="#"><i class="fas fa-edit icon-admin"></i> </a></td>
-                                            <td><a href="#"><i class="fas fa-trash-alt icon-admin"></i></i></a></td>
-                                                
+                                            <td><a href="#"><button type="button" class="btn icon-admin" ><i class="fas fa-edit " ></i></button> </a></td>
+                                            <td><a href="#"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>                            
                                         </tr>
                                     </tbody>
                                 </table>
