@@ -19,43 +19,63 @@
                     <div class='card-header'>
                         <h2>Chào mừng admin....</h2>
                     </div>
-                    <div class='card-body'>      
+                    <div class='card-body'> 
+                        <!-- demo -->
+                        <div class="hihi">
+                          <div class="col-md-3 me-5 mb-4 btn text " style="background: #916BBF; color:#fff; border-radius: 12px">
+                            <div class="fw-bold fs-5 text">1000 </div>
+                            Học sinh <br>
+                            <i class="fas fa-user-friends"></i>
+                          </div>
+
+                          <div class="col-md-3 me-5 mb-4 btn" style="background: #5F939A; color:#fff;border-radius: 12px ">
+                            <div class="fw-bold fs-5 text">100 </div>
+                            Giáo viên  <br>
+                            <i class="fas fa-chalkboard-teacher"></i>
+                          </div>
+
+                          <div class="col-md-3 me-5 mb-4 btn" style="background: #9F5F80; color:#fff;border-radius: 12px ;">
+                            <div class="fw-bold fs-5 text">1000 </div>
+                            Phụ huynh <br>
+                            <i class="fas fa-people-arrows"></i>     
+                          </div>
+                        </div>
                         <!-- CALENDAR-->
                         <div class="calendar">
 
                             <?php
-                    $dataPoints = array(
-                      array("x" => 946665000000, "y" => 3289000),
-                      array("x" => 978287400000, "y" => 3830000),
-                      array("x" => 1009823400000, "y" => 2009000),
-                      array("x" => 1041359400000, "y" => 2840000),
-                      array("x" => 1072895400000, "y" => 2396000),
-                      array("x" => 1104517800000, "y" => 1613000),
-                      array("x" => 1136053800000, "y" => 1821000));
-                          $dataPoints1 = array(
-                            array("label"=> "2010", "y"=> 36.12),
-                            array("label"=> "2011", "y"=> 34.87),
-                            array("label"=> "2012", "y"=> 40.30),
-                            
-                          );
-                          $dataPoints2 = array(
-                            array("label"=> "2010", "y"=> 64.61),
-                            array("label"=> "2011", "y"=> 70.55),
-                            array("label"=> "2012", "y"=> 72.50),
-                            
-                          );
-                          
-                          $dataPoints3 = array(
-                            array("label"=> "2010", "y"=> 36.12),
-                            array("label"=> "2011", "y"=> 34.87),
-                            array("label"=> "2012", "y"=> 40.30),
-                          
-                          );
-                            
-                          ?>
-                        <div class="d-flex flex-row">
-                          <div id="chartContainer" style="height: 280px; width: 50%;"></div>   
-                          <div id="chartContainer1" style="height: 280px; width: 50%;"></div>
+                              $dataPoints = array(
+                                array("x" => 946665000000, "y" => 3289000),
+                                array("x" => 978287400000, "y" => 3830000),
+                                array("x" => 1009823400000, "y" => 2009000),
+                                array("x" => 1041359400000, "y" => 2840000),
+                                array("x" => 1072895400000, "y" => 2396000),
+                                array("x" => 1104517800000, "y" => 1613000),
+                                array("x" => 1136053800000, "y" => 1821000));
+                                $dataPoints1 = array(
+                                  array("label"=> "2010", "y"=> 36.12),
+                                  array("label"=> "2011", "y"=> 34.87),
+                                  array("label"=> "2012", "y"=> 40.30),
+                                  
+                                );
+                                $dataPoints2 = array(
+                                  array("label"=> "2010", "y"=> 64.61),
+                                  array("label"=> "2011", "y"=> 70.55),
+                                  array("label"=> "2012", "y"=> 72.50),
+                                  
+                                );
+                                
+                                $dataPoints3 = array(
+                                  array("label"=> "2010", "y"=> 36.12),
+                                  array("label"=> "2011", "y"=> 34.87),
+                                  array("label"=> "2012", "y"=> 40.30),
+                                
+                                );
+                                  
+                                ?>
+                        <div class="d-flex flex-row ">
+                          <div class="shadow-lg p-3 mb-5 bg-white rounded me-3" id="chartContainer" style="height: 280px; width: 48%;"></div>   
+                          <div class="shadow-lg p-3 mb-5 bg-white rounded" id="chartContainer1" style="height: 280px; width: 48%;"></div>
                         </div>
                 </div>
             </div>

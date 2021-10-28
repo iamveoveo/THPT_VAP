@@ -160,31 +160,31 @@
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control" id="fullName" >
+                                                                <input type="text" class="form-control form-profile" id="fullName" >
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="eMail">Email</label>
-                                                                <input type="email" class="form-control" id="eMail" placeholder="acb@gmail.com">
+                                                                <input type="email" class="form-control form-profile" id="eMail" placeholder="acb@gmail.com">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control" id="phone" placeholder="09x xxx xxxx">
+                                                                <input type="tel" class="form-control form-profile" id="phone" placeholder="09x xxx xxxx">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="Street">Địa chỉ</label>
-                                                                <input type="name" class="form-control" id="Street" placeholder="Xã,phường/huyện/tỉnh">
+                                                                <input type="name" class="form-control form-profile" id="Street" placeholder="Xã,phường/huyện/tỉnh">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="website">Ngày sinh</label>
-                                                                <input type="date" class="form-control" id="website" >
+                                                                <input type="date" class="form-control form-profile" id="website" >
                                                             </div>
                                                         </div>
 
