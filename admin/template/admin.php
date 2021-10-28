@@ -13,11 +13,11 @@
         <!-- navbar -->
         <nav class="dashboard-nav-list">
             <a href="index.php" class="dashboard-nav-item"><i class="fas fa-home"></i>Trang chủ </a>
-            <div class='dashboard-nav-dropdown'><a href="admin-qld.php" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý điểm </a>
+            <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý điểm </a>
                 <div class='dashboard-nav-dropdown-menu'>
-                    <a href="#" class="dashboard-nav-dropdown-item">Lớp 10</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">Lớp 11</a>
-                    <a href="#" class="dashboard-nav-dropdown-item">Lớp 12</a>
+                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 10</a>
+                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 11</a>
+                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 12</a>
                 </div>
             </div>
            
