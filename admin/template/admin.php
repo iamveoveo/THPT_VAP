@@ -13,13 +13,7 @@
         <!-- navbar -->
         <nav class="dashboard-nav-list">
             <a href="index.php" class="dashboard-nav-item"><i class="fas fa-home"></i>Trang chủ </a>
-            <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý điểm </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 10</a>
-                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 11</a>
-                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 12</a>
-                </div>
-            </div>
+            <a href="admin-qld.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý điểm </a>
            
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý người dùng </a>
                 <div class='dashboard-nav-dropdown-menu'>
@@ -28,7 +22,8 @@
                     <a href="admin-qlph.php" class="dashboard-nav-dropdown-item">Quản lý phụ huynh</a>
                 </div>
             </div>
-        
+
+            <a href="admin-manager.php" class="dashboard-nav-item"><i class="fas fa-tasks"></i> Quản lý Admin </a>
             <a href="admin-profile.php" class="dashboard-nav-item"><i class="fas fa-user"></i> Tài khoản </a>
           <div class="nav-item-divider"></div>
           <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất </a>

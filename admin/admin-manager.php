@@ -17,7 +17,7 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h2>Quản lý giáo viên</h2>
+                        <h2>Quản lý Admin</h2>
                     </div>
                     <div class='card-body'>      
                         <div>
@@ -35,8 +35,7 @@
                                         <th scope="col">Địa chỉ</th>
                                         <th scope="col">Giới tính</th>
                                         <th scope="col">Ngày sinh</th>
-                                        <th scope="col">Lớp dạy</th>
-                                        <th scope="col">Môn dạy</th>
+                                        <th scope="col">Lớp học</th>
                                         <th scope="col">Sửa</th>
                                         <th scope="col">Xóa</th>
                                     </tr>
@@ -51,7 +50,6 @@
                                             <td>G</td>
                                             <td><a href="#"><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button> </a></td>
                                             <td><a href="#"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>
- 
                                                 
                                         </tr>
 
@@ -160,8 +158,8 @@
                             </div>
                         </div>
 
-                         <!-- modal edit -->
-                         <div class="modal fade" id="editor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- modal edit -->
+                        <div class="modal fade" id="editor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -296,8 +294,6 @@
         </div>
     </div>
 </div>
-
-
 
 <?php include("template/footer.php"); ?>
 
