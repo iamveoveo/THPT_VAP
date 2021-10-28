@@ -27,31 +27,47 @@
                             <div id="table">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Họ và tên</th>
-                                        <th scope="col">Tên tài khoản</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Số điện thoại</th>
-                                        <th scope="col">Lớp </th>
-                                        <th scope="col">Sửa</th>
-                                        <th scope="col">Xóa</th>
-                                        <th scope="col">Xem chi tiết</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">STT</th>
+                                            <th scope="col">Họ và tên</th>
+                                            <th scope="col">Tên tài khoản</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Số điện thoại</th>
+                                            <th scope="col">Lớp </th>
+                                            <th scope="col">Sửa</th>
+                                            <th scope="col">Xóa</th>
+                                            <th scope="col">Xem chi tiết</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+
+                                        $sql="SELECT UserID, UserName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, TeachClass,Teacher_UserID  FROM users , teach  
+                                            WHERE Teacher_UserID= UserID AND UserRoll='Giáo viên' ";
+                                        $result = mysqli_query($conn,$sql);
+
+                                        if(mysqli_num_rows($result)>0){
+                                        $i=1;                                            
+                                        while($row = mysqli_fetch_assoc($result)){
+                                        ?>     
                                         <tr>
-                                            <td>A</td>
-                                            <td>B</td>
-                                            <td>E</td>
-                                            <td>C</td>
-                                            <td>D</td>
-                                            <td>G</td>
+                                            <th scope="row"><?php echo $i; ?></th>
+                                            <td><?php echo $row['UserName']; ?></td>
+                                            <td><?php echo $row['UserRName']; ?></td>
+                                            <td><?php echo $row['UserEmail']; ?></td>
+                                            <td><?php echo $row['UserTel']; ?></td>
+                                            <td><?php echo $row['TeachClass']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
                                             <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
-                                                
+
                                         </tr>
+                                        <?php
+                                            $i++;
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
 
                                     </tbody>
                                 </table>
@@ -372,6 +388,48 @@
     </div>
 </div>
 
+<?php
+//ktra là người dùng nhấn nút chưa
+    if(isset($_POST['sbm-add'])){
+        //lấy  gtri form lưu vào biến
+        $hoTen  = $_POST['txtHoTen'];
+        $email = $_POST['txtEmail'];
+        $sodidong = $_POST['sdt'];
+        $diachi = $_POST['txtDiaChi'];
+        $gioitinh = $_POST['txtGioiTinh'];
+        $ngaySinh = $_POST['ngaySinh'];
+        $lop = $_POST['txtLopDay'];
+        $mon = $_POST['txtMon'];
+
+        //lệnh sql
+        $sql_1="INSERT INTO users SET
+        UserName = '$hoTen',
+        UserEmail = '$email' , 
+        UserTel = $sodidong, 
+        UserAdd = '$diachi',
+        UserGender = '$gioitinh', 
+        UserBirth = '$ngaySinh'
+        ";
+
+        $query = mysqli_query($conn,$sql_1) or die(mysqli_error());
+ 
+
+        //4. Check whether the (Query is Executed) data is inserted or not and display appropriate message
+        if($query==TRUE)
+        {
+            $_SESSION['add']="<div class='text-success'>Thêm nhân viên thành công.</div>";
+
+            header('location:' .SITEURL. 'admin/admin-qlgv.php');
+        }
+        else
+        {
+            $_SESSION['add']="<div class='text-danger'>Thêm nhân viên thất bại.</div>";
+            header('location:' .SITEURL. 'admin/admin-qlgv.php');
+
+        }
+
+    }
+?>
 
 
 <?php include("template/footer.php"); ?>
