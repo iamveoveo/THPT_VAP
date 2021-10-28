@@ -65,9 +65,9 @@ include("template/header-menu.php");
                     </li>
                 </ul>
                 <ul class="list-roll">
-                    <li class="list-roll-item col-5"><a href="#">Học sinh</a></li>
-                    <li class="list-roll-item col-6"><a href="#">Giáo Viên</a></li>
-                    <li class="list-roll-item col-7"><a href="#">Phụ huynh</a></li>
+                    <li class="list-roll-item col-5"><div class="take-roll text-light">Học sinh</div></li>
+                    <li class="list-roll-item col-6"><div class="take-roll text-light">Giáo Viên</div></li>
+                    <li class="list-roll-item col-7"><div class="take-roll text-light">Phụ huynh</div></li>
                 </ul>
             </div>
             <div class="my-table col-10">
@@ -81,7 +81,7 @@ include("template/header-menu.php");
                                 <li>
                                     <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row2['UserID'];?>&userRoll=<?php echo $row2['UserRoll'] ?>">
                                         <div class="my-table-item row box-shadow">
-                                            <div class="item-ava col-3"><img src="<?php echo $row2['UserAva']; ?>" alt=""></div>
+                                            <div class="col-2"><img class="item-ava" src="images/<?php echo $row2['UserAva']; ?>" alt=""></div>
                                             <div class="item-detail col-7 flex-fill d-flex flex-column">
                                                 <div class="row w-100">
                                                     <div class="col-7"><b>Họ và tên: </b><?php echo $row2['UserRName']; ?></div>

@@ -82,9 +82,9 @@
                         while($row2 = mysqli_fetch_assoc($res2)){
                             ?>
                             <li>
-                                <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row2['UserID']?>">
+                                <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row2['UserID']?>&userRoll=<?php echo $row2['UserRoll']?>">
                                     <div class="my-table-item row box-shadow">
-                                        <div class="item-ava col-3"><img src="<?php echo $row2['UserAva']; ?>" alt=""></div>
+                                        <div class="col-2"><img class="item-ava" src="images/<?php echo $row2['UserAva']; ?>" alt=""></div>
                                         <div class="item-detail col-7 flex-fill d-flex flex-column">
                                             <div class="row w-100">
                                                 <div class="col-7"><b>Họ và tên: </b><?php echo $row2['UserRName']; ?></div>
