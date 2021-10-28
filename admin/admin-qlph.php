@@ -33,12 +33,12 @@
                                         <th scope="col">Số điện thoại</th>
                                         <th scope="col">Địa chỉ</th>
                                         <th scope="col">Giới tính</th>
-                                        <th scope="col">Ngày sinh</th>                                
+                                        <th scope="col">Ngày sinh</th>
                                         <th scope="col">Sửa</th>
                                         <th scope="col">Xóa</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody>                                       
                                         <tr>
                                             <td>A</td>
                                             <td>B</td>
@@ -47,19 +47,7 @@
                                             <td>D</td>
                                             <td>G</td>
                                             <td><a href="#"><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button> </a></td>
-                                            <td><a href="#"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>
-                                                
-                                        </tr>
-
-                                        <tr>
-                                            <td>A</td>
-                                            <td>B</td>
-                                            <td>E</td>
-                                            <td>C</td>
-                                            <td>D</td>
-                                            <td>G</td>
-                                            <td><a href="#"><button type="button" class="btn icon-admin" ><i class="fas fa-edit " ></i></button> </a></td>
-                                            <td><a href="#"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>
+                                            <td><a href="#"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>                                   
                                                 
                                         </tr>
                                     </tbody>
