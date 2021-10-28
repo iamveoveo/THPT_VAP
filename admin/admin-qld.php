@@ -19,10 +19,30 @@
                     <div class='card-header'>
                         <h2>Quản lý điểm</h2>
                     </div>
-                    <div class='card-body'>      
-                        <div>
-                            <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
-                        </div>
+                    <div class='card-body'>     
+                        <div class="d-flex flex-row">
+                             <div class="col-md-5">
+                                <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
+                            </div>
+                            <div class="col-md-3"  style="margin:15px">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn theo lớp</option>
+                                    <option value="1">10A1</option>
+                                    <option value="2">10A2</option>
+                                    <option value="3">11A1</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" style="margin:15px">
+                                <select class="form-select " aria-label="Default select example">
+                                    <option selected>Chọn theo khối</option>
+                                    <option value="1">Khối 10</option>
+                                    <option value="2">Khối 11</option>
+                                    <option value="3">Khối 12</option>
+                                </select>
+                            </div>
+                        </div> 
+                       
+                        
                         <div class="col-md-12">
                             <div id="table">
                                 <table class="table table-hover table-secondary ">
