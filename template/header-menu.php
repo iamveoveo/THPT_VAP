@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Trang chủ</a>
+                    <a class="nav-link active" <?php echo 'href="'.SITEURL.'"';?>>Trang chủ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Gửi phản hồi</a>
