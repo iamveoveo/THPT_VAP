@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2021 lúc 08:52 PM
+-- Thời gian đã tạo: Th10 29, 2021 lúc 08:44 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.11
+-- Phiên bản PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `AdID` int(100) NOT NULL,
   `AdName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `AdRealName` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `AdPassword` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `AdEmail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `AdTel` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -46,12 +45,12 @@ CREATE TABLE `admin` (
 -- Đang đổ dữ liệu cho bảng `admin`
 --
 
-INSERT INTO `admin` (`AdID`, `AdName`, `AdRealName`, `AdPassword`, `AdEmail`, `AdTel`, `AdAdd`, `AdGender`, `AdBirth`, `AdAva`, `AdStatus`, `AdCode`) VALUES
-(1, 'Thu Phương', '', '', 'thuphuong@gmail.com', '0942574333', 'Hà Nội', 'Nữ', '2001-04-06', 'ava.png', 0, ''),
-(2, 'Mai', '', '', 'mai@gmail.com', '0283523857', 'Hà Nội', 'Nữ', '2000-10-19', 'ava.png\r\n', 0, ''),
-(3, 'Ngọc', '', '', 'Ngoc@gmail.com', '095421457', 'Ninh Bình', 'Nữ', '2000-11-11', 'ava.png', 0, ''),
-(4, 'admin', '', '', 'admin@gmail.com', '0925357864', 'Hà Nội', 'Nam', '2002-06-02', 'ava.png', 0, ''),
-(5, 'AD', '', '', 'Ad@gmail.com', '0923685645', 'Hà Nội', 'Nam', '2002-12-12', 'ava.png', 0, '');
+INSERT INTO `admin` (`AdID`, `AdName`, `AdPassword`, `AdEmail`, `AdTel`, `AdAdd`, `AdGender`, `AdBirth`, `AdAva`, `AdStatus`, `AdCode`) VALUES
+(1, 'Thu Phương', '', 'thuphuong@gmail.com', '0942574333', 'Hà Nội', 'Nữ', '2001-04-06', 'ava.png', 0, ''),
+(2, 'Mai', '', 'mai@gmail.com', '0283523857', 'Hà Nội', 'Nữ', '2000-10-19', 'ava.png\r\n', 0, ''),
+(3, 'Ngọc', '', 'Ngoc@gmail.com', '095421457', 'Ninh Bình', 'Nữ', '2000-11-11', 'ava.png', 0, ''),
+(4, 'admin', '', 'admin@gmail.com', '0925357864', 'Hà Nội', 'Nam', '2002-06-02', 'ava.png', 0, ''),
+(5, 'AD', '', 'Ad@gmail.com', '0923685645', 'Hà Nội', 'Nam', '2002-12-12', 'ava.png', 0, '');
 
 -- --------------------------------------------------------
 
@@ -70,11 +69,10 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`ClassID`, `ClassName`, `ClassGrade`) VALUES
-(1, '11A3', 11),
+(1, '10A1', 10),
 (2, '11A1', 11),
-(3, '12A1', 11),
-(4, '12A2', 12),
-(5, '10A1', 10);
+(3, '12A1', 12),
+(4, '12A2', 12);
 
 -- --------------------------------------------------------
 
@@ -95,11 +93,11 @@ CREATE TABLE `mess` (
 --
 
 INSERT INTO `mess` (`MessID`, `FromUserID`, `ToUserID`, `MessContent`, `MessTime`) VALUES
-(1, 2, 4, 'Học sinh chưa nhận được thông báo lịch thi', '2021-10-27 19:24:23'),
-(2, 2, 5, 'Học sinh chờ thông tin từ nhà trường', '2021-10-20 19:24:23'),
-(3, 5, 3, 'Thông báo hoãn thi do covid 19', '2021-07-27 19:24:23'),
-(4, 4, 3, 'Cập nhật thời khóa biểu', '2021-10-22 19:24:23'),
-(5, 1, 5, 'Đã cập nhật lịch thi\r\n', '2021-05-25 19:24:23');
+(1, 37, 2, 'Học sinh chưa nhận được thông báo lịch thi', '2021-10-27 19:24:23'),
+(2, 2, 37, 'Học sinh chờ thông tin từ nhà trường', '2021-10-20 19:24:23'),
+(3, 3, 2, 'Thông báo hoãn thi do covid 19', '2021-07-27 19:24:23'),
+(4, 2, 3, 'Cập nhật thời khóa biểu', '2021-10-22 19:24:23'),
+(5, 1, 37, 'Đã cập nhật lịch thi\r\n', '2021-05-25 19:24:23');
 
 -- --------------------------------------------------------
 
@@ -114,29 +112,37 @@ CREATE TABLE `teach` (
   `TeachSubject` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `teach`
+--
+
+INSERT INTO `teach` (`TeachID`, `Teacher_UserID`, `ClassID`, `TeachSubject`) VALUES
+(1, 1, 1, 'Anh'),
+(2, 2, 4, 'Toán');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `transcrip`
+-- Cấu trúc bảng cho bảng `transcript`
 --
 
-CREATE TABLE `transcrip` (
+CREATE TABLE `transcript` (
   `Student_UserID` int(11) NOT NULL,
-  `Subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `MidTerm` int(10) DEFAULT NULL,
-  `FinalExam` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `Subject` varchar(60) NOT NULL,
+  `MidTerm` int(11) DEFAULT NULL,
+  `FinalExam` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `transcrip`
+-- Đang đổ dữ liệu cho bảng `transcript`
 --
 
-INSERT INTO `transcrip` (`Student_UserID`, `Subject`, `MidTerm`, `FinalExam`) VALUES
-(1, '[Tiếng anh\r\n                                                                                     ]', 9, 10),
-(2, '[Toán]', 10, 10),
-(3, '[Ngữ văn]', 9, 9),
-(4, '[Sinh học]', 8, 9),
-(5, '[Tiếng anh]', 10, 10);
+INSERT INTO `transcript` (`Student_UserID`, `Subject`, `MidTerm`, `FinalExam`) VALUES
+(40, 'Anh', 5, NULL),
+(40, 'Toán', 9, NULL),
+(40, 'Văn', 6, NULL),
+(41, 'Anh', 10, NULL),
+(41, 'Toán', 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -167,11 +173,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `UserName`, `UserRName`, `UserPassword`, `UserEmail`, `UserTel`, `UserAdd`, `UserGender`, `UserBirth`, `UserAva`, `UserStatus`, `UserCode`, `UserRoll`, `UserParent`, `UserClass`) VALUES
-(1, 'Trần Thu Phương', '', '', 'phuong@gmail.com', '0942323232', 'Hà Nội', 'Nữ', '2001-10-17', 'ava.png', 0, '1', 'Giáo viên', NULL, NULL),
-(2, 'Trần Đại Quang', '', '\r\n', 'daiquang@gmail.com', '0923535534', 'Nam Định', 'Nam', '2004-10-28', 'ava.png', 0, '1', 'Giaó viên', NULL, NULL),
-(3, 'Tô Lâm', '', '\r\n', 'tolam0510@gmail.com', '0925848848', 'Hà Nội', 'Nam', '2001-05-10', 'ava.png', 0, '1', 'Phụ huynh', NULL, NULL),
-(4, 'Đoàn Hồng Hoàng', '', '\r\n', 'doanhonghoang@gmail.com', '0943564678', 'Hà Nội\r\n', 'Nam', '1999-09-11', 'ava.png', 0, '1', 'Học sinh', 3, NULL),
-(5, 'Hà Diệu Linh', '', '', 'hadieulinh@gmail.com', '0943567433', 'Hà Nội', 'Nữ', '1998-09-02', 'ava.png', 0, '1', 'Học sinh', 5, NULL);
+(1, 'phuong', 'Phương', '$2y$10$lkfP7Uns/q9S44Cd6JN0UeC.eNsLub8RpRcVitOMqLMxBIgHElnlG', 'phuong@gmail.com', '0942323232', 'Hà Nội', 'Nữ', '2001-10-17', 'ava.png', 0, '1', 'Giáo viên', NULL, NULL),
+(2, 'Trần Đại Quang', 'Quang', '\r\n', 'daiquang@gmail.com', '0923535534', 'Nam Định', 'Nam', '2004-10-28', 'ava.png', 0, '1', 'Giaó viên', NULL, NULL),
+(3, 'Tô Lâm', 'Lâm', '\r\n', 'tolam0510@gmail.com', '0925848848', 'Hà Nội', 'Nam', '2001-05-10', 'ava.png', 0, '1', 'Phụ huynh', NULL, NULL),
+(37, 'A', '[value-3]', '', '[value-5]', '[value-6]', '[value-7]', 'Nam', NULL, 'ava.png', 0, '1', 'Phụ huynh', NULL, NULL),
+(40, '[value-2]', 'Nguyễn Ngọc Ngà', '', 'abc@gmail.com', '03311554488', 'Hà Nam', 'Nữ', '1988-12-08', 'ava.png', 0, '', 'Học sinh', 37, 1),
+(41, '[value-3]', '[value-3]', '', '[value-5]', '[value-6]', '[value-7]', 'Nữ', NULL, 'ava.png', 0, '', 'Học sinh', 3, 4);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -208,10 +215,10 @@ ALTER TABLE `teach`
   ADD KEY `class` (`ClassID`);
 
 --
--- Chỉ mục cho bảng `transcrip`
+-- Chỉ mục cho bảng `transcript`
 --
-ALTER TABLE `transcrip`
-  ADD PRIMARY KEY (`Student_UserID`);
+ALTER TABLE `transcript`
+  ADD PRIMARY KEY (`Student_UserID`,`Subject`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -236,7 +243,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT cho bảng `class`
 --
 ALTER TABLE `class`
-  MODIFY `ClassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ClassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `mess`
@@ -251,16 +258,10 @@ ALTER TABLE `teach`
   MODIFY `TeachID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `transcrip`
---
-ALTER TABLE `transcrip`
-  MODIFY `Student_UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -281,10 +282,10 @@ ALTER TABLE `teach`
   ADD CONSTRAINT `teach` FOREIGN KEY (`Teacher_UserID`) REFERENCES `users` (`UserID`);
 
 --
--- Các ràng buộc cho bảng `transcrip`
+-- Các ràng buộc cho bảng `transcript`
 --
-ALTER TABLE `transcrip`
-  ADD CONSTRAINT `Stu_UserID` FOREIGN KEY (`Student_UserID`) REFERENCES `users` (`UserID`);
+ALTER TABLE `transcript`
+  ADD CONSTRAINT `transcript_ibfk_1` FOREIGN KEY (`Student_UserID`) REFERENCES `users` (`UserID`);
 
 --
 -- Các ràng buộc cho bảng `users`
