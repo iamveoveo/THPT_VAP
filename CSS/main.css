@@ -368,3 +368,7 @@ a:hover{
 .ur-mess .mess-cell{
     background-color: #f1e5fe62;
 }
+
+.takeClass{
+    cursor: pointer;
+}

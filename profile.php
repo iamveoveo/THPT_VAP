@@ -6,17 +6,17 @@ include("template/header-menu.php");
 <?php
     /* $userID = $_SESSION['UserName']; */
     if(isset($_GET['userID'])){
-        $userID = $_GET['userID'];
+        $UserID = $_GET['userID'];
     }
 
-    $sql3 = "select * from users, );";
+    $sql3 = "select * from users where UserID=$UserID;";
     $res3 = mysqli_query($conn, $sql3);
     if(mysqli_num_rows($res3)>0){
         $row3 = mysqli_fetch_assoc($res3);
     }
 ?>
 <script>
-    var userID = <?php echo $userID;?>;
+    var userID = <?php echo $UserID;?>;
 </script>
 
 <div class="back ">
@@ -27,8 +27,6 @@ include("template/header-menu.php");
             <div class="col-md-4 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px" src="images/<?php echo $row3['UserAva']; ?>">
-                    <span class="font-weight-bold"><?php echo $row3['UserRName'];?></span>
-                    <span class="text-black-50"><?php echo $row3['UserEmail'];?></span>
                     <span> </span>
                 </div>
             </div>
@@ -49,12 +47,12 @@ include("template/header-menu.php");
                                 <label class="labels">Lớp</label>
                                 <select disabled="disabled" readonly="readonly" name="Class" id="class" class='form-control'>
                                     <?php
-                                        $sql4 = "select TeachClass from Teach group by TeachClass";
+                                        $sql4 = "select * from Class";
                                         $res4 = mysqli_query($conn, $sql4);
                                         if(mysqli_num_rows($res4)>0){
                                             while($row4 = mysqli_fetch_assoc($res4)){
                                                 ?>
-                                                    <option value="<?php echo $row4['TeachClass'];?>" <?php if($row4['TeachClass']==$row3['TeachClass']){echo 'selected';}?> ><?php echo $row4['TeachClass'];?></option>
+                                                    <option value="<?php echo $row4['ClassID'];?>" <?php if($row4['ClassID']==$row3['UserClass']){echo 'selected';}?> ><?php echo $row4['ClassName'];?></option>
                                                 <?php
                                             }
                                         }
@@ -128,8 +126,6 @@ include("template/header-menu.php");
                     <div class="col-md-4 border-right">
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                             <img class="rounded-circle mt-5" width="150px" src="images/<?php echo $row3['UserAva']; ?>">
-                            <span class="font-weight-bold"><?php echo $row3['UserRName'];?></span>
-                            <span class="text-black-50"><?php echo $row3['UserEmail'];?></span>
                             <span> </span>
                         </div>
                         <form action="#">
@@ -156,7 +152,7 @@ include("template/header-menu.php");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
-                <button name="save" type="button" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
+                <button name="save" type="button"  data-bs-dismiss="modal" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
             </div>
             </div>
         </div>
@@ -166,5 +162,25 @@ include("template/header-menu.php");
 
 </div>
 
+<script>
+document.querySelector("html").classList.add('js');
+
+var fileInput  = document.querySelector( ".input-file" ),  
+    button     = document.querySelector( ".input-file-trigger" ),
+    the_return = document.querySelector(".file-return");
+      
+button.addEventListener( "keydown", function( event ) {  
+    if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+        fileInput.focus();  
+    }  
+});
+button.addEventListener( "click", function( event ) {
+   fileInput.focus();
+   return false;
+});  
+fileInput.addEventListener( "change", function( event ) {  
+    the_return.innerHTML = this.value;  
+});  
+</script>
 
 <?php include("template/footer.php"); ?>
