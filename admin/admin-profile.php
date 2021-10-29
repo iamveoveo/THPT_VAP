@@ -12,8 +12,7 @@
                     <i class="fa fa-search"></i> <input type="text" class="form-control form-input rounded" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone"></i></span> 
                 </div>
             </div>
-        </div
-        >
+        </div>
         
         <div class='dashboard-content'>
             <div class='container'>

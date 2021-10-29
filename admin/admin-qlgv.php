@@ -45,8 +45,8 @@
                                         //  $sql="SELECT UserID, UserName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll,UserClass, ClassID, ClassName  
                                         //     FROM users , class WHERE ClassName.class= UserClass.users AND UserRoll='Giáo viên' ";
 
-                                        $sql="SELECT UserID, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass
-                                            FROM users WHERE  UserRoll='Giáo viên' ";
+                                        $sql="SELECT UserID, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass, ClassName, ClassID
+                                        FROM users ,class WHERE  UserRoll='Giáo viên' OR UserClass=ClassID";
                                             
                                          $result = mysqli_query($conn,$sql);
 
@@ -61,7 +61,7 @@
                                             <td><?php echo $row['UserRName']; ?></td>
                                             <td><?php echo $row['UserEmail']; ?></td>
                                             <td><?php echo $row['UserTel']; ?></td>
-                                            <td><?php echo $row['UserClass']; ?></td>
+                                            <td><?php echo $row['ClassName']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
                                             <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
@@ -90,7 +90,7 @@
                                     <h5 class="modal-title">Thêm thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="" method="POST">
+                                    <form action="process-add.php" method="POST">
                                         <div class="modal-body">
                                             <div class=" col-12">
                                                 <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
@@ -99,10 +99,16 @@
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                                             </div>
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Họ và tên</label>
                                                                     <input type="text" class="form-control" name="txtHoTen" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Tên tài khoản</label>
+                                                                    <input type="text" class="form-control" name="tenTaiKhoan">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -121,7 +127,20 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="Street">Lớp dạy</label>
-                                                                    <input type="text" class="form-control" name="txtLopday" placeholder="VD:10A1,11A2,..">
+                                                                    <select class="form-select" name="txtLop" aria-label="Default select example">
+                                                                        <option value="">Chọn lớp</option>
+                                                                        <?php
+                                                                        $sql_1 = "SELECT * FROM class";
+                                                                        $result_1 = mysqli_query($conn,$sql_1);
+                                            
+                                                                        //xử lý kết quả
+                                                                        if(mysqli_num_rows($result_1)>0){
+                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
+                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>          
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -145,10 +164,10 @@
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <label class="labels">Giới tính</label>
-                                                                <select class="form-select" aria-label="Default select example">
-                                                                    <option selected>Chọn giới tính</option>
-                                                                    <option value="1">Nam</option>
-                                                                    <option value="2">Nữ</option>
+                                                                <select class="form-select" aria-label="Default select example" name="txtGioiTinh">
+                                                                    <option value="">Chọn giới tính</option>
+                                                                    <option value="Nam">Nam</option>
+                                                                    <option value="Nữ">Nữ</option>
                                                                 </select>
                                                             </div>
                                                             
@@ -162,7 +181,7 @@
                                         <!-- btn hủy và lưu -->
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                            <button type="submit" class="btn" name="sbm-add" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                            <button type="submit" class="btn" name="add-qlgv" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                         </div>
                                     </form>
                                 </div>
@@ -393,51 +412,6 @@
         </div>
     </div>
 </div>
-
-<?php
-//ktra là người dùng nhấn nút chưa
-    if(isset($_POST['sbm-add'])){
-        //lấy  gtri form lưu vào biến
-        $hoTen  = $_POST['txtHoTen'];
-        $email = $_POST['txtEmail'];
-        $sodidong = $_POST['sdt'];
-        $diachi = $_POST['txtDiaChi'];
-        $gioitinh = $_POST['txtGioiTinh'];
-        $ngaySinh = $_POST['ngaySinh'];
-        $lop = $_POST['txtLopDay'];
-        $mon = $_POST['txtMon'];
-
-        //lệnh sql
-        $sql_1="INSERT INTO users SET
-        UserName = '$hoTen',
-        UserEmail = '$email' , 
-        UserTel = $sodidong, 
-        UserAdd = '$diachi',
-        UserGender = '$gioitinh', 
-        UserBirth = '$ngaySinh',
-        UserRoll = 'Giáo viên'
-
-        ";
-
-        $query = mysqli_query($conn,$sql_1) or die(mysqli_error());
- 
-
-        //4. Check whether the (Query is Executed) data is inserted or not and display appropriate message
-        if($query==TRUE)
-        {
-            $_SESSION['add']="<div class='text-success'>Thêm nhân viên thành công.</div>";
-
-            header('location:' .SITEURL. 'admin/admin-qlgv.php');
-        }
-        else
-        {
-            $_SESSION['add']="<div class='text-danger'>Thêm nhân viên thất bại.</div>";
-            header('location:' .SITEURL. 'admin/admin-qlgv.php');
-
-        }
-
-    }
-?>
 
 
 <?php include("template/footer.php"); ?>
