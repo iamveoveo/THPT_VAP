@@ -42,8 +42,14 @@
                                     <tbody>
                                     <?php
 
-                                        $sql="SELECT UserId, UserName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll  FROM users  
-                                            WHERE UserRoll='Phụ huynh'";
+                                        // $sql="SELECT UserId, UserName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll  FROM users  
+                                        //     WHERE UserRoll='Phụ huynh'";
+
+                                        $sql="SELECT u.UserID, u.UserName, u.UserEmail, u.UserAdd, u.UserTel, u.Gender, dv.UserParent, u1.UserName as UserParent from user as u, user as u1 where u.UserParent = u1.UserName AND UserRoll='Phụ huynh'
+                                        UNION
+                                        select UserName, UserAdd, UserEmail, UserAdd, UserGaneder, UserTell, UserParent, null as UserParent from user where UserParent is null";
+                                        $result = mysqli_query($conn,$sql);
+
                                         $result = mysqli_query($conn,$sql);
 
                                         if(mysqli_num_rows($result)>0){
