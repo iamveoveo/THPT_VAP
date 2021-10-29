@@ -47,6 +47,9 @@
                                             <td>B</td>
                                             <td>E</td>
                                             <td>C</td>
+                                            <td>B</td>
+                                            <td>E</td>
+                                            <td>C</td>
                                             <td>D</td>
                                             <td>G</td>
                                             <td><a href="#"><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button> </a></td>
@@ -59,6 +62,9 @@
                                             <td>A</td>
                                             <td>B</td>
                                             <td>E</td>
+                                            <td>B</td>
+                                            <td>E</td>
+                                            <td>C</td>
                                             <td>C</td>
                                             <td>D</td>
                                             <td>G</td>
