@@ -3,7 +3,15 @@ include('config/constants.php');
 ?>
 <?php
 // trang quanlihocsinh
-   //lấy id là manv
+    //B1:Lấy giá trị và lưu vào biến
+        $UserName = $_POST['UserName'];
+        $UserEmail = $_POST['UserEmail'];
+        $UserTel = $_POST['UserTel'];
+        $UserAdd = $_POST['UserAdd'];
+        $UserGender = $_POST['UserGender'];
+        $UserBirth = $POST['UserBirth'];
+        $UserClass = $POST['UserClass'];   
+   //lấy id là TeachID
     $id = $_GET['TeachID'];
 
     //2. Create SQL Query to Delete Admin
