@@ -354,7 +354,6 @@
                         </div>
                       
                         <!-- btn import và export -->
-                        <!-- btn import và export -->
                         <div class="center row">
                             <div class="btn-1 col-5">
                                 <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -363,9 +362,9 @@
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" enctype="multipart/form-data" >             
+                                    <button name="export_hs btn" type="submit" data-mdb-ripple-color="dark">
+                                    <span>Xuất file</span></button>
                                 </form>
                             </div>
                         </div>
@@ -376,8 +375,8 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
-                                        <input type="file" name="file_import" >   
+                                    <form action="import-export.php" method="POST" enctype="multipart/form-data" id="import_hs" name="form_import">             
+                                        <input type="file" name="file_import_1" >   
                                         <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -388,8 +387,8 @@
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal" >Hủy</button>
+                                        <button type="button" class="btn" name="import_hs" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>
