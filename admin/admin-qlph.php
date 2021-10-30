@@ -352,9 +352,9 @@
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" enctype="multipart/form-data" >             
+                                    <button name="export_ph" clsas="btn btn-primary" type="submit" data-mdb-ripple-color="dark">
+                                    <span>Xuất file</span></button>
                                 </form>
                             </div>
                         </div>

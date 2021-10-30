@@ -363,7 +363,7 @@
                 
                             <div class="btn-2 col-5">
                                 <form action="import-export.php" method="POST" enctype="multipart/form-data" >             
-                                    <button name="export_hs btn" type="submit" data-mdb-ripple-color="dark">
+                                    <button name="export_hs" clsas="btn btn-primary" type="submit" data-mdb-ripple-color="dark">
                                     <span>Xuất file</span></button>
                                 </form>
                             </div>
