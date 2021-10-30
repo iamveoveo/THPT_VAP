@@ -19,6 +19,13 @@
                     <div class='card-header'>
                         <h2>Quản lý phụ huynh</h2>
                     </div>
+                    <?php
+                        if(isset($_SESSION['add_parent']))
+                            {
+                            echo $_SESSION['add_parent'];
+                            unset($_SESSION['add_parent']);
+                            }      
+                    ?>
                     <div class='card-body'>      
                         <div>
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
@@ -86,70 +93,78 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
 
-                                    <!--form add -->
-                                    <h5 class="modal-title">Thêm thông tin</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <!--form add -->
+                                        
+                                        <div class="card w-100 h-100" style="background:rgb(88 116 149 / 19%)">
+                                            <form action="" class="d-flex " name="student_search">
+                                                <input type="text" name="inp_search" class="form-control form-input w-75" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"></span> 
+                                                <button type="submit" name="hs_search" class="btn btn-primary">Tìm kiếm</button>
+                                            </form>
+                                            <div class="bg-light w-100 h-25 search_content"> 
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                    <form action="process-add.php" method="POST">
-
+                          
+                                    <form action="process-add.php" method="POST" >
                                         <div class="modal-body">
                                             <div class=" col-12">
                                                 <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
                                                     <div class="card-body">
                                                         <div class="row gutters">
-                                                            <form action="qlph-add.php" method="POST">
-                                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                                    <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
+                                                                <input type="hidden" name="StudenId" value="">
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Họ và tên</label>
+                                                                    <input type="text" class="form-control" name="txtHoTen" >
                                                                 </div>
-                                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
-                                                                    <div class="form-group">
-                                                                        <label for="fullName">Họ và tên</label>
-                                                                        <input type="text" class="form-control" name="txtHoTen" >
-                                                                    </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Tên tài khoản</label>
+                                                                    <input type="text" class="form-control" name="txtTaiKhoan" >
                                                                 </div>
-                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                    <div class="form-group">
-                                                                        <label for="fullName">Tên tài khoản</label>
-                                                                        <input type="text" class="form-control" name="txtTaiKhoan" >
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                    <div class="form-group">
-                                                                        <label for="phone">Số điện thoại</label>
-                                                                        <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                    <div class="form-group">
-                                                                        <label for="phone">Email</label>
-                                                                        <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                    <div class="form-group">
-                                                                        <label for="phone">Địa chỉ</label>
-                                                                        <input type="text" class="form-control " name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                    <div class="form-group">
-                                                                        <label for="website">Ngày sinh</label>
-                                                                        <input type="date" class="form-control" name="ngaySinh" >
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                    <label class="labels">Giới tính</label>
-                                                                    <select class="form-select" name="txtGioiTinh" aria-label="Default select example">
-                                                                        <option value="">Chọn giới tính</option>
-                                                                        <option value="Nam">Nam</option>
-                                                                        <option value="Nữ">Nữ</option>
-                                                                    </select>
-                                                                </div>                                                       
+                                                            </div>
                                                             
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="phone">Số điện thoại</label>
+                                                                    <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="phone">Email</label>
+                                                                    <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="phone">Địa chỉ</label>
+                                                                    <input type="text" class="form-control " name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="website">Ngày sinh</label>
+                                                                    <input type="date" class="form-control" name="ngaySinh" >
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <label class="labels">Giới tính</label>
+                                                                <select class="form-select" name="txtGioiTinh" aria-label="Default select example">
+                                                                    <option value="">Chọn giới tính</option>
+                                                                    <option value="Nam">Nam</option>
+                                                                    <option value="Nữ">Nữ</option>
+                                                                </select>
+                                                            </div>                                                       
                                                         
+                                                    
                                                         </div>
                                                     </div>
                                                 </div>
@@ -395,3 +410,6 @@
 
 <!-- đoạn xử lý menu toogle -->
 <script src="JS/admin.js"></script>
+<script>
+    function takeid
+</script>

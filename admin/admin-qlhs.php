@@ -19,6 +19,13 @@
                     <div class='card-header'>
                         <h2>Quản lý học sinh</h2>
                     </div>
+                    <?php
+                        if(isset($_SESSION['add_student']))
+                            {
+                            echo $_SESSION['add_student'];
+                            unset($_SESSION['add_student']);
+                            }      
+                    ?>
                     <div class='card-body'>      
                         <div>
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
@@ -32,6 +39,7 @@
                                         <th scope="col">Họ và tên</th>
                                         <th scope="col">Tên tài khoản</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Trạng thái</th>
                                         <th scope="col">Số điện thoại</th>
                                         <th scope="col">Lớp </th>
                                         <th scope="col">Sửa</th>
@@ -41,7 +49,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql="SELECT UserID, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass, ClassName, ClassID
+                                        $sql="SELECT UserID, UserName, UserRName,UserStatus, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass, ClassName, ClassID
                                             FROM users ,class WHERE  UserRoll='Học sinh' AND UserClass=ClassID";
                                             
                                         $result = mysqli_query($conn,$sql);
@@ -56,6 +64,7 @@
                                             <td><?php echo $row['UserRName']; ?></td>
                                             <td><?php echo $row['UserName']; ?></td>
                                             <td><?php echo $row['UserEmail']; ?></td>
+                                            <td><?php echo $row['UserStatus']; ?></td>
                                             <td><?php echo $row['UserTel']; ?></td>
                                             <td><?php echo $row['ClassName']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
@@ -94,7 +103,7 @@
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                                             </div>
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Họ và tên</label>
                                                                     <input type="text" class="form-control" name="txtHoTen" >
@@ -104,6 +113,12 @@
                                                                 <div class="form-group">
                                                                     <label for="fullName">Tên tài khoản</label>
                                                                     <input type="text" class="form-control" name="txtTaiKhoan" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Mật khẩu</label>
+                                                                    <input type="password" class="form-control" name="matKhau" >
                                                                 </div>
                                                             </div>
                                                             
@@ -132,12 +147,7 @@
                                                                         ?>
                                                                     </select>                                                                </div>
                                                             </div>
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Email</label>
-                                                                    <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                                </div>
-                                                            </div>
+                                                            
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="phone">Địa chỉ</label>
@@ -284,7 +294,7 @@
                                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                             <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                                         </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="fullName">Họ và tên</label>
                                                                 <input type="text" class="form-control" name="txtHoTen" >
@@ -292,10 +302,17 @@
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
-                                                                <label for="eMail">Môn dạy</label>
-                                                                <input type="text" class="form-control" name="txtMon" placeholder="acb@gmail.com">
+                                                                <label for="fullName">Tên tài khoản</label>
+                                                                <input type="text" class="form-control" name="txtTaiKhoan" >
                                                             </div>
                                                         </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label for="fullName">Mật khẩu</label>
+                                                                <input type="password" class="form-control" name="matKhau" >
+                                                            </div>
+                                                        </div>
+                                                        
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="phone">Số điện thoại</label>
@@ -305,20 +322,17 @@
                                                         
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
-                                                                <label for="Street">Lớp dạy</label>
-                                                                <input type="text" class="form-control" name="txtLopday" placeholder="VD:10A1,11A2,..">
-                                                            </div>
+                                                                <label for="Street">Lớp</label>
+                                                                <select class="form-select" name="txtLop" aria-label="Default select example">
+                                                                    s
+                                                                    
+                                                                </select>                                                                </div>
                                                         </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Email</label>
-                                                                <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="phone">Địa chỉ</label>
-                                                                <input type="text" class="form-control " name="txtDiachi" placeholder="Xã,phường/huyện/tỉnh">
+                                                                <input type="text" class="form-control " name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -330,10 +344,10 @@
 
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Chọn giới tính</option>
-                                                                <option value="1">Nam</option>
-                                                                <option value="2">Nữ</option>
+                                                            <select class="form-select" name="txtGioiTinh" aria-label="Default select example">
+                                                                <option value="">Chọn giới tính</option>
+                                                                <option value="Nam">Nam</option>
+                                                                <option value="Nữ">Nữ</option>
                                                             </select>
                                                         </div>
                                                         

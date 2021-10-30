@@ -4,43 +4,43 @@
 <!-- giáo viên -->
 <?php
     if(isset($_POST['add-qlgv'])){
-        $hoTen  = $_POST['txtHoTen'];
-        $tenTK = $_POST['txtTaiKhoan'];
-        $email = $_POST['txtEmail'];
-        $sodidong = $_POST['sdt'];
-        $diachi = $_POST['txtDiaChi'];
-        $gioitinh = $_POST['txtGioiTinh'];
-        $ngaySinh = $_POST['ngaySinh'];
-        $mon = $_POST['txtMon'];
-        $lop = $_POST['txtLop'];
+        $hoTen  = $_POST['UserRName'];
+        $tenTK = $_POST['UserName'];
+        $pass = $_POST['UserPassword'];
+        $email = $_POST['UserEmail'];
+        $sodidong = $_POST['UserTel'];
+        $diachi = $_POST['UserAdd'];
+        $gioitinh = $_POST['UserGender'];
+        $ngaySinh = $_POST['UserBirth'];
+
+        $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
 
         //lệnh sql
         $sql="INSERT INTO users SET
         UserName = '$hoTen',
         UserRName = '$tenTK',
+        UserPassword = '$pass_hash',
         UserEmail = '$email' , 
         UserTel = $sodidong, 
         UserAdd = '$diachi',
         UserGender = '$gioitinh', 
         UserBirth = '$ngaySinh',
-        UserClass = '$lop',
         UserRoll = 'Giáo viên'
 
         ";
-      $query = mysqli_query($conn,$sql) or die(mysqli_error());
 
         // $sql_2=" INSERT INTO teacher SET
         // TeachSubject = '$mon' ";
-        // $query_2 = mysqli_query($conn,$sql_2) or die(mysqli_error());
+        $query = mysqli_query($conn,$sql) or die(mysqli_error());
 
         if($query==TRUE)
         {
-            $_SESSION['add']="<div class='text-success'>Thêm nhân viên thành công.</div>";
+            $_SESSION['add_teach']="<div class='text-success'>Thêm giáo viên thành công.</div>";
             header('location:' .SITEURL. 'admin/admin-qlgv.php');
         }
         else
         {
-            $_SESSION['add']="<div class='text-danger'>Thêm nhân viên thất bại.</div>";
+            $_SESSION['add_teach']="<div class='text-danger'>Thêm giáo viên thất bại.</div>";
             header('location:' .SITEURL. 'admin/admin-qlgv.php');
         }
     }
@@ -72,12 +72,12 @@
 
         if($query_1==TRUE)
         {
-            $_SESSION['add']="<div class='text-success'>Thêm nhân viên thành công.</div>";
+            $_SESSION['add_parent']="<div class='text-success'>Thêm phụ huynh thành công.</div>";
             header('location:' .SITEURL. 'admin/admin-qlph.php');
         }
         else
         {
-            $_SESSION['add']="<div class='text-danger'>Thêm nhân viên thất bại.</div>";
+            $_SESSION['add_parent']="<div class='text-danger'>Thêm phụ huynh thất bại.</div>";
             header('location:' .SITEURL. 'admin/admin-qlph.php');
         } 
 
@@ -89,6 +89,7 @@
     if(isset($_POST['add-qlhs'])){
         $hoTen  = $_POST['txtHoTen'];
         $tenTK = $_POST['txtTaiKhoan'];
+        $matkhau = $_POST['matKhau'];
         $email = $_POST['txtEmail'];
         $sodidong = $_POST['sdt'];
         $diachi = $_POST['txtDiaChi'];
@@ -96,9 +97,12 @@
         $ngaySinh = $_POST['ngaySinh'];
         $lop = $_POST['txtLop'];
 
+        $pass_hash_2 = password_hash($matkhau, PASSWORD_DEFAULT);
+
         $sql_2="INSERT INTO users SET
-        UserName = '$hoTen',
-        UserRName = '$tenTK',
+        UserRName = '$hoTen',
+        UserName = '$tenTK',
+        UserPassword = '$pass_hash_2',
         UserEmail = '$email' , 
         UserTel = $sodidong, 
         UserAdd = '$diachi',
@@ -112,12 +116,12 @@
 
         if($query_2==TRUE)
         {
-            $_SESSION['add']="<div class='text-success'>Thêm nhân viên thành công.</div>";
+            $_SESSION['add_student']="<div class='text-success'>Thêm học sinh thành công.</div>";
             header('location:' .SITEURL. 'admin/admin-qlhs.php');
         }
         else
         {
-            $_SESSION['add']="<div class='text-danger'>Thêm nhân viên thất bại.</div>";
+            $_SESSION['add_student']="<div class='text-danger'>Thêm học sinh thất bại.</div>";
             header('location:' .SITEURL. 'admin/admin-qlhs.php');
         } 
 
@@ -157,3 +161,5 @@
 
     }
 ?>
+
+<!-- lớp -->

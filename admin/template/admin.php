@@ -13,13 +13,9 @@
         <!-- navbar -->
         <nav class="dashboard-nav-list">
             <a href="index.php" class="dashboard-nav-item"><i class="fas fa-home"></i>Trang chủ </a>
-            <div class='dashboard-nav-dropdown'><a href="#" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý điểm </a>
-                <div class='dashboard-nav-dropdown-menu'>
-                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 10</a>
-                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 11</a>
-                    <a href="admin-qld.php" class="dashboard-nav-dropdown-item">Lớp 12</a>
-                </div>
-            </div>
+            <div class='dashboard-nav-dropdown'><a href="admin-manager.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý admin </a></div>
+            <div class='dashboard-nav-dropdown'><a href="admin-qld.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý điểm </a></div>
+            <div class='dashboard-nav-dropdown'><a href="admin-qll.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý lớp </a></div>
            
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý người dùng </a>
                 <div class='dashboard-nav-dropdown-menu'>

@@ -78,7 +78,6 @@
                                             <td><?php echo $row['FinalExam']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
                                             <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
-                                            <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>
                                         <?php

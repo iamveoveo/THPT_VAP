@@ -17,13 +17,13 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h2>Quản lý giáo viên</h2>
+                        <h2>Quản lý lớp</h2>
                     </div>
                     <?php
-                        if(isset($_SESSION['add_teach']))
+                        if(isset($_SESSION['add']))
                             {
-                            echo $_SESSION['add_teach'];
-                            unset($_SESSION['add_teach']);
+                            echo $_SESSION['add'];
+                            unset($_SESSION['add']);
                             }      
                     ?>
                     <div class='card-body'>      
@@ -36,21 +36,18 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">STT</th>
-                                            <th scope="col">Họ và tên</th>
-                                            <th scope="col">Tên tài khoản</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Số điện thoại</th>
-                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Khối</th>
+                                            <th scope="col">Tên lớp</th>
+                                            <th scope="col">Tên giáo viên</th>
+                                            <th scope="col">Môn học</th>
                                             <th scope="col">Sửa</th>
                                             <th scope="col">Xóa</th>
-                                            <th scope="col">Xem chi tiết</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
 
-                                        $sql="SELECT UserID, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender,UserStatus, UserBirth, UserRoll, UserClass
-                                        FROM users  WHERE  UserRoll='Giáo viên' ";
+                                        $sql="SELECT * FROM users,class, teach  WHERE teach.TeachID=users.UserID AND class.ClassID=teach.ClassID ";
                                             
                                          $result = mysqli_query($conn,$sql);
 
@@ -61,14 +58,12 @@
 
                                         <tr>
                                             <th scope="row"><?php echo $i; ?></th>
-                                            <td><?php echo $row['UserName']; ?></td>
+                                            <td><?php echo $row['ClassGrade']; ?></td>
+                                            <td><?php echo $row['ClassName']; ?></td>
                                             <td><?php echo $row['UserRName']; ?></td>
-                                            <td><?php echo $row['UserEmail']; ?></td>
-                                            <td><?php echo $row['UserTel']; ?></td>
-                                            <td><?php echo $row['UserStatus']; ?></td>
+                                            <td><?php echo $row['TeachSubject']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
                                             <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
-                                            <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>
                                         <?php
@@ -103,52 +98,42 @@
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                                             </div>
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="fullName">Họ và tên</label>
-                                                                    <input type="text" class="form-control" name="UserRName"require="required" >
+                                                                    <label for="fullName">Khối</label>
+                                                                    <input type="text" class="form-control" name="txtHoTen" >
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="eMail">Tên tài khoản</label>
-                                                                    <input type="text" class="form-control" name="UserName" require="required">
+                                                                    <label for="Street">Lớp dạy</label>
+                                                                    <select class="form-select" name="txtLop" aria-label="Default select example">
+                                                                        <option value="">Chọn lớp</option>
+                                                                        <?php
+                                                                        $sql_1 = "SELECT * FROM class";
+                                                                        $result_1 = mysqli_query($conn,$sql_1);
+                                            
+                                                                        //xử lý kết quả
+                                                                        if(mysqli_num_rows($result_1)>0){
+                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
+                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>          
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="eMail">Mật khẩu</label>
-                                                                    <input type="password" class="form-control" name="UserPassword" require="required">
+                                                                    <label for="eMail">Môn học</label>
+                                                                    <input type="text" class="form-control" name="tenTaiKhoan">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="phone">Số điện thoại</label>
-                                                                    <input type="tel" class="form-control " name="UserTel" placeholder="09x xxx xxxx">
+                                                                    <label for="eMail">Giáo viên</label>
+                                                                    <input type="text" class="form-control" name="txtMon">
                                                                 </div>
-                                                            </div>
-                                                                                                                    
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Địa chỉ</label>
-                                                                    <input type="text" class="form-control " name="UserAdd" placeholder="Xã,phường/huyện/tỉnh">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="website">Ngày sinh</label>
-                                                                    <input type="date" class="form-control" name="UserBirth" >
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <label class="labels">Giới tính</label>
-                                                                <select class="form-select" aria-label="Default select example" name="UserGender">
-                                                                    <option value="">Chọn giới tính</option>
-                                                                    <option value="Nam">Nam</option>
-                                                                    <option value="Nữ">Nữ</option>
-                                                                </select>
                                                             </div>
                                                             
                                                         </div>
