@@ -47,7 +47,7 @@
             while($row6 = mysqli_fetch_assoc($res6)){
                 ?>
                 <li>
-                    <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row6['UserID'];?>&userRoll=<?php echo $row6['UserRoll'] ?>">
+                    <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row6['UserID'];?>">
                         <div class="my-table-item row box-shadow">
                             <div class="col-2"><img class="item-ava" src="images/<?php echo $row6['UserAva']; ?>" alt=""></div>
                             <div class="item-detail col-7 flex-fill d-flex flex-column">

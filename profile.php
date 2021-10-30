@@ -4,7 +4,7 @@ include("template/header-menu.php");
 ?>
 
 <?php
-    /* $userID = $_SESSION['UserName']; */
+    $UserID = $_SESSION['MyID'];
     if(isset($_GET['userID'])){
         $UserID = $_GET['userID'];
     }
@@ -13,6 +13,11 @@ include("template/header-menu.php");
     $res3 = mysqli_query($conn, $sql3);
     if(mysqli_num_rows($res3)>0){
         $row3 = mysqli_fetch_assoc($res3);
+        if(isset($_GET['userID'])){
+            $UserRoll = $row3['UserRoll'];
+        }else{
+            $UserRoll = "me";
+        }
     }
 ?>
 <script>
@@ -94,16 +99,94 @@ include("template/header-menu.php");
                     </div>
                     <!-- Button trigger modal -->
                     <div class="d-flex flex-row">
-                        <div class="mt-4 text-center me-3">
-                            <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
-                                Sửa thông tin
-                            </button>
-                        </div>
-                        <div class="mt-4 text-center">
-                            <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
-                                Xem điểm
-                            </button>
-                        </div>
+                        <?php
+                            if($_SESSION['MyRoll']=="Giáo viên"){
+                                if($UserRoll=="Phụ huynh"){
+                                    ?>
+                                    <div class="mt-4 text-center me-3">
+                                        <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
+                                            Sửa thông tin
+                                        </button>
+                                    </div>
+                                    <?php
+                                }else if($UserRoll=="Học sinh"){
+                                    ?>
+                                    <div class="mt-4 text-center me-3">
+                                        <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
+                                            Sửa thông tin
+                                        </button>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                            Xem điểm
+                                        </button>
+                                    </div>
+                                    <?php
+                                }else if($UserRoll=="me"){
+                                    ?>
+                                    <div class="mt-4 text-center me-3">
+                                        <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
+                                            Sửa thông tin
+                                        </button>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <button id="transcript" type="button" class="btn" style="background: #663399; color:#fff;">
+                                            Thêm điểm
+                                        </button>
+                                        <script type="text/javascript">
+                                            document.getElementById("transcript").onclick = function () {
+                                                location.href = "<?php echo SITEURL?>transcript.php";
+                                            };
+                                        </script>
+                                    </div>
+                                    <?php
+                                }
+                            }else if($_SESSION['MyRoll']=="Phụ huynh"){
+                                if($UserRoll=="Học sinh"){
+                                    ?>
+                                    <div class="mt-4 text-center">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                            Xem điểm
+                                        </button>
+                                    </div>
+                                    <?php
+                                }else if($UserRoll=="Giáo viên"){
+                                    ?>
+                                    <div class="mt-4 text-center">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                            Xem điểm
+                                        </button>
+                                    </div>
+                                    <?php
+                                }else if($UserRoll=="me"){
+                                    ?>
+                                    <div class="mt-4 text-center me-3">
+                                        <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
+                                            Sửa thông tin
+                                        </button>
+                                    </div>
+                                    <?php
+                                }
+                            }else{
+                                if($UserRoll=="Học sinh"){
+                                    ?>
+                                    <div class="mt-4 text-center">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                            Xem điểm
+                                        </button>
+                                    </div>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <div class="mt-4 text-center me-3">
+                                        <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
+                                            Sửa thông tin
+                                        </button>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

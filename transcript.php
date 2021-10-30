@@ -1,6 +1,9 @@
 <?php 
 include("template/header.php"); 
-include("template/header-menu.php");  
+include("template/header-menu.php"); 
+if($_SESSION["MyRoll"]!="Giáo viên"){
+    header('location:'.SITEURL);
+}
 ?>
 
 <div class="back">
@@ -27,9 +30,8 @@ include("template/header-menu.php");
                 </select>
                 
             </div>
-            <div class="col-2 d-flex justify-content-center align-items-center">
+            <div class="col-2 d-flex justify-content-center align-items-center pt-3">
                 <button class="btn p-3"  type="submit" style="background: #6c119a;color: #fff;">Chọn</button>
-
             </div>
         </form>
         <table class="table align-middle table-bordered table-secondary table-hover table-responsive">
@@ -78,25 +80,29 @@ include("template/header-menu.php");
 
         <!-- import export -->
         <div class="center row">
-            <div class="col-5">
-                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="col-4">
+                <a href="" type="button" class="h-100">
+                    <button class="button button--mimas h-100"><span>Thêm</span></button>
+               </a>
+            </div>
+
+            <div class="col-4">
+                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#import">
                     <button class="button button--mimas"><span>Nhập tệp</span></button>
                </a>
             </div>
 
-            <div class=" col-5">
-                <form action="#" method="POST" enctype="multipart/form-data" >             
-                    <a href="" type="submit" data-mdb-ripple-color="dark">
-                        <button class="button button--calypso"><span>Xuất tệp</span></button>
-                    </a> 
-                </form>
+            <div class=" col-4">         
+                <a href="" type="button" data-mdb-ripple-color="dark">
+                    <button class="button button--calypso"><span>Xuất tệp</span></button>
+                </a> 
             </div>
         </div>
 
     </div>
 
     <!-- modal import -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">

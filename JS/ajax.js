@@ -1,4 +1,6 @@
-var takeRoll = "";
+if (typeof takeRoll == 'undefined') {
+    var takeRoll = "";
+}
 var takeClass = "";
 
 $(document).ready(function(){
@@ -53,7 +55,12 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success: function(data){
-                data;
+                var confirm = data.split('|');
+                if(confirm[0]=="updated"){
+                    window.location.replace(confirm[1]);
+                }else{
+                    $('.confirm-alert').html(confirm[1]);
+                }
             }
         })
     })

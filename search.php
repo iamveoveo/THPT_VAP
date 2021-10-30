@@ -14,12 +14,12 @@ if(isset($_GET['takeName'])){
 <div class="back">
     <div class="container">
         <div class="search mb-4 justify-content-center">
-            <div class="w-50 d-flex">
+            <form class="w-50 d-flex" action="search.php" method="GET">
                 <input type="text" class="searchTerm" placeholder="Bạn đang tìm kiếm học sinh nào?">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
-            </div>
+            </form>
         </div>
         <div class="row m-auto">
             <div class="tree col-2">
@@ -92,7 +92,7 @@ if(isset($_GET['takeName'])){
                             while($row2 = mysqli_fetch_assoc($res2)){
                                 ?>
                                 <li>
-                                    <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row2['UserID'];?>&userRoll=<?php echo $row2['UserRoll'] ?>">
+                                    <a href="<?php echo SITEURL?>profile.php?userID=<?php echo $row2['UserID'];?>">
                                         <div class="my-table-item row box-shadow">
                                             <div class="col-2"><img class="item-ava" src="images/<?php echo $row2['UserAva']; ?>" alt=""></div>
                                             <div class="item-detail col-7 flex-fill d-flex flex-column">

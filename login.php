@@ -48,13 +48,14 @@
       $row7 = mysqli_fetch_assoc($res7);
       if(password_verify($Passwword, $row7['UserPassword'])){
         if($row7['UserStatus']==0){
-          $_SESSION['UserID'] = $row7['UserID'];
-          $_SESSION['UserRoll'] = $row7['UserRoll'];
-          $_SESSION['UserStatus'] = 0;
+          $_SESSION['MyID'] = $row7['UserID'];
+          $_SESSION['MyRoll'] = $row7['UserRoll'];
+          $_SESSION['MyStatus'] = $row7['UserStatus'];
           header("location:".SITEURL."email_confirm.php");
         }else{
-          $_SESSION['UserID'] = $row7['UserID'];
-          $_SESSION['UserRoll'] = $row7['UserRoll'];
+          $_SESSION['MyID'] = $row7['UserID'];
+          $_SESSION['MyRoll'] = $row7['UserRoll'];
+          $_SESSION['MyStatus'] = $row7['UserStatus'];
           header("location:".SITEURL);
         }
       }else{

@@ -1,6 +1,6 @@
 <?php 
   include("template/header.php"); 
-  $UserID = $_SESSION['UserID'];
+  $UserID = $_SESSION['MyID'];
 ?>
 
 <script>
