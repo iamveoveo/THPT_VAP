@@ -12,26 +12,37 @@ if($_SESSION["MyRoll"]!="Giáo viên"){
     <!-- table -->
     <div class="container " style="margin-top:55px">
         <!-- select -->
-        <form action="" class="row">
+        
+        <form action="" id="transcript-select-form" name="transcript-select-form" class="row">
             <div class="mb-3 col-4">
-                <label for="select-class" class="form-label">Chọn lớp</label>
-                <select id="select-class" class="form-select">
-                    <option value="">10A1</option>
-                    <option value="">10A2</option>
+                <label for="class-select" class="form-label">Chọn lớp</label>
+                <select id="class-select" class="form-select">
+                <?php
+                    if(isset($_SESSION['MyID'])){
+                        $MyID = $_SESSION['MyID'];
+                        $sql11 = "select * from class, teach where Teacher_UserID = '$MyID' and class.ClassID = teach.ClassID";
+                        $res11 = mysqli_query($conn, $sql11);
+                        if(mysqli_num_rows($res11)>0){
+                            while($row11 = mysqli_fetch_assoc($res11)){
+                                ?>
+                                    <option value="<?php echo $row11['ClassID'];?>"><?php echo $row11['ClassName'];?></option>
+                                <?php
+                            }
+                        }
+                    }  
+                ?>
                 </select>
                 
             </div>
 
-            <div class="mb-3 col-4">
+            <div class="mb-3 col-4 subject-select">
                 <label for="select-class" class="form-label">Chọn môn</label>
-                <select id="select-class" class="form-select">
-                    <option value="">Địa lý</option>
-                    <option value="">Toán</option>
-                </select>
-                
+                <select class="form-select">
+
+                </select>   
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center pt-3">
-                <button class="btn p-3"  type="submit" style="background: #6c119a;color: #fff;">Chọn</button>
+                <button name="transcript-select" class="btn p-3"  type="submit" style="background: #6c119a;color: #fff;">Chọn</button>
             </div>
         </form>
         <table class="table align-middle table-bordered table-secondary table-hover table-responsive">

@@ -65,6 +65,42 @@ $(document).ready(function(){
         })
     })
 
+    $('#class-select').on('change', function(){
+        var formData = new FormData();
+        formData.append("class-select", $('#class-select').val());
+        formData.append("class-select-change", "");
+
+        $.ajax({
+            url: "transcript-select.php",
+            type: "POST",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                $('.subject-select').html(data);
+            }
+        })
+    })
+
+    $('#transcript-select-form').on('submit', function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+        formData.append("transcript-select", "");
+
+        $.ajax({
+            url: "transcript-select.php",
+            type: "POST",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                alert(data);
+            }
+        })
+    })
+
     $('.take-roll').on("click", function(){
         takeRoll = $(this).text();
         ajaxSearch();
