@@ -51,13 +51,11 @@
                                             <td><?php echo $UserBirth ?></td>
                                             <td><?php echo $UserClass ?></td>
                                             <td><a href=""><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button> </a></td>
-                                            <td><a href="AdminDelete.php?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>
-                                                
+                                            <td><a href="AdminDelete.php?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button> </a></td>      
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                    
                         </div>
 
                         <!-- modal add -->

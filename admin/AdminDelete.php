@@ -1,7 +1,8 @@
 <?php
-include('config/constants.php');
+ include("template/header.php"); 
 ?>
 <?php
+
 // trang quanlihocsinh
     //B1:Lấy giá trị và lưu vào biến
         $UserName = $_POST['UserName'];
