@@ -70,14 +70,15 @@
                                         ?>
 
                                         <tr>
-                                            <th scope="row"><?php echo $i; ?></th>
+                                            <th scope="row"><?php echo $i ; ?></th>
                                             <td><?php echo $row['UserRName']; ?></td>
                                             <td><?php echo $row['ClassName']; ?></td>
                                             <td><?php echo $row['Subject']; ?></td>
                                             <td><?php echo $row['MidTerm']; ?></td>
                                             <td><?php echo $row['FinalExam']; ?></td>
+
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><a href="http://localhost/THPT_VAP/admin/admin_delete_qld.php?Student_UserID=<?php echo $row['Student_UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                                            <td><a href="http://localhost/THPT_VAP/admin/admin_delete_qld.php?Student_UserID=<?php echo $row['Student_UserID'];?>&Subject=<?php echo $row['Subject'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
 
                                         </tr>
                                         <?php

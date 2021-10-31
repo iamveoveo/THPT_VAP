@@ -250,7 +250,7 @@
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="submit" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>
