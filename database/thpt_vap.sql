@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 29, 2021 lúc 08:44 PM
+-- Thời gian đã tạo: Th10 31, 2021 lúc 08:34 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -117,8 +117,9 @@ CREATE TABLE `teach` (
 --
 
 INSERT INTO `teach` (`TeachID`, `Teacher_UserID`, `ClassID`, `TeachSubject`) VALUES
-(1, 1, 1, 'Anh'),
-(2, 2, 4, 'Toán');
+(1, 1, 1, 'Văn'),
+(2, 2, 4, 'Toán'),
+(3, 1, 3, 'Anh');
 
 -- --------------------------------------------------------
 
@@ -138,10 +139,10 @@ CREATE TABLE `transcript` (
 --
 
 INSERT INTO `transcript` (`Student_UserID`, `Subject`, `MidTerm`, `FinalExam`) VALUES
-(40, 'Anh', 5, NULL),
-(40, 'Toán', 9, NULL),
-(40, 'Văn', 6, NULL),
-(41, 'Anh', 10, NULL),
+(40, 'Anh', 10, 10),
+(40, 'Thể dục', 0, 6),
+(40, 'Văn', 9, 9),
+(41, 'Anh', 10, 9),
 (41, 'Toán', 5, NULL);
 
 -- --------------------------------------------------------
@@ -158,13 +159,13 @@ CREATE TABLE `users` (
   `UserEmail` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `UserTel` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `UserAdd` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `UserGender` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `UserGender` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `UserBirth` date DEFAULT NULL,
   `UserAva` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT 'ava.png',
   `UserStatus` int(11) NOT NULL DEFAULT 0,
   `UserCode` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
   `UserRoll` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `UserParent` int(11) DEFAULT NULL,
+  `UserChild` int(11) DEFAULT NULL,
   `UserClass` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -172,13 +173,13 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`UserID`, `UserName`, `UserRName`, `UserPassword`, `UserEmail`, `UserTel`, `UserAdd`, `UserGender`, `UserBirth`, `UserAva`, `UserStatus`, `UserCode`, `UserRoll`, `UserParent`, `UserClass`) VALUES
-(1, 'phuong', 'Phương', '$2y$10$lkfP7Uns/q9S44Cd6JN0UeC.eNsLub8RpRcVitOMqLMxBIgHElnlG', 'phuong@gmail.com', '0942323232', 'Hà Nội', 'Nữ', '2001-10-17', 'ava.png', 0, '1', 'Giáo viên', NULL, NULL),
+INSERT INTO `users` (`UserID`, `UserName`, `UserRName`, `UserPassword`, `UserEmail`, `UserTel`, `UserAdd`, `UserGender`, `UserBirth`, `UserAva`, `UserStatus`, `UserCode`, `UserRoll`, `UserChild`, `UserClass`) VALUES
+(1, 'phuong', 'Phương', '$2y$10$lkfP7Uns/q9S44Cd6JN0UeC.eNsLub8RpRcVitOMqLMxBIgHElnlG', 'phuong@gmail.com', '0942323232', 'Hà Nội', 'Nữ', '2001-10-17', 'ava.png', 1, '1', 'Giáo viên', NULL, NULL),
 (2, 'Trần Đại Quang', 'Quang', '\r\n', 'daiquang@gmail.com', '0923535534', 'Nam Định', 'Nam', '2004-10-28', 'ava.png', 0, '1', 'Giaó viên', NULL, NULL),
-(3, 'Tô Lâm', 'Lâm', '\r\n', 'tolam0510@gmail.com', '0925848848', 'Hà Nội', 'Nam', '2001-05-10', 'ava.png', 0, '1', 'Phụ huynh', NULL, NULL),
-(37, 'A', '[value-3]', '', '[value-5]', '[value-6]', '[value-7]', 'Nam', NULL, 'ava.png', 0, '1', 'Phụ huynh', NULL, NULL),
-(40, '[value-2]', 'Nguyễn Ngọc Ngà', '', 'abc@gmail.com', '03311554488', 'Hà Nam', 'Nữ', '1988-12-08', 'ava.png', 0, '', 'Học sinh', 37, 1),
-(41, '[value-3]', '[value-3]', '', '[value-5]', '[value-6]', '[value-7]', 'Nữ', NULL, 'ava.png', 0, '', 'Học sinh', 3, 4);
+(3, 'Tô Lâm', 'Lâm', '\r\n', 'tolam0510@gmail.com', '0925848848', 'Hà Nội', 'Nam', '2001-05-10', 'ava.png', 0, '1', 'Phụ huynh', 40, NULL),
+(37, 'A', '[value-3]', '', '[value-5]', '[value-6]', '[value-7]', 'Nam', NULL, 'ava.png', 0, '1', 'Phụ huynh', 41, NULL),
+(40, '[value-2]', 'Nguyễn Ngọc Ngà', '', 'abc@gmail.com', '03311554488', 'Hà Nam', 'Nữ', '1988-12-08', 'ava.png', 0, '', 'Học sinh', NULL, 1),
+(41, '[value-3]', '[value-3]', '', '[value-5]', '[value-6]', '[value-7]', 'Nữ', NULL, 'ava.png', 0, '', 'Học sinh', NULL, 4);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -226,7 +227,7 @@ ALTER TABLE `transcript`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`UserID`),
   ADD UNIQUE KEY `UserName` (`UserName`),
-  ADD KEY `UserParent` (`UserParent`),
+  ADD KEY `UserParent` (`UserChild`),
   ADD KEY `userclass` (`UserClass`);
 
 --
@@ -255,7 +256,7 @@ ALTER TABLE `mess`
 -- AUTO_INCREMENT cho bảng `teach`
 --
 ALTER TABLE `teach`
-  MODIFY `TeachID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `TeachID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
@@ -291,7 +292,7 @@ ALTER TABLE `transcript`
 -- Các ràng buộc cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `UserParent` FOREIGN KEY (`UserParent`) REFERENCES `users` (`UserID`),
+  ADD CONSTRAINT `UserParent` FOREIGN KEY (`UserChild`) REFERENCES `users` (`UserID`),
   ADD CONSTRAINT `userclass` FOREIGN KEY (`UserClass`) REFERENCES `class` (`ClassID`);
 COMMIT;
 
