@@ -372,3 +372,23 @@ a:hover{
 .takeClass{
     cursor: pointer;
 }
+
+#list-student{
+    height: 20vh;
+    overflow-y: scroll;
+    padding-right: 0;
+}
+
+.subject-select1{
+    display: none;
+}
+
+.student-select{
+    margin-top:3px;
+    border: solid 1px #000000;
+}
+
+.table-scroll.active{
+    max-height:50vh;
+    overflow-y:scroll;
+}

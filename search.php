@@ -82,11 +82,11 @@ if(isset($_GET['takeName'])){
             <div class="my-table col-10">
                 <ul class="list-group" id="list-group">
                     <?php
-                        $sql2 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%'
+                        $sql2 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%'
                         UNION
-                        select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%'
+                        select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%'
                         UNION
-                        select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserParent, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users.UserID = users1.UserParent and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%'";
+                        select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserChild, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users1.UserID = users.UserChild and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%'";
                         $res2 = mysqli_query($conn, $sql2);
                         if(mysqli_num_rows($res2)>0){
                             while($row2 = mysqli_fetch_assoc($res2)){

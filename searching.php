@@ -8,37 +8,37 @@
 
         if($takeClass==""){
             if($takeRoll=="Giáo viên"){
-                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%'";
+                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%'";
             }
             else if($takeRoll=="Học sinh"){
-                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%'";
+                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%'";
             }
             else if($takeRoll=="Phụ huynh"){
-                $sql6 = "select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserParent, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users.UserID = users1.UserParent and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%'";
+                $sql6 = "select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserChild, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users1.UserID = users.UserChild and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%'";
             }
             else{
-                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%'
+                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%'
                 UNION
-                select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%'
+                select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%'
                 UNION
-                select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserParent, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users.UserID = users1.UserParent and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%'";
+                select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserChild, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users1.UserID = users.UserChild and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%'";
             }
         }else{
             if($takeRoll=="Giáo viên"){
-                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
+                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
             }
             else if($takeRoll=="Học sinh"){
-                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
+                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
             }
             else if($takeRoll=="Phụ huynh"){
-                $sql6 = "select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserParent, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users.UserID = users1.UserParent and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
+                $sql6 = "select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserChild, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users1.UserID = users.UserChild and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
             }
             else{
-                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'
+                $sql6 = "select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class where UserRoll='Học sinh' AND users.UserClass = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'
                 UNION
-                select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserParent, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'
+                select UserID, UserName, UserRName, UserPassword, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserAva, UserCode, UserRoll, UserChild, ClassName from users, class, teach where UserRoll='Giáo viên' AND users.UserID = teach.Teacher_UserID and teach.ClassID = class.ClassID and UserRName like '%".$takeName."%' and ClassName = '$takeClass'
                 UNION
-                select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserParent, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users.UserID = users1.UserParent and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
+                select users.UserID, users.UserName, users.UserRName, users.UserPassword, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users.UserAva, users.UserCode, users.UserRoll, users.UserChild, ClassName from users, class, users as users1 where users.UserRoll='Phụ huynh' AND users1.UserID = users.UserChild and users1.UserClass = class.ClassID and users.UserRName like '%".$takeName."%' and ClassName = '$takeClass'";
             }
         }
         $res6 = mysqli_query($conn, $sql6);

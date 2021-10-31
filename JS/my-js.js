@@ -1,3 +1,5 @@
+var student_select = "";
+
 $(function () {
     $(document).scroll(function () {
       var $nav = $(".navbar-fixed-top");
@@ -11,4 +13,6 @@ $(document).ready(function(){
     $(".infor-edit :input").removeAttr("disabled");
     $(".infor-edit :input").removeAttr("readonly");
   })
+
 })
+
