@@ -31,7 +31,7 @@
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
-                            <div id="table_gv">
+                            <div id="table_gv" style="max-height:50vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                         <tr>
@@ -355,8 +355,8 @@
                 
                             <div class="btn-2 col-5">
                                 <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                    <button name="sbm-export" type="submit" data-mdb-ripple-color="dark">
+                                    <span>Xuất file</span></button> 
                                 </form>
                             </div>
                         </div>

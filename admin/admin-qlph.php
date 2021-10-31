@@ -31,7 +31,7 @@
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
-                            <div id="table">
+                            <div id="table_ph" style="max-height:50vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                     <tr>
@@ -380,20 +380,20 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
-                                        <input type="file" name="file_import" >   
-                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
+                                    <form action="import.php" method="POST" enctype="multipart/form-data" id="form_import_ph" name="form_import_ph">             
+                                        <input type="file" name="file_import_ph" >   
+                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview_ph">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body modal_body_ph ">
                                     </div>
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="button" class="btn" name="import_ph" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>
@@ -410,6 +410,3 @@
 
 <!-- đoạn xử lý menu toogle -->
 <script src="JS/admin.js"></script>
-<script>
-    function takeid
-</script>
