@@ -10,7 +10,6 @@
             ?>
             <label for="select-class" class="form-label">Chọn môn</label>
             <select name="subject-select" id="subject-select1" class="form-select">
-                <option value=null selected>Trống</option>
                 <?php
                 while($row14 = mysqli_fetch_assoc($res12)){
                     ?>

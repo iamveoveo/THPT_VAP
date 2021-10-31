@@ -80,4 +80,32 @@
             <?php
         }
     }
+
+    if(isset($_GET["export"])){
+        $UserID = $_GET['UserID'];
+
+        $a = mysqli_query($conn, "select * from users where UserID=$UserID");
+        $a = mysqli_fetch_assoc($a);
+        $filename = $a['UserRName'];
+        header('Content-Encoding: UTF-8');
+        header('Content-Type: text/csv; charset=utf-8');  
+        header('Content-Disposition: attachment; filename='.$filename.'.csv');  
+        $output = fopen("php://output", "w");  
+        fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+        fputcsv($output, array("STT","Môn", "Giữa kì", "Cuối kì")); 
+
+        $sql14 = "select * from transcript where Student_UserID = $UserID";
+        $res14 = mysqli_query($conn, $sql14);
+        $i = 0;
+
+        if (mysqli_num_rows($res14) > 0)
+        {
+            while($row14 = mysqli_fetch_assoc($res14)){ 
+                $i++;
+                $new_row = array($i, $row14['Subject'], $row14['MidTerm'], $row14['FinalExam']);
+                fputcsv($output, $new_row); 
+            }
+        }  
+        fclose($output);  
+    }  
 ?>

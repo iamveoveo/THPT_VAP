@@ -117,7 +117,7 @@ include("template/header-menu.php");
                                         </button>
                                     </div>
                                     <div class="mt-4 text-center">
-                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#student-transcript">
                                             Xem điểm
                                         </button>
                                     </div>
@@ -145,7 +145,7 @@ include("template/header-menu.php");
                                 if($UserRoll=="Học sinh"){
                                     ?>
                                     <div class="mt-4 text-center">
-                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#student-transcript">
                                             Xem điểm
                                         </button>
                                     </div>
@@ -153,8 +153,8 @@ include("template/header-menu.php");
                                 }else if($UserRoll=="Giáo viên"){
                                     ?>
                                     <div class="mt-4 text-center">
-                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
-                                            Xem điểm
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;">
+                                            Phản hồi
                                         </button>
                                     </div>
                                     <?php
@@ -171,7 +171,7 @@ include("template/header-menu.php");
                                 if($UserRoll=="Học sinh"){
                                     ?>
                                     <div class="mt-4 text-center">
-                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#transcript">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#student-transcript">
                                             Xem điểm
                                         </button>
                                     </div>
@@ -241,7 +241,55 @@ include("template/header-menu.php");
         </div>
     </div>
 
-    <!-- model transcripc -->
+    <div class="modal fade" id="student-transcript" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table align-middle table-bordered table-secondary table-hover table-responsive">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Môn</th>
+                                <th scope="col">Điểm giữa kì</th>
+                                <th scope="col">Điểm cuối kì</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            if($UserRoll=="Học sinh"){
+                                $sql19 = "select * from transcript where Student_UserID = '$UserID'";
+                                $res19 = mysqli_query($conn, $sql19);
+                                $i = 0;
+
+                                if(mysqli_num_rows($res19)>0){
+                                    while($row19 = mysqli_fetch_assoc($res19)){
+                                        $i++
+                                    ?>  
+                                        <tr>
+                                            <th scope="row"><?php echo $i;?></th>
+                                            <td><?php echo $row19['Subject'];?></td>
+                                            <td><?php echo $row19['MidTerm'];?></td>
+                                            <td><?php echo $row19['FinalExam'];?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                }
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" name="export" class="btn btn-primary">Tải bảng điểm</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -267,3 +315,12 @@ fileInput.addEventListener( "change", function( event ) {
 </script>
 
 <?php include("template/footer.php"); ?>
+
+<script>
+$(document).ready(function(){
+    $('button[name="export"]').on('click', function(){
+        var url = "<?php echo SITEURL;?>/process-profile.php?export=&UserID="+userID;
+        window.location.replace(url);
+    })
+})
+</script>
