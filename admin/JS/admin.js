@@ -16,4 +16,8 @@ $(document).ready(function () {
             $(".dashboard").toggleClass("dashboard-compact");
         }
     });
+
+    $('[name="export"]').on('click', function(){
+        $('#form_hs').submit();
+    })
 });
