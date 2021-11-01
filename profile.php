@@ -31,7 +31,7 @@ include("template/header-menu.php");
         <div class="row">
             <div class="col-md-4 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="images/<?php echo $row3['UserAva']; ?>">
+                    <img class="rounded-circle mt-5" id="image_name_"style="width:150px; height:150px" src="images/avatar/<?php echo $row3['UserAva']; ?>">
                     <span> </span>
                 </div>
             </div>
@@ -208,15 +208,19 @@ include("template/header-menu.php");
                     <!-- avatar -->
                     <div class="col-md-4 border-right">
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                            <img class="rounded-circle mt-5" width="150px" src="images/<?php echo $row3['UserAva']; ?>">
+                            <img class="rounded-circle mt-5" style="width:150px; height:150px" id="image_name" src="">
                             <span> </span>
                         </div>
-                        <form action="#">
+                        <form action="#" id="profile_form">
                             <div class="input-file-container">  
-                                <input class="input-file" id="my-file" type="file">
+                                <input name="file_image" class="input-file" id="my-file" type="file">
                                 <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
                             </div>
                             <p class="file-return"></p>
+                            <div class="alert text-danger"></div>
+                            <div class="w-100 d-flex justify-content-center mt-3">
+                                <button type="submit" class="btn" name="save_ava" style="    background: #6600CC;color: #fff;">Thay đổi</button>
+                            </div>
                         </form>
                     </div>
 

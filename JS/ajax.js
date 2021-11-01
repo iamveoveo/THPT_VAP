@@ -196,6 +196,36 @@ $(document).ready(function(){
             }
         })
     })
+
+    $('#profile_form').on('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        formData.append('save_ava','');
+        formData.append('newFileName', newFileName);
+        formData.append('UserID', userID);
+  
+        $.ajax({
+            url: "process-profile.php",
+            method: 'POST',
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var return_data = data.split('|');
+                if(return_data[0]=="success"){
+                    $('#image_name_').attr('src', "images/avatar/"+return_data[1]);
+                    $('.small-ava').attr('src', "images/avatar/"+return_data[1]);
+                    $('.alert').html(return_data[2]);
+                }else{
+                    $('.alert').text(return_data[1]);
+                }
+            },
+            error: function(){
+              alert("LỖI KHI THAY ĐỔI ẢNH!");
+            }
+        })
+    })
     
     $('.take-roll').on("click", function(){
         takeRoll = $(this).text();

@@ -1,5 +1,66 @@
 <?php
     include("config/constants.php");
+
+    if(isset($_POST['save_ava'])){
+        $UserID = $_POST['UserID'];
+        if(is_uploaded_file($_FILES["file_image"]["tmp_name"])){
+            $target_dir = "images/avatar/";
+            $target_file = $target_dir . basename($_FILES["file_image"]["name"]);
+            $image_name = basename($_FILES["file_image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $newFileName = $_POST['newFileName'];
+            $fullNewFileName = $target_dir . $newFileName;
+
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES["file_image"]["tmp_name"]);
+            if($check !== false) {
+                $uploadOk = 1;
+            } else {
+                echo "error|Tệp không phải là một ảnh";
+                $uploadOk = 0;
+            }
+
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                echo "error|Xin lỗi, tệp của bạn đã tồn tại";
+                $uploadOk = 0;
+            }
+
+            // Check file size
+            if ($_FILES["file_image"]["size"] > 5000000) {
+                echo "error|Xin lỗi, tệp của bạn quá lớn";
+                $uploadOk = 0;
+            }
+
+            // Allow certain file formats
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                echo "error|Xin lỗi, chỉ tệp JPG, JPEG, PNG & GIF mới được cho phép";
+                $uploadOk = 0;
+            }
+                // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "error|Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["file_image"]["tmp_name"], $fullNewFileName)) {
+                    $sql20 = "update users set 
+                            UserAva='$newFileName'
+                            where UserID = '$UserID' ";
+                    $res20 = mysqli_query($conn, $sql20);
+                    if($res20 != TRUE){
+                        echo "error|Đã xảy ra lỗi khi cập nhật ảnh";
+                    }else{
+                        echo "success|$newFileName|<span style='color: #22bb33 !important;'>Thay đổi ảnh thành công</span>";
+                    }
+                } else {
+                    echo "error|Đã xảy ra lỗi khi cập nhật ảnh";
+                }
+            }
+            
+        }
+    }
+
     if(isset($_POST['save'])){
         $UserID = $_POST['UserID'];
         $UserRName = $_POST['RName'];
@@ -108,4 +169,6 @@
         }  
         fclose($output);  
     }  
+
+    
 ?>
