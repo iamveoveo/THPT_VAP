@@ -162,4 +162,41 @@
     }
 ?>
 
-<!-- lớp -->
+<!-- admin -->
+<?php
+    if(isset($_POST['add-admin'])){
+        $AdName  = $_POST['txtHoTen'];
+        $Adpass = $_POST['pass'];
+        $AdEmail = $_POST['txtEmail'];
+        $AdTel = $_POST['sdt'];
+        $AdAdd = $_POST['txtDiaChi'];
+        $AdGender = $_POST['txtGioiTinh'];
+        $AdBirth = $_POST['ngaySinh'];
+
+        $pass_hash1 = password_hash($pass1, PASSWORD_DEFAULT);
+
+        //lệnh sql
+        $sql_4="INSERT INTO admin SET
+        AdName = '$AdName',
+        AdPassword = '$pass_hash1',
+        AdEmail = '$AdEmail' , 
+        AdTel = $AdTel, 
+        AdAdd = '$AdAdd',
+        AdGender = '$AdGender', 
+        AdBirth = '$AdBirth'
+        ";
+
+        $query_4 = mysqli_query($conn,$sql_4) or die(mysqli_error());
+        if($query_4==TRUE)
+        {
+            $_SESSION['add_admin']="<div class='text-success'>Thêm Admin thành công.</div>";
+            header('location:' .SITEURL. 'admin/admin-manager.php');
+        }
+        else
+        {
+            $_SESSION['add_admin']="<div class='text-danger'>Thêm Admin thất bại.</div>";
+            header('location:' .SITEURL. 'admin/admin-manager.php');
+        }
+    }
+?>
+
