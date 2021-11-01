@@ -19,6 +19,12 @@
                     <div class='card-header'>
                         <h2>Quản lý điểm</h2>
                     </div>
+                    <?php
+                    if(isset($_SESSION['delete'])){
+                        echo $_SESSION['delete'];
+                        unset($_SESSION['delete']);
+                    }
+                    ?>
                     <div class='card-body'>     
                         <div class="d-flex flex-row">
                              <div class="col-md-5">

@@ -21,10 +21,14 @@
                     </div>
                     <?php
                         if(isset($_SESSION['add_teach']))
-                            {
+                        {
                             echo $_SESSION['add_teach'];
                             unset($_SESSION['add_teach']);
-                            }      
+                        }  
+                        if(isset($_SESSION['delete'])){
+                            echo $_SESSION['delete'];
+                            unset($_SESSION['delete']);
+                        }
                     ?>
                     <div class='card-body'>      
                         <div>

@@ -19,6 +19,12 @@
                     <div class='card-header'>
                         <h2>Quản lý Admin</h2>
                     </div>
+                    <?php
+                        if(isset($_SESSION['delete'])){
+                            echo $_SESSION['delete'];
+                            unset($_SESSION['delete']);
+                        }
+                    ?>
                     <div class='card-body'>      
                         <div>
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
