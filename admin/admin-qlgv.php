@@ -77,8 +77,6 @@
                                          }
                                         ?>
                                     </tbody>
-
-                                    </tbody>
                                 </table>
                             </div>
                     
