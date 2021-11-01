@@ -78,15 +78,17 @@ if(isset($_POST["export_ph"])){
 }  
 ?>
 <?php
-if(isset($_POST["export_diem"])){
+if(isset($_GET["export_diem"])){
+    $class_select = $_GET['class_select'];
+    $subject_select = $_GET['subject_select'];
     header('Content-Encoding: UTF-8');
     header('Content-Type: text/csv; charset=utf-8');  
     header('Content-Disposition: attachment; filename=export_transcript.csv');  
     $output = fopen("php://output", "w");  
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    fputcsv($output, array("STT", "HoTen", "TenTaiKhoan", "TenLop", "DiemGiuaKi","DiemCuoiKi")); 
+    fputcsv($output, array("STT", "HoTen", "TenLop", "DiemGiuaKi","DiemCuoiKi")); 
 
-    $sql_3="SELECT * FROM users, transcript ,class WHERE Student_UserID=UserID  AND UserClass=ClassID";
+    $sql_3="SELECT * FROM transcript, class, users WHERE transcript.Subject like '%".$subject_select."%' AND class.ClassID = '$class_select' AND class.ClassID = users.UserClass AND transcript.Student_UserID = users.UserID";
     $result_3 = mysqli_query($conn,$sql_3);
 
     $i = 0;
@@ -94,7 +96,7 @@ if(isset($_POST["export_diem"])){
     {
         while($row_3 = mysqli_fetch_assoc($result_3)){ 
             $i++;
-            $new_row_3 = array($i, $row_3['UserName'], $row_3['UserRName'], $row_3['ClassName'], 
+            $new_row_3 = array($i, $row_3['UserRName'], $row_3['ClassName'], 
                         $row_3['MidTerm'], $row_3['FinalExam']);
             fputcsv($output, $new_row_3); 
         }

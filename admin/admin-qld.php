@@ -21,24 +21,34 @@
                     </div>
                     <div class='card-body'>     
                         <div class="d-flex flex-row">
-                             <div class="col-md-5">
+                             <div class="col-md-4">
                                 <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                             </div>
                             <div class="col-md-3"  style="margin:15px">
-                                <select class="form-select" aria-label="Default select example">
+                                <select id="class-select" class="form-select" aria-label="Default select example">
                                     <option selected>Chọn theo lớp</option>
-                                    <option value="1">10A1</option>
-                                    <option value="2">10A2</option>
-                                    <option value="3">11A1</option>
+                                    <?php
+                                        $sql2 = "select * from class";
+                                        $res2 = mysqli_query($conn, $sql2);
+
+                                        if(mysqli_num_rows($res2)>0){
+                                            while($row2 = mysqli_fetch_assoc($res2)){
+                                                ?>
+                                                <option value="<?php echo $row2['ClassID'];?>"><?php echo $row2['ClassName'];?></option>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                             <div class="col-md-3" style="margin:15px">
-                                <select class="form-select " aria-label="Default select example">
-                                    <option selected>Chọn theo khối</option>
-                                    <option value="1">Khối 10</option>
-                                    <option value="2">Khối 11</option>
-                                    <option value="3">Khối 12</option>
+                                <select id="subject-select" class="form-select " aria-label="Default select example">
+                                    <option value="" selected>Chọn theo môn</option>
+                                    <!-- option chọn môn -->
                                 </select>
+                            </div>
+                            <div class="col-md-1" style="margin:15px">
+                                <a id="selected" class="btn btn-lg " style="background-color: #7d9fb9;color: #fff;padding:3px;" role="button">Chọn</a>
                             </div>
                         </div> 
                        
@@ -51,14 +61,14 @@
                                         <th scope="col">STT</th>
                                         <th scope="col">Họ và tên</th>
                                         <th scope="col">Lớp</th>
-                                        <th scope="col"> Môn học</th>
+                                        <th scope="col">Môn học</th>
                                         <th scope="col">Điểm giữa kì</th>
                                         <th scope="col">Điểm cuối kì</th>
                                         <th scope="col">Sửa</th>
                                         <th scope="col">Xóa</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="d-table">
                                     <?php
                                         $sql="SELECT Student_UserID, Subject, MidTerm, FinalExam, UserID, UserRName, UserClass, ClassID, ClassName
                                             FROM users, transcript ,class WHERE Student_UserID=UserID  AND UserClass=ClassID";
@@ -68,7 +78,6 @@
                                         $i=1;                                            
                                         while($row = mysqli_fetch_assoc($result)){
                                         ?>
-
                                         <tr>
                                             <th scope="row"><?php echo $i; ?></th>
                                             <td><?php echo $row['UserRName']; ?></td>
@@ -79,7 +88,6 @@
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
                                             <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
-
                                         </tr>
                                         <?php
                                             $i++;
@@ -261,7 +269,6 @@
                         </div>
                       
                         <!-- btn import và export -->
-                        <!-- btn import và export -->
                         <div class="center row">
                             <div class="btn-1 col-5">
                                 <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -270,9 +277,10 @@
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="import-export.php" method="POST" enctype="multipart/form-data" >             
-                                    <button name="export_diem" clsas="btn btn-primary" type="submit" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></button>
+                                <form action="import-export.php" method="POST" id="form_hs" enctype="multipart/form-data" >     
+                                    <input type="hidden" name="export_diem" value="">
+                                    <a name="btn_export_diem" type="submit" role="button" data-mdb-ripple-color="dark">
+                                    <span style="color:#fff;">Xuất file</span></a> 
                                 </form>
                             </div>
                         </div>
@@ -310,6 +318,6 @@
 </div>
 
 <?php include("template/footer.php"); ?>
-
+<script>var siteurl = "<?php echo SITEURL;?>";</script>
 <!-- đoạn xử lý menu toogle -->
 <script src="JS/admin.js"></script>
