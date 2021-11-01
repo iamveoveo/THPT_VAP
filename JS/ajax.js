@@ -186,22 +186,26 @@ $(document).ready(function(){
     })
     
     $('button[name="import"]').on("click", function(){
-        var formData = new FormData(file_import_form);
-        formData.append("import", "");
-        formData.append("class", $('#class-select').val());
-        formData.append("subject", $('#subject-select1').val());
+        if($('#class-select').val()=="null"){
+            alert("Cần phải chọn lớp muốn nhập điểm.");
+        }else{
+            var formData = new FormData(file_import_form);
+            formData.append("import", "");
+            formData.append("class", $('#class-select').val());
+            formData.append("subject", $('#subject-select1').val());
 
-        $.ajax({
-            url: "transcript-select.php",
-            method: 'POST',
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data){
-                $('tbody').html(data);
-            }
-        })
+            $.ajax({
+                url: "transcript-select.php",
+                method: 'POST',
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    $('tbody').html(data);
+                }
+            })
+        }
     })
 
     $('#profile_form').on('submit', function(event) {

@@ -33,7 +33,7 @@ if($_SESSION["MyRoll"]!="Giáo viên"){
                         $sql11 = "select * from class, teach where Teacher_UserID = '$MyID' and class.ClassID = teach.ClassID";
                         $res11 = mysqli_query($conn, $sql11);
                         if(mysqli_num_rows($res11)>0){
-                            echo "<option value=null selected>Trống</option>";
+                            echo "<option value=null selected>Chọn lớp</option>";
                             while($row11 = mysqli_fetch_assoc($res11)){
                                 ?>
                                     <option value="<?php echo $row11['ClassID'];?>"><?php echo $row11['ClassName'];?></option>
@@ -49,7 +49,7 @@ if($_SESSION["MyRoll"]!="Giáo viên"){
             <div class="mb-3 col-4 subject-select">
                 <label for="select-class" class="form-label">Chọn môn</label>
                 <select id="subject-select1" class="form-select">
-                    <option value=null selected>Trống</option>
+                    <option value=null selected>Chọn Môn</option>
                 </select>   
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center pt-3">
@@ -228,8 +228,12 @@ if($_SESSION["MyRoll"]!="Giáo viên"){
 <script>
 $(document).ready(function(){
     $('button[name="export"]').on('click', function(){
-        var url = "<?php echo SITEURL;?>/transcript-select.php?export=&class=" + $('#class-select').val() +"&subject="+$('#subject-select1').val();
-        window.location.replace(url);
+        if($('#class-select').val()=="null"){
+            alert("Cần phải chọn lớp muốn xuất tệp điểm.");
+        }else{
+            var url = "<?php echo SITEURL;?>/transcript-select.php?export=&class=" + $('#class-select').val() +"&subject="+$('#subject-select1').val();
+            window.location.replace(url);
+        }
     })
 })
 </script>
