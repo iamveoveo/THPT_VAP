@@ -8,7 +8,7 @@ if(isset($_POST["export_hs"])){
     header('Content-Disposition: attachment; filename=export_student.csv');  
     $output = fopen("php://output", "w");  
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    fputcsv($output, array("STT", "HoTen", "TenTaiKhoan", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi", "Lop")); 
+    fputcsv($output, array("STT", "TenTaiKhoan", "HoTen", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi", "Lop")); 
 
     $sql="SELECT * FROM users ,class WHERE  UserRoll='Học sinh' AND users.UserClass=class.ClassID";
     $result = mysqli_query($conn,$sql);
@@ -33,10 +33,10 @@ if(isset($_POST["export_gv"])){
     header('Content-Disposition: attachment; filename=export_teacher.csv');  
     $output = fopen("php://output", "w");  
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    fputcsv($output, array("STT", "HoTen", "TenTaiKhoan", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi")); 
+    fputcsv($output, array("STT", "TenTaiKhoan", "HoTen", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi")); 
 
-    $sql_1="SELECT * FROM users ,class WHERE  UserRoll='Giáo viên'";
-    $result_1 = my_1i_query($conn,$sql_1);
+    $sql_1="SELECT * FROM users WHERE  UserRoll='Giáo viên'";
+    $result_1 = mysqli_query($conn,$sql_1);
 
     $i = 0;
     if (mysqli_num_rows($result_1) > 0)
@@ -58,9 +58,10 @@ if(isset($_POST["export_ph"])){
     header('Content-Disposition: attachment; filename=export_parent.csv');  
     $output = fopen("php://output", "w");  
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    fputcsv($output, array("STT", "HoTen", "TenTaiKhoan", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi")); 
+    fputcsv($output, array("STT", "TenTaiKhoan", "HoTen", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi", "Con", "Lop")); 
 
-    $sql_2="SELECT * FROM users ,class WHERE  UserRoll='Phụ huynh'";
+    $sql_2="SELECT users.UserName, users.UserRName, users.UserEmail, users.UserTel, users.UserAdd, users.UserGender, users.UserBirth, users1.UserRName as Child, class.ClassName 
+            FROM users, users as users1, class WHERE  users.UserRoll='Phụ huynh' and users.UserChild = users1.UserID and users1.UserClass = class.ClassID";
     $result_2 = mysqli_query($conn,$sql_2);
 
     $i = 0;
@@ -69,7 +70,7 @@ if(isset($_POST["export_ph"])){
         while($row_2 = mysqli_fetch_assoc($result_2)){ 
             $i++;
             $new_row_2 = array($i, $row_2['UserName'], $row_2['UserRName'], $row_2['UserEmail'], $row_2['UserTel'],
-                            $row_2['UserGender'], $row_2['UserBirth'], $row_2['UserAdd']);
+                            $row_2['UserGender'], $row_2['UserBirth'], $row_2['UserAdd'], $row_2['Child'], $row_2['ClassName']);
             fputcsv($output, $new_row_2); 
         }
     }  
