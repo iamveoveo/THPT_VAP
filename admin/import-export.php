@@ -86,7 +86,7 @@ if(isset($_GET["export_diem"])){
     header('Content-Disposition: attachment; filename=export_transcript.csv');  
     $output = fopen("php://output", "w");  
     fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
-    fputcsv($output, array("STT", "HoTen", "TenLop", "DiemGiuaKi","DiemCuoiKi")); 
+    fputcsv($output, array("STT", "HoTen", "DiemGiuaKi","DiemCuoiKi")); 
 
     $sql_3="SELECT * FROM transcript, class, users WHERE transcript.Subject like '%".$subject_select."%' AND class.ClassID = '$class_select' AND class.ClassID = users.UserClass AND transcript.Student_UserID = users.UserID";
     $result_3 = mysqli_query($conn,$sql_3);
@@ -96,7 +96,7 @@ if(isset($_GET["export_diem"])){
     {
         while($row_3 = mysqli_fetch_assoc($result_3)){ 
             $i++;
-            $new_row_3 = array($i, $row_3['UserRName'], $row_3['ClassName'], 
+            $new_row_3 = array($i, $row_3['UserRName'], 
                         $row_3['MidTerm'], $row_3['FinalExam']);
             fputcsv($output, $new_row_3); 
         }

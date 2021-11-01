@@ -179,8 +179,8 @@ $(document).ready(function () {
             data: data3,
             processData: false,
             contentType: false,
-            success: function(data3){
-                $('.modal_body_diem').html(data3);
+            success: function(data){
+                $('.modal_body_diem').html(data);
             }
         })
     })
@@ -202,21 +202,53 @@ $(document).ready(function () {
         })
     })
 
-    $('button[name="import_ph"]').on('click',function(e){ //lấy sự kiện cho nút
-        var data3 = new FormData(form_import_diem);
-        data3.append('import_diem','');
-        $.ajax({
-            url: 'import.php',
-            method: 'POST',
-            type: 'POST',
-            data: data3,
-            processData: false,
-            contentType: false,
-            success: function(data3){
-               $('#table_diem').html(data3);
+    $('button[name="import_diem"]').on('click',function(e){ //lấy sự kiện cho nút
+        if(class_select=="" && subject_select==""){
+            alert('Bạn cần chọn lớp, môn cần thêm điểm trước.');
+        }else{
+            var data3 = new FormData(form_import_diem);
+            data3.append('import_diem','');
+            data3.append('class_select', class_select);
+            data3.append('subject_select', subject_select);
 
-            }
-        })
+            $.ajax({
+                url: 'import.php',
+                method: 'POST',
+                type: 'POST',
+                data: data3,
+                processData: false,
+                contentType: false,
+                success: function(data3){
+                $('#table_diem').html(data3);
+                }
+            })
+        }
+    })
+
+    $('#RName-student').on('input', function(){
+        if($('#class-student').val()==""){
+            alert("Bạn cần chọn lớp trước");
+        }else{
+            $.ajax({
+                url: 'process-search.php',
+                method: 'POST',
+                type: 'POST',
+                data: {
+                    UserRName: $('#RName-student').val(),
+                    UserClass: $('#class-student').val(),
+                    student_select: ""
+                },
+                success: function(data){
+                   $('.student-select').html(data);
+                }
+            })
+        }
+    })
+
+    $('body').on('click', '.student-item', function(){
+        $('[name="Student_UserID"]').val($(this).attr('id'));
+        $('.student-item').css('border', 'solid 1px #000');
+        $(this).css('border', 'solid 2px #20c2f388');
     })
 
     $('[name="btn_export_diem"]').on('click', function(){

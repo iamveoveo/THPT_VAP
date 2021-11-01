@@ -61,4 +61,20 @@
             }
         }
     }
+
+    if(isset($_POST['student_select'])){
+        $UserRName = $_POST['UserRName'];
+        $UserClass = $_POST['UserClass'];
+
+        $sql3 = "select * from users where UserClass = '$UserClass' and UserRName like '%".$UserRName."%'";
+        $res3 = mysqli_query($conn, $sql3);
+
+        if(mysqli_num_rows($res3)>0){
+            while($row3 = mysqli_fetch_assoc($res3)){
+                ?>
+                    <li id="<?php echo $row3['UserID'];?>" style="cursor:pointer;" class="list-group-item student-item"><b><?php echo $row3['UserRName'];?></b> <?php echo $row3['UserBirth'];?></li>
+                <?php
+            }
+        }
+    }
 ?>

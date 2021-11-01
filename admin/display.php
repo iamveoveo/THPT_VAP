@@ -1,7 +1,6 @@
 <?php
 include('../config/constants.php');
-?>
-<?php
+
 if(isset($_POST["preview"])){
     $filename=$_FILES["file_import"]["tmp_name"];    
     if($_FILES["file_import"]["size"] > 0)
@@ -57,10 +56,9 @@ if(isset($_POST["preview"])){
         <?php
     }
 }
-?>
 
-<!-- giáo viên -->
-<?php
+/* <!-- giáo viên --> */
+
 if(isset($_POST["preview_gv"])){
     $filename=$_FILES["file_import_gv"]["tmp_name"];    
     if($_FILES["file_import_gv"]["size"] > 0)
@@ -112,10 +110,9 @@ if(isset($_POST["preview_gv"])){
         <?php
     }
 }
-?>
 
-<!-- phụ huynh -->
-<?php
+/* <!-- phụ huynh --> */
+
 if(isset($_POST["preview_ph"])){
     $filename=$_FILES["file_import_ph"]["tmp_name"];    
     if($_FILES["file_import_ph"]["size"] > 0)
@@ -167,53 +164,52 @@ if(isset($_POST["preview_ph"])){
         <?php
     }
 }
-?>
 
-<!-- điểm -->
-<?php
+/* <!-- điểm --> */
 if(isset($_POST["preview_diem"])){
     $filename=$_FILES["file_import_diem"]["tmp_name"];    
     if($_FILES["file_import_diem"]["size"] > 0)
     {      
         $file = fopen($filename, "r");
-        ?>   
-         <table class="table table-hover table-secondary ">
+        ?>
+        <table class="table table-hover table-secondary ">
             <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col"> Môn học</th>
-                    <th scope="col">Điểm giữa kì</th>
-                    <th scope="col">Điểm cuối kì</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
-                {
-                    $STT = $getData[0];
-                    $hoTen = $getData[1];
-                    $mon = $getData[2];
-                    $diemGiuaKi = $getData[3];
-                    $DiemCuoiKi = $getData[4];
-                   
-                    ?>
-                     <tr>
+        <?php
+        while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+        {
+            $STT = $getData[0];
+            $hoTen = $getData[1];
+            $diemGiuaKi = $getData[2];
+            $DiemCuoiKi = $getData[3];
+            
+            if($STT == "STT"){
+                ?>   
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Điểm giữa kì</th>
+                        <th scope="col">Điểm cuối kì</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+            }else{
+                ?>
+                    <tr>
                         <th scope="row"><?php echo $STT; ?></th>
                         <td><?php echo $hoTen; ?></td>
-                        <td><?php echo $mon; ?></td>
                         <td><?php echo $diemGiuaKi; ?></td>
                         <td><?php echo $DiemCuoiKi; ?></td>
                         
                     </tr>
-                    <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                <?php
+            }
+        }
+        ?>
+        </tbody>
+    </table>
         
-        <?php
+    <?php
     }
 }
 ?>

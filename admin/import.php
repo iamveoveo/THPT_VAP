@@ -1,7 +1,6 @@
-<?php include("../config/constants.php");?>
+<?php include("../config/constants.php");
 
-<!-- học sinh  -->
-<?php
+/* <!-- học sinh  --> */
     if(isset($_POST["import_hs"])){       
         $filename=$_FILES["file_import"]["tmp_name"];    
         if($_FILES["file_import"]["size"] > 0)
@@ -94,10 +93,8 @@
             fclose($file);  
         }
     }   
-?>
 
-<!-- giáo viên -->
-<?php
+/* <!-- giáo viên --> */
     if(isset($_POST["import_gv"])){       
         $filename=$_FILES["file_import_gv"]["tmp_name"];    
         if($_FILES["file_import_gv"]["size"] > 0)
@@ -188,10 +185,8 @@
             fclose($file);  
         }
     }   
-?>
 
-<!-- Phụ huynh -->
-<?php
+/* <!-- Phụ huynh --> */
     if(isset($_POST["import_ph"])){       
         $filename=$_FILES["file_import_ph"]["tmp_name"];    
         if($_FILES["file_import_ph"]["size"] > 0)
@@ -278,45 +273,48 @@
             fclose($file);  
         }
     }   
-?>
 
-<!-- điểm -->
-<?php
-    if(isset($_POST["import_diem"])){       
+/* <!-- điểm --> */
+    if(isset($_POST["import_diem"])){
+        $class_select = $_POST['class_select'];
+        $subject_select = $_POST['subject_select'];
+        
         $filename=$_FILES["file_import_diem"]["tmp_name"];    
         if($_FILES["file_import_diem"]["size"] > 0)
         {      
             $file = fopen($filename, "r");
             while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
             {
-                $sql_diem = "SELECT * from users,class where UserName='$getData[1]' AND UserRoll='Học sinh' ";
-                $res_diem = mysqli_query($conn, $sql_diem);
-                $row_diem = [];
-                if(mysqli_num_rows($res_diem)>0){
-                    $row_diem = mysqli_fetch_assoc($res_diem);
-                }
-                $sql_diem1 = "SELECT * from users where UserName='$getData[1]'";//ktra email đã tồn tại trên DB hay chưa
+                $sql_diem1 = "SELECT * from users where UserRName='".$getData[1]."' and UserClass = $class_select";
                 $res_diem1 = mysqli_query($conn, $sql_diem1);
-                if(mysqli_num_rows($res_diem1)==0){
+                if(mysqli_num_rows($res_diem1)==1){
+                    $row_diem1 = mysqli_fetch_assoc($res_diem1);
                     
-                    $sql_diem2="INSERT INTO transcript SET
-                    UserName = '".$getData[1]."',
-                    Subject = '".$getData[2]."',
-                    MidTerm = '".$getData[3]."',
-                    FinalExam = '".$getData[4]."',
-                   
-                    ";
+                    $sql_diem3 = "select * from transcript where Student_UserID = '".$row_diem1['UserID']."' and Subject = '".$subject_select."'";
+                    $res_diem3 = mysqli_query($conn, $sql_diem3);
+                    
+                    if(mysqli_num_rows($res_diem3)==1){
+                        $sql_diem4 = "update transcript set MidTerm = '".$getData[2]."', FinalExam = '".$getData[3]."' where Student_UserID = '".$row_diem1['UserID']."' and Subject = '".$subject_select."'" ;
+                        $res_diem4 = mysqli_query($conn, $sql_diem4);
 
-                    $res_diem3 = mysqli_query($conn, $sql_diem2);
-                    if(!isset($res_diem3))
-                    {
-                        echo "<script type=\"text/javascript\">
-                        alert(\"Invalid File:Please Upload CSV File.\");
-                        window.location = \"index.php\"
-                        </script>"; 
+                        if(!$res_diem4){
+                            continue;
+                        }
+                    }else{
+                        $sql_diem2="INSERT INTO transcript SET
+                                    Student_UserID = '".$row_diem1['UserID']."',
+                                    Subject = '".$subject_select."',
+                                    MidTerm = '".$getData[2]."',
+                                    FinalExam = '".$getData[3]."'
+                                    ";
+                        $res_diem2 = mysqli_query($conn, $sql_diem2);
+
+                        if(!$res_diem2){
+                            continue;
+                        }
                     }
-                    else {                    
-                    }
+                }else{
+                    continue;
                 }
             }
             ?>
@@ -326,7 +324,7 @@
                         <th scope="col">STT</th>
                         <th scope="col">Họ và tên</th>
                         <th scope="col">Lớp</th>
-                        <th scope="col"> Môn học</th>
+                        <th scope="col">Môn học</th>
                         <th scope="col">Điểm giữa kì</th>
                         <th scope="col">Điểm cuối kì</th>
                         <th scope="col">Sửa</th>

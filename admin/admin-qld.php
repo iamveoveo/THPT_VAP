@@ -19,6 +19,12 @@
                     <div class='card-header'>
                         <h2>Quản lý điểm</h2>
                     </div>
+                    <?php
+                        if(isset($_SESSION['add_diem'])){
+                            echo $_SESSION['add_diem'];
+                            unset($_SESSION['add_diem']);
+                        }
+                    ?>
                     <div class='card-body'>     
                         <div class="d-flex flex-row">
                              <div class="col-md-4">
@@ -116,24 +122,18 @@
                                                     <div class="card-body">
                                                         <div class="row gutters">
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                                <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                            </div>
-                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="fullName">Họ và tên</label>
-                                                                    <input type="text" class="form-control" name="txtHoTen" >
-                                                                </div>
+                                                                <h6 class="mb-3 text-primary fs-5 text">Thêm điểm</h6>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="fullName">Môn thi</label>
+                                                                    <label for="fullName">Môn</label>
                                                                     <input type="text" class="form-control" name="txtMon" >
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="eMail">Lớp học</label>
-                                                                    <select class="form-select" name="txtLop" aria-label="Default select example">
+                                                                    <select id="class-student" class="form-select" name="txtLop" aria-label="Default select example">
                                                                         <option value="">Chọn lớp</option>
                                                                         <?php
                                                                         $sql_1 = "SELECT * FROM class";
@@ -148,6 +148,18 @@
                                                                         ?>
                                                                     </select>    
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Họ và tên</label>
+                                                                    <input id="RName-student" type="text" class="form-control" name="txtHoTen" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3" style="max-height:25vh; overflow-y:scroll;">
+                                                                <ul class="list-group student-select bg-light">
+                                                                    
+                                                                </ul>
+                                                                <input type="hidden" name="Student_UserID">
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
@@ -172,7 +184,7 @@
                                         <!-- btn hủy và lưu -->
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                            <button type="button" class="btn" name="add-qld" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                            <button type="submit" class="btn" name="add-qld" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                         </div>
                                     </form>
                                 </div>

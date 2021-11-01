@@ -131,31 +131,28 @@
 <!-- điểm -->
 <?php
     if(isset($_POST['add-qld'])){
-        $hoTen  = $_POST['txtHoTen'];
-        $mon = $_POST['txtMon'];
-        $giuaki = $_POST['diemGiuaKi'];
-        $cuoiki = $_POST['diemCuoiKi'];
-        $lop = $_POST['txtLop'];
+        $Student_UserID = $_POST['Student_UserID'];
+        $Subject = $_POST['txtMon'];
+        $MidTerm = $_POST['diemGiua'];
+        $FinalExam = $_POST['diemCuoi'];
 
-        $sql_2="INSERT INTO transcript SET
-        UserName = '$hoTen',
-        UserRName = '$tenTK',
-        UserEmail = '$email' , 
-        UserTel = $sodidong, 
-        UserAdd = '$diachi',
-        UserGender = '$gioitinh', 
+        $sql_3="INSERT INTO transcript SET
+        Student_UserID = '$Student_UserID',
+        Subject = '$Subject',
+        MidTerm = '$MidTerm' , 
+        FinalExam = '$FinalExam'
         ";
 
         $query_3 = mysqli_query($conn,$sql_3) or die(mysqli_error());
 
         if($query_3==TRUE)
         {
-            $_SESSION['add']="<div class='text-success'>Thêm điểm thành công.</div>";
+            $_SESSION['add_diem']="<div class='text-success'>Thêm điểm thành công.</div>";
             header('location:' .SITEURL. 'admin/admin-qld.php');
         }
         else
         {
-            $_SESSION['add']="<div class='text-danger'>Thêm điểm thất bại.</div>";
+            $_SESSION['add_diem']="<div class='text-danger'>Thêm điểm thất bại.</div>";
             header('location:' .SITEURL. 'admin/admin-qld.php');
         } 
 
