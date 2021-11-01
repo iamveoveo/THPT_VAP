@@ -2,6 +2,8 @@ if (typeof takeRoll == 'undefined') {
     var takeRoll = "";
 }
 var takeClass = "";
+var mail_sent = 0;
+var email_add = "";
 
 $(document).ready(function(){
 
@@ -38,6 +40,8 @@ $(document).ready(function(){
             processData: false,
             success: function(data){
                 $('.send-alert').html(data);
+                mail_sent = 1;
+                email_add = $('input[name="email"]').val() ;
             }
         })
     })
@@ -46,6 +50,9 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = new FormData(this);
         formData.append("confirm-code", "");
+        if(mail_sent==1){
+            formData.append("UserEmail", email_add);
+        }
         formData.append("UserID", userID);
 
         $.ajax({

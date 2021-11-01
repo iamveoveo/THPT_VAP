@@ -21,7 +21,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
                     <li class="nav-item me-2"><a href="profile.php"><img src="images/avatar/<?php echo $b['UserAva'];?>" class="small-ava" alt="avatar"></a></li>
                     <li class="nav-item me-2"><a href="mess.php"><i class="fab fa-facebook-messenger" style="font-size: 38px; color:#3E00FF;"></i></a></li>
-                    <li class="nav-item me-2"><a href="#"><i class="fas fa-sign-out-alt" style="font-size: 38px;color:white;"></i></a></li>
+                    <li class="nav-item me-2"><a href="logout.php"><i class="fas fa-sign-out-alt" style="font-size: 38px;color:white;"></i></a></li>
                 </ul>
             </div>
         </div>

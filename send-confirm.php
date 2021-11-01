@@ -31,23 +31,28 @@
     }
 ?>
 <?php
-  if(isset($_POST['confirm-code'])){
-    $code = $_POST['code'];
-    $sql9 = "select * from users where UserID=$UserID and UserCode=$code";
-    $res9 = mysqli_query($conn, $sql9);
-    if(mysqli_num_rows($res9)>0){
-        $row9 = mysqli_fetch_assoc($res9);
-        $sql10 = "update users set UserStatus=1 where UserID=$UserID";
-        $res10 = mysqli_query($conn, $sql10);
+    if(isset($_POST['confirm-code'])){
+        if(isset($_POST['UserEmail'])){
+            $UserEmail = $_POST['UserEmail'];
+            $code = $_POST['code'];
+            $sql9 = "select * from users where UserID=$UserID and UserCode=$code";
+            $res9 = mysqli_query($conn, $sql9);
+            if(mysqli_num_rows($res9)>0){
+                $row9 = mysqli_fetch_assoc($res9);
+                $sql10 = "update users set UserStatus=1, UserEmail='$UserEmail' where UserID=$UserID";
+                $res10 = mysqli_query($conn, $sql10);
 
-        if($res10==TRUE){
-            $_SESSION['MyStatus'] = 1;
-            echo "updated|".SITEURL."";
+                if($res10==TRUE){
+                    $_SESSION['MyStatus'] = 1;
+                    echo "updated|".SITEURL."";
+                }else{
+                    echo "not update|<span class="."text-danger".">Lỗi trong quá trình xác thực</span>);</script>";
+                }
+            }else{
+                echo "wrong code|<span class="."text-danger".">Mã xác thực không đúng</span>";
+            }
         }else{
-            echo "not update|<span class="."text-danger".">Lỗi trong quá trình xác thực</span>);</script>";
+            echo "null email|<span class="."text-danger".">Hãy điền địa chỉ email của bạn trước</span>";
         }
-    }else{
-        echo "wrong code|<span class="."text-danger".">Mã xác thực không đúng</span>";
     }
-  }
 ?>
