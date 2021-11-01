@@ -49,7 +49,7 @@
                                     <tbody>
                                     <?php
 
-                                        $sql="SELECT UserId, UserName,UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll,UserClass  FROM users  
+                                        $sql="SELECT UserId, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass  FROM users  
                                             WHERE UserRoll='Phụ huynh'";
 
                                         // $sql="SELECT u.UserID, u.UserName, u.UserEmail, u.UserAdd, u.UserTel, u.Gender, dv.UserParent, u1.UserName as UserParent from user as u, user as u1 where u.UserParent = u1.UserName AND UserRoll='Phụ huynh'

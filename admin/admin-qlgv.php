@@ -94,7 +94,7 @@
                                     <h5 class="modal-title">Thêm thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="process-add.php" method="POST">
+                                    <form action="process-add-qlgv.php" method="POST">
                                         <div class="modal-body">
                                             <div class=" col-12">
                                                 <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
@@ -392,7 +392,84 @@
         </div>
     </div>
 </div>
-
+<script>  
+ $(document).ready(function(){  
+      $('#add').click(function(){  
+           $('#insert').val("Insert");  
+           $('#insert_form')[0].reset();  
+      });  
+      $(document).on('click', '.edit_data', function(){  
+           var employee_id = $(this).attr("id");  
+           $.ajax({  
+                url:"process-add-qlgv.php",  
+                method:"POST",  
+                data:{employee_id:employee_id},  
+                dataType:"json",  
+                success:function(data){  
+                     $('#UserRName').val(data.UserRName);  
+                     $('#UserName').val(data.UserName);  
+                     $('#UserPassword').val(data.UserPassword);  
+                     $('#UserTel').val(data.UserTel);  
+                     $('#UserAdd').val(data.UserAdd);  
+                     $('#UserBirth').val(data.UserBirth); 
+                     $('#UserGender').val(data.UserGender); 
+                     $('#insert').val("Update");  
+                     $('#add_data_Modal').modal('show');  
+                }  
+           });  
+      });  
+      $('#insert_form').on("submit", function(event){  
+           event.preventDefault();  
+           if($('#name').val() == "")  
+           {  
+                alert("Name is required");  
+           }  
+           else if($('#address').val() == '')  
+           {  
+                alert("Address is required");  
+           }  
+           else if($('#designation').val() == '')  
+           {  
+                alert("Designation is required");  
+           }  
+           else if($('#age').val() == '')  
+           {  
+                alert("Age is required");  
+           }  
+           else  
+           {  
+                $.ajax({  
+                     url:"insert.php",  
+                     method:"POST",  
+                     data:$('#insert_form').serialize(),  
+                     beforeSend:function(){  
+                          $('#insert').val("Inserting");  
+                     },  
+                     success:function(data){  
+                          $('#insert_form')[0].reset();  
+                          $('#add_data_Modal').modal('hide');  
+                          $('#employee_table').html(data);  
+                     }  
+                });  
+           }  
+      });  
+      $(document).on('click', '.view_data', function(){  
+           var employee_id = $(this).attr("id");  
+           if(employee_id != '')  
+           {  
+                $.ajax({  
+                     url:"select.php",  
+                     method:"POST",  
+                     data:{employee_id:employee_id},  
+                     success:function(data){  
+                          $('#employee_detail').html(data);  
+                          $('#dataModal').modal('show');  
+                     }  
+                });  
+           }            
+      });  
+ });  
+ </script>
 
 <?php include("template/footer.php"); ?>
 

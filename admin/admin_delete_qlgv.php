@@ -8,8 +8,12 @@
     $id = $_GET['UserID'];
 
     //2. Create SQL Query to Delete Admin
-    $sql = "DELETE FROM users WHERE UserID=$id";
- 
+    $sql = "ALTER TABLE `users`
+    ADD CONSTRAINT `mess` 
+    FOREIGN KEY (`FromUserID`) 
+    REFERENCES `users` (`UserID`)
+    ON DELETE CASCADE;";
+    
     //Execute the Query
     $result = mysqli_query($conn, $sql);
 
