@@ -487,7 +487,8 @@ h1, .h1 {
     border: none
 }
 .icon-admin{
-    color: #514baa;
+    background: #806bc0;
+    color: #fff;
  
 }
 .center{
@@ -594,3 +595,7 @@ span {
 .btn-cancel:hover{
     background-color: black;
 }
+/* .calendar{
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+} */
