@@ -14,6 +14,7 @@
         $ngaySinh = $_POST['UserBirth'];
 
         $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+        $UserCode = rand(10000000, 99999999);
 
         //lệnh sql
         $sql="INSERT INTO users SET
@@ -25,8 +26,8 @@
         UserAdd = '$diachi',
         UserGender = '$gioitinh', 
         UserBirth = '$ngaySinh',
+        UserCode = '$UserCode',
         UserRoll = 'Giáo viên'
-
         ";
 
         // $sql_2=" INSERT INTO teacher SET
@@ -61,6 +62,7 @@
         if($_POST['Student_UserID']!=""){
 
             $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+            $UserCode = rand(10000000, 99999999);
 
             $sql5 = "select * from users where UserRoll='Phụ huynh' and UserChild=$Student_UserID";
             $res5 = mysqli_query($conn, $sql5);
@@ -77,6 +79,7 @@
                 UserAdd = '$diachi',
                 UserGender = '$gioitinh', 
                 UserBirth = '$ngaySinh',
+                UserCode = '$UserCode',
                 UserRoll = 'Phụ huynh'
                 ";
 
@@ -114,6 +117,7 @@
         $lop = $_POST['txtLop'];
 
         $pass_hash_2 = password_hash($matkhau, PASSWORD_DEFAULT);
+        $UserCode = rand(10000000, 99999999);
 
         $sql_2="INSERT INTO users SET
         UserRName = '$hoTen',
@@ -125,6 +129,7 @@
         UserGender = '$gioitinh', 
         UserBirth = '$ngaySinh',
         UserClass = '$lop',
+        UserCode = '$UserCode',
         UserRoll = 'Học sinh'
         ";
 
@@ -187,6 +192,7 @@
         $AdBirth = $_POST['ngaySinh'];
 
         $pass_hash1 = password_hash($pass1, PASSWORD_DEFAULT);
+        $UserCode = rand(10000000, 99999999);
 
         //lệnh sql
         $sql_4="INSERT INTO admin SET
@@ -196,6 +202,7 @@
         AdTel = $AdTel, 
         AdAdd = '$AdAdd',
         AdGender = '$AdGender', 
+        AdCode = '$UserCode',
         AdBirth = '$AdBirth'
         ";
 

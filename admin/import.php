@@ -14,20 +14,25 @@
                 if(mysqli_num_rows($res1)>0){
                     $row = mysqli_fetch_assoc($res1);
                 }
-                $sql2 = "SELECT * from users where UserName='$getData[2]'";//ktra email đã tồn tại trên DB hay chưa
+                $sql2 = "SELECT * from users where UserName='".$getData[2]."'";//ktra email đã tồn tại trên DB hay chưa
                 $res2 = mysqli_query($conn, $sql2);
                 if(mysqli_num_rows($res2)==0){
                     
+                    $UserPassword = password_hash($getData[1], PASSWORD_DEFAULT);
+                    $UserCode = rand(10000000, 99999999);
+
                     $sql_1="INSERT INTO users SET
-                    UserRName = '".$getData[1]."',
-                    UserName ='".$getData[2]."',
+                    UserName = '".$getData[1]."',
+                    UserRName ='".$getData[2]."',
+                    UserPassword = '".$UserPassword."',
                     UserEmail = '".$getData[3]."',
                     UserTel = '".$getData[4]."',
                     UserGender = '".$getData[5]."',
                     UserBirth ='".$getData[6]."',
                     UserAdd = '".$getData[7]."',
+                    UserCode = '".$UserCode."',
                     UserClass = '".$row['ClassID']."',
-                    UserRoll ='".$getData[9]."'
+                    UserRoll ='Học sinh'
                     ";
 
                     $res3 = mysqli_query($conn, $sql_1);
@@ -106,16 +111,21 @@
                 $sql_gv = "SELECT * from users where UserName='$getData[2]'";//ktra email đã tồn tại trên DB hay chưa
                 $res_gv= mysqli_query($conn, $sql_gv);
                 if(mysqli_num_rows($res_gv)==0){
+
+                    $UserPassword = password_hash($getData[1], PASSWORD_DEFAULT);
+                    $UserCode = rand(10000000, 99999999);
                     
                     $sql_gv1="INSERT INTO users SET
-                    UserRName = '".$getData[1]."',
-                    UserName ='".$getData[2]."',
+                    UserName = '".$getData[1]."',
+                    UserRName ='".$getData[2]."',
+                    UserPassword = '".$UserPassword."',
                     UserEmail = '".$getData[3]."',
                     UserTel = '".$getData[4]."',
                     UserGender = '".$getData[5]."',
                     UserBirth ='".$getData[6]."',
                     UserAdd = '".$getData[7]."',
-                    UserRoll ='".$getData[8]."'
+                    UserCode = '".$UserCode."',
+                    UserRoll ='Giáo viên'
                     ";
 
                     $res_gv1 = mysqli_query($conn, $sql_gv1);
@@ -194,31 +204,37 @@
             $file = fopen($filename, "r");
             while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
             {              
-                $sql_ph = "SELECT * from users where UserName='$getData[2]'";//ktra email đã tồn tại trên DB hay chưa
+                $sql_ph1 = "select * from users, class where UserRName = '".$getData[8]."' and UserRoll = 'Học sinh' and ClassName = '".$getData[9]."' and users.UserClass = class.ClassID";
+                $res_ph1 = mysqli_query($conn, $sql_ph1);
+
+                if(mysqli_num_rows($res_ph1)==1){
+                    $row_ph1 = mysqli_fetch_assoc($res_ph1);
+                }else{
+                    continue;
+                }
+
+                $sql_ph = "SELECT * from users where UserName='".$getData[1]."' or UserChild='".$row_ph1['UserID']."'";
                 $res_ph= mysqli_query($conn, $sql_ph);
                 if(mysqli_num_rows($res_ph)==0){
+                    $UserPassword = password_hash($getData[1], PASSWORD_DEFAULT);
+                    $UserCode = rand(10000000, 99999999);
                     
                     $sql_ph1="INSERT INTO users SET
-                    UserRName = '".$getData[1]."',
-                    UserName ='".$getData[2]."',
+                    UserName = '".$getData[1]."',
+                    UserRName ='".$getData[2]."',
+                    UserPassword ='".$UserPassword."',
                     UserEmail = '".$getData[3]."',
                     UserTel = '".$getData[4]."',
                     UserGender = '".$getData[5]."',
                     UserBirth ='".$getData[6]."',
                     UserAdd = '".$getData[7]."',
-                    UserRoll ='".$getData[8]."'
+                    UserCode = '".$UserCode."',
+                    UserRoll ='Phụ huynh'
                     ";
 
                     $res_ph1 = mysqli_query($conn, $sql_ph1);
-                    if(!isset($res_ph1))
-                    {
-                        echo "<script type=\"text/javascript\">
-                        alert(\"Invalid File:Please Upload CSV File.\");
-                        window.location = \"index.php\"
-                        </script>"; 
-                    }
-                    else {
-                    
+                    if(!$res_ph1){
+                        continue;
                     }
                 }
             }
