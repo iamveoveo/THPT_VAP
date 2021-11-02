@@ -75,7 +75,7 @@
                                             <td><?php echo $row['UserTel']; ?></td>
                                             <td><?php echo $row['UserClass']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><a href="http://localhost/THPT_VAP/admin/admin_delete_qlph?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                                            <td><a href="<?php echo SITEURL;?> THPT_VAP/admin/admin_delete_qlph?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>

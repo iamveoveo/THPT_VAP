@@ -4,7 +4,7 @@
 <?php
 
 // trang quanlixoagv
-  //lấy id là TeachID
+  //lấy id là UserID
   $id = $_GET['UserID'];
   
   $sql1 = "delete from mess where ToUserID = '$id' or FromUserID = '$id'";

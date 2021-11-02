@@ -84,7 +84,7 @@
                                             <td><?php echo $row['FinalExam']; ?></td>
 
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><a href="http://localhost/THPT_VAP/admin/admin_delete_qld.php?Student_UserID=<?php echo $row['Student_UserID'];?>&Subject=<?php echo $row['Subject'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin_delete_qld.php?Student_UserID=<?php echo $row['Student_UserID'];?>&Subject=<?php echo $row['Subject'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
 
                                         </tr>
                                         <?php
