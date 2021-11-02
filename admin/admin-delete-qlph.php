@@ -3,7 +3,7 @@
 ?>
 <?php
 
-// trang quanlixoahocsinh
+// trang quanlixoaphuhuynh
   //lấy id là UserID
   $id = $_GET['UserID'];
   
