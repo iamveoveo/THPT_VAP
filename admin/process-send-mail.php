@@ -11,13 +11,14 @@
 
             $row = mysqli_fetch_assoc($res);
 
-            include("config/mail-send.php");
+            include("../config/mail-send.php");
             
             // Mail subject 
             $mail->Subject = 'XÁC THỰC TÀI KHOẢN ADMIN'; 
             
             // Mail body content 
             $bodyContent = '<h1>Chào mừng '.$row['AdName'].'</h1>'; 
+            $bodyContent = '<p>Không cung cấp mã này cho bất kì ai, hãy trở lại trang và nhập mã để hoàn tất việc các thực</p>'; 
             $bodyContent .= '<p>Mã xác thực của bạn là:<h2><b>'.$row['AdCode'].'</b></h2></p>'; 
             $mail->Body    = $bodyContent; 
             
