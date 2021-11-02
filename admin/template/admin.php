@@ -1,3 +1,6 @@
+<?php
+    include("login-check.php");
+?>
 <div class="dashboard-nav">
         <!-- logo -->
         <header>
@@ -13,7 +16,9 @@
         <!-- navbar -->
         <nav class="dashboard-nav-list">
             <a href="index.php" class="dashboard-nav-item"><i class="fas fa-home"></i>Trang chủ </a>
-            <a href="admin-qld.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý điểm </a>
+            <div class='dashboard-nav-dropdown'><a href="admin-manager.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý admin </a></div>
+            <div class='dashboard-nav-dropdown'><a href="admin-qld.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý điểm </a></div>
+            <div class='dashboard-nav-dropdown'><a href="admin-qll.php" class="dashboard-nav-item "><i class="fas fa-tasks"></i> Quản lý lớp </a></div>
            
             <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-tasks"></i> Quản lý người dùng </a>
                 <div class='dashboard-nav-dropdown-menu'>
@@ -22,10 +27,9 @@
                     <a href="admin-qlph.php" class="dashboard-nav-dropdown-item">Quản lý phụ huynh</a>
                 </div>
             </div>
-
-            <a href="admin-manager.php" class="dashboard-nav-item"><i class="fas fa-tasks"></i> Quản lý Admin </a>
+        
             <a href="admin-profile.php" class="dashboard-nav-item"><i class="fas fa-user"></i> Tài khoản </a>
           <div class="nav-item-divider"></div>
-          <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất </a>
+          <a href="admin-logout.php" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất </a>
         </nav>
     </div>
