@@ -47,32 +47,37 @@
 
 
 <?php
-if(isset($_POST['login'])){
+  if(isset($_POST['login'])){
     $AdName = $_POST['adname'];
-    $Password = $_POST['pass'];
+    $Pass = $_POST['pass'];
     
     $sql = "SELECT * FROM admin WHERE AdName = '$AdName'";
     $res = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($res)>0){
-        $row = mysqli_fetch_assoc($res);
-        if(password_verify($Password, $row['AdPassword'])){
-            if($row['AdStatus']==0){
-                $_SESSION['Ad_ID'] = $row['AdID'];
-                $_SESSION['Ad_Status'] = $row['AdStatus'];
-                header("location:".SITEURL."admin/email-verification.php");
-            }else{
-                $_SESSION['Ad_ID'] = $row['AdID'];
-                $_SESSION['Ad_Status'] = $row['Ad_Status'];
-                header("location:".SITEURL."admin/index.php");
-            }
-        }else{
-            $_SESSION['wrong_password'] = "<span class='text-danger'>Sai mật khẩu</span>";
-            header('location:'.SITEURL.'admin/admin-login.php');
+      $row = mysqli_fetch_assoc($res);
+      $pass_saved = $row ['AdPassword'];
+
+      if(password_verify($Pass, $pass_saved)){
+        if($row['AdStatus']==0){
+          $_SESSION['Ad_ID'] = $row['AdID'];
+          $_SESSION['Ad_Status'] = $row['AdStatus'];
+          header("location:".SITEURL."admin/email-verification.php");
         }
-    }else{
-        $_SESSION['wrong_password'] = "<span class='text-danger'>Tên đăng nhập không tồn tại</span>";
+        else{
+          $_SESSION['Ad_ID'] = $row['AdID'];
+          $_SESSION['Ad_Status'] = $row['Ad_Status'];
+          header("location:".SITEURL."admin/index.php");
+        }
+      }
+      else{
+        $_SESSION['wrong_password'] = "<span class='text-danger'>Sai mật khẩu</span>";
         header('location:'.SITEURL.'admin/admin-login.php');
+      }
+    }
+    else{
+      $_SESSION['wrong_password'] = "<span class='text-danger'>Tên đăng nhập không tồn tại</span>";
+      header('location:'.SITEURL.'admin/admin-login.php');
     }
   }
 ?>

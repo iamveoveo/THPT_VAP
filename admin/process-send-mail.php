@@ -34,16 +34,16 @@
     if(isset($_POST['confirm-code'])){
         if(isset($_POST['AdEmail'])){
             $AdEmail = $_POST['AdEmail'];
-            $code = $_POST['code'];
-            $sql1 = "SELECT * FROM admin WHERE AdID=$AdID and AdCode=$code";
+            $codeAd = $_POST['code'];
+            $sql1 = "SELECT * FROM admin WHERE AdID=$AdID and AdCode=$codeAd";
             $res1 = mysqli_query($conn, $sql1);
             if(mysqli_num_rows($res1)>0){
                 $row1 = mysqli_fetch_assoc($res1);
-                $sql2 = "update Ads set AdStatus=1, AdEmail='$AdEmail' where AdID=$AdID";
+                $sql2 = "UPDATE admin set AdStatus=1, AdEmail='$AdEmail' where AdID=$AdID";
                 $res2 = mysqli_query($conn, $sql2);
 
                 if($res2==TRUE){
-                    $_SESSION['AdStatus'] = 1;
+                    $_SESSION['Ad_Status'] = 1;
                     echo "updated|".SITEURL."admin/index.php";
                 }else{
                     echo "not update|<span class="."text-danger".">Lỗi trong quá trình xác thực</span>);</script>";
