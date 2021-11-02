@@ -365,4 +365,98 @@
             fclose($file);  
         }
     }   
+
+    /* <!-- môn --> */
+    if(isset($_POST["import_mon"])){       
+        $filename=$_FILES["file_import_mon"]["tmp_name"];    
+        if($_FILES["file_import_mon"]["size"] > 0)
+        {
+            $file = fopen($filename, "r");
+            while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+            {
+                $sql_mon1 = "select * from users where UserRName = '".$getData[1]."' and UserRoll = 'Giáo viên'";
+                $res_mon1 = mysqli_query($conn, $sql_mon1);
+
+                if(mysqli_num_rows($res_mon1)==1){
+                    $row_mon1 = mysqli_fetch_assoc($res_mon1);
+                }else{
+                    continue;
+                }
+
+                $sql_mon2 = "select * from class where ClassName = '".$getData[2]."'";
+                $res_mon2 = mysqli_query($conn, $sql_mon2);
+
+                if(mysqli_num_rows($res_mon2)==1){
+                    $row_mon2 = mysqli_fetch_assoc($res_mon2);
+                }else{
+                    continue;
+                }
+
+                $sql_mon = "select * from teach where ClassID='".$row_mon2['ClassID']."' and Teacher_UserID = '".$row_mon1['UserID']."' and TeachSubject = '".$getData[3]."'";
+                $res_mon = mysqli_query($conn, $sql_mon);
+                if(mysqli_num_rows($res_mon)>0){
+                    continue;
+                }else{
+                    $sql_mon3 = "insert into teach set
+                                Teacher_UserID = '".$row_mon1['UserID']."',
+                                ClassID = '".$row_mon2['ClassID']."',
+                                TeachSubject = '".$getData[3]."'
+                                ";  
+                    $res_mon3 = mysqli_query($conn, $sql_mon3);
+
+                    if(!$res_mon3){
+                        continue;
+                    }
+                }
+                
+            }
+            ?>
+                <table class="table table-hover table-secondary ">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Khối</th>
+                            <th scope="col">Tên lớp</th>
+                            <th scope="col">Tên giáo viên</th>
+                            <th scope="col">Môn học</th>
+                            <th scope="col">Sửa</th>
+                            <th scope="col">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="d-table">
+                        <?php
+
+                        $sql="SELECT * FROM users, class, teach  WHERE teach.Teacher_UserID=users.UserID AND class.ClassID=teach.ClassID ";
+                            
+                            $result = mysqli_query($conn,$sql);
+
+                            if(mysqli_num_rows($result)>0){
+                            $i=1;                                            
+                            while($row = mysqli_fetch_assoc($result)){
+                        ?>
+
+                        <tr>
+                            <th scope="row"><?php echo $i; ?></th>
+                            <td><?php echo $row['ClassGrade']; ?></td>
+                            <td><?php echo $row['ClassName']; ?></td>
+                            <td><?php echo $row['UserRName']; ?></td>
+                            <td><?php echo $row['TeachSubject']; ?></td>
+                            <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
+                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
+
+                        </tr>
+                        <?php
+                                $i++;
+                                }
+                            }
+                        ?>
+                    </tbody>
+
+                    </tbody>
+                </table>
+            <?php
+        
+            fclose($file);  
+        }
+    }   
 ?>

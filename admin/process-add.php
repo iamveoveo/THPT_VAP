@@ -4,8 +4,8 @@
 <!-- giáo viên -->
 <?php
     if(isset($_POST['add-qlgv'])){
-        $hoTen  = $_POST['UserRName'];
-        $tenTK = $_POST['UserName'];
+        $hoTen  = $_POST['txtHoTen'];
+        $tenTK = $_POST['txtTaiKhoan'];
         $pass = $_POST['UserPassword'];
         $email = $_POST['UserEmail'];
         $sodidong = $_POST['UserTel'];
@@ -17,11 +17,11 @@
 
         //lệnh sql
         $sql="INSERT INTO users SET
-        UserName = '$hoTen',
-        UserRName = '$tenTK',
+        UserRName = '$hoTen',
+        UserName = '$tenTK',
         UserPassword = '$pass_hash',
         UserEmail = '$email' , 
-        UserTel = $sodidong, 
+        UserTel = '$sodidong', 
         UserAdd = '$diachi',
         UserGender = '$gioitinh', 
         UserBirth = '$ngaySinh',
@@ -31,7 +31,7 @@
 
         // $sql_2=" INSERT INTO teacher SET
         // TeachSubject = '$mon' ";
-        $query = mysqli_query($conn,$sql) or die(mysqli_error());
+        $query = mysqli_query($conn,$sql);
 
         if($query==TRUE)
         {
@@ -51,36 +51,52 @@
     if(isset($_POST['add-qlph'])){
         $hoTen  = $_POST['txtHoTen'];
         $tenTK = $_POST['txtTaiKhoan'];
-        $email = $_POST['txtEmail'];
+        $pass = $_POST['UserPassword'];
         $sodidong = $_POST['sdt'];
         $diachi = $_POST['txtDiaChi'];
         $gioitinh = $_POST['txtGioiTinh'];
         $ngaySinh = $_POST['ngaySinh'];
+        $Student_UserID = $_POST['Student_UserID'];
 
-        $sql_1="INSERT INTO users SET
-        UserName = '$hoTen',
-        UserRName = '$tenTK',
-        UserEmail = '$email' , 
-        UserTel = $sodidong, 
-        UserAdd = '$diachi',
-        UserGender = '$gioitinh', 
-        UserBirth = $ngaySinh,
-        UserRoll = 'Phụ huynh'
-        ";
+        if($_POST['Student_UserID']!=""){
 
-        $query_1 = mysqli_query($conn,$sql_1) or die(mysqli_error());
+            $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
 
-        if($query_1==TRUE)
-        {
-            $_SESSION['add_parent']="<div class='text-success'>Thêm phụ huynh thành công.</div>";
+            $sql5 = "select * from users where UserRoll='Phụ huynh' and UserChild=$Student_UserID";
+            $res5 = mysqli_query($conn, $sql5);
+
+            if(mysqli_num_rows($res5)>0){
+                $_SESSION['add_parent']="<div class='text-danger'>Học sinh mà bạn đang muốn theo dõi đã được theo dõi bởi tải khoản khác.</div>";
+                header('location:' .SITEURL. 'admin/admin-qlph.php');
+            }else{
+                $sql_1="INSERT INTO users SET
+                UserRName = '$hoTen',
+                UserName = '$tenTK',
+                UserPassword = '$pass_hash',
+                UserTel = '$sodidong', 
+                UserAdd = '$diachi',
+                UserGender = '$gioitinh', 
+                UserBirth = '$ngaySinh',
+                UserRoll = 'Phụ huynh'
+                ";
+
+                $query_1 = mysqli_query($conn,$sql_1);
+
+                if($query_1==TRUE)
+                {
+                    $_SESSION['add_parent']="<div class='text-success'>Thêm phụ huynh thành công.</div>";
+                    header('location:' .SITEURL. 'admin/admin-qlph.php');
+                }
+                else
+                {
+                    $_SESSION['add_parent']="<div class='text-danger'>Thêm phụ huynh thất bại.</div>";
+                    header('location:' .SITEURL. 'admin/admin-qlph.php');
+                } 
+            }
+        }else{
+            $_SESSION['add_parent']="<div class='text-danger'>Hãy chọn học sinh cần theo dõi trước khi thêm.</div>";
             header('location:' .SITEURL. 'admin/admin-qlph.php');
         }
-        else
-        {
-            $_SESSION['add_parent']="<div class='text-danger'>Thêm phụ huynh thất bại.</div>";
-            header('location:' .SITEURL. 'admin/admin-qlph.php');
-        } 
-
     }
 ?>
 
@@ -104,15 +120,15 @@
         UserName = '$tenTK',
         UserPassword = '$pass_hash_2',
         UserEmail = '$email' , 
-        UserTel = $sodidong, 
+        UserTel = '$sodidong', 
         UserAdd = '$diachi',
         UserGender = '$gioitinh', 
-        UserBirth = $ngaySinh,
+        UserBirth = '$ngaySinh',
         UserClass = '$lop',
         UserRoll = 'Học sinh'
         ";
 
-        $query_2 = mysqli_query($conn,$sql_2) or die(mysqli_error());
+        $query_2 = mysqli_query($conn,$sql_2);
 
         if($query_2==TRUE)
         {
@@ -143,7 +159,7 @@
         FinalExam = '$FinalExam'
         ";
 
-        $query_3 = mysqli_query($conn,$sql_3) or die(mysqli_error());
+        $query_3 = mysqli_query($conn,$sql_3);
 
         if($query_3==TRUE)
         {
@@ -183,7 +199,7 @@
         AdBirth = '$AdBirth'
         ";
 
-        $query_4 = mysqli_query($conn,$sql_4) or die(mysqli_error());
+        $query_4 = mysqli_query($conn,$sql_4);
         if($query_4==TRUE)
         {
             $_SESSION['add_admin']="<div class='text-success'>Thêm Admin thành công.</div>";
@@ -197,3 +213,54 @@
     }
 ?>
 
+<!-- Lớp -->
+<?php
+    if(isset($_POST['add-qll'])){
+        $ClassGrade = $_POST['txtKhoi'];
+        $ClassName = $_POST['txtNewLop'];
+
+        $sql6 = "INSERT INTO class SET
+        ClassGrade = '$ClassGrade',
+        ClassName = '$ClassName'";
+        $res6 = mysqli_query($conn, $sql6);
+
+        if($res6){
+            $_SESSION['add']="<div class='text-success'>Thêm Lớp thành công.</div>";
+            header('location:' .SITEURL. 'admin/admin-qll.php');
+        }else{
+            $_SESSION['add']="<div class='text-danger'>Lỗi khi thêm lớp.</div>";
+            header('location:' .SITEURL. 'admin/admin-qll.php');
+        }
+    }
+?>
+
+<!-- Môn -->
+<?php
+    if(isset($_POST['add-qll1'])){
+        $ClassID = $_POST['txtLop'];
+        $TeachSubject = $_POST['txtMon'];
+        $Teacher_UserID = $_POST['Teacher_UserID'];
+
+        $sql7 = "select * from teach where Teacher_UserID = '$Teacher_UserID' and ClassID = '$ClassID' and TeachSubject = '$TeachSubject'";
+        $res7 = mysqli_query($conn, $sql7);
+    
+        if(mysqli_num_rows($res7)>0){
+            $_SESSION['add']="<div class='text-danger'>Môn bạn vừa thêm đã tồn tại.</div>";
+            header('location:' .SITEURL. 'admin/admin-qll.php');
+        }else{
+            $sql6 = "INSERT INTO teach SET
+            Teacher_UserID = '$Teacher_UserID',
+            ClassID = '$ClassID',
+            TeachSubject = '$TeachSubject'";
+            $res6 = mysqli_query($conn, $sql6);
+
+            if($res6){
+                $_SESSION['add']="<div class='text-success'>Thêm môn thành công.</div>";
+                header('location:' .SITEURL. 'admin/admin-qll.php');
+            }else{
+                $_SESSION['add']="<div class='text-danger'>Lỗi khi thêm môn.</div>";
+                header('location:' .SITEURL. 'admin/admin-qll.php');
+            }
+        }
+    }
+?>

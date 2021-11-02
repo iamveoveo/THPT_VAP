@@ -92,18 +92,8 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-
-                                        <!--form add -->
-                                        
-                                        <div class="card w-100 h-100" style="background:rgb(88 116 149 / 19%)">
-                                            <form action="" class="d-flex " name="student_search">
-                                                <input type="text" name="inp_search" class="form-control form-input w-75" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"></span> 
-                                                <button type="submit" name="hs_search" class="btn btn-primary">Tìm kiếm</button>
-                                            </form>
-                                            <div class="bg-light w-100 h-25 search_content"> 
-                                                
-                                            </div>
-                                        </div>
+                                        <h5 class="modal-title">Sửa thông tin</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                           
                                     <form action="process-add.php" method="POST" >
@@ -128,6 +118,12 @@
                                                                     <input type="text" class="form-control" name="txtTaiKhoan" >
                                                                 </div>
                                                             </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Mật khẩu</label>
+                                                                    <input type="password" class="form-control" name="UserPassword" require="required">
+                                                                </div>
+                                                            </div>
                                                             
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
@@ -136,12 +132,6 @@
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Email</label>
-                                                                    <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                                </div>
-                                                            </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="phone">Địa chỉ</label>
@@ -161,10 +151,43 @@
                                                                     <option value="">Chọn giới tính</option>
                                                                     <option value="Nam">Nam</option>
                                                                     <option value="Nữ">Nữ</option>
+                                                                    <option value="Khác">Khác</option>
                                                                 </select>
-                                                            </div>                                                       
+                                                            </div>    
+                                                            
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="Street">Lớp</label>
+                                                                    <select  id="class-student" class="form-select" name="txtLop" aria-label="Default select example">
+                                                                        <option value="">Chọn lớp</option>
+                                                                        <?php
+                                                                        $sql_1 = "SELECT * FROM class";
+                                                                        $result_1 = mysqli_query($conn,$sql_1);
+                                            
+                                                                        //xử lý kết quả
+                                                                        if(mysqli_num_rows($result_1)>0){
+                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
+                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Tên học sinh</label>
+                                                                    <input id="RName-student" type="text" class="form-control" name="txtHoTenHS" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3" style="max-height:25vh; overflow-y:scroll;">
+                                                                <ul class="list-group student-select bg-light">
+                                                                    
+                                                                </ul>
+                                                                <input type="hidden" name="Student_UserID">
+                                                            </div>
                                                         
-                                                    
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,8 +211,8 @@
                                     <div class="modal-header">
 
                                     <!--form edit -->
-                                    <h5 class="modal-title">Sửa thông tin</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="modal-title">Sửa thông tin</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
                                     <div class="modal-body">

@@ -104,13 +104,13 @@
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Họ và tên</label>
-                                                                    <input type="text" class="form-control" name="UserRName"require="required" >
+                                                                    <input type="text" class="form-control" name="txtHoTen"require="required" >
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="eMail">Tên tài khoản</label>
-                                                                    <input type="text" class="form-control" name="UserName" require="required">
+                                                                    <input type="text" class="form-control" name="txtTaiKhoan" require="required">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -146,6 +146,7 @@
                                                                     <option value="">Chọn giới tính</option>
                                                                     <option value="Nam">Nam</option>
                                                                     <option value="Nữ">Nữ</option>
+                                                                    <option value="Khác">Khác</option>
                                                                 </select>
                                                             </div>
                                                             

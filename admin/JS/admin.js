@@ -75,6 +75,18 @@ $(document).ready(function () {
         })
     })
 
+    $('#class-select1').on('change', function(){
+        $.ajax({
+            url: 'process-search.php',
+            type: 'POST',
+            methos: 'POST',
+            data: {classselect1: $(this).val(),},
+            success: function(data){
+                $('#subject-select1').html(data);
+            }
+        })
+    })
+
     $('button[name="import_hs"]').on('click',function(e){ 
         var data = new FormData(form_import);
         data.append('import_hs','');
@@ -202,6 +214,23 @@ $(document).ready(function () {
         })
     })
 
+    $('#selected1').on('click', function(){
+        class_select = $('#class-select1').val();
+        subject_select = $('#subject-select1').val();
+        
+        $.ajax({
+            url: 'process-search.php',
+            type: 'POST',
+            methos: 'POST',
+            data: { class_select: class_select,
+                    subject_select: subject_select,
+                    selected1: ""},
+            success: function(data){
+                $('#d-table').html(data);
+            }
+        })
+    })
+
     $('button[name="import_diem"]').on('click',function(e){ //lấy sự kiện cho nút
         if(class_select=="" && subject_select==""){
             alert('Bạn cần chọn lớp, môn cần thêm điểm trước.');
@@ -245,9 +274,80 @@ $(document).ready(function () {
         }
     })
 
+    $('#RName-Teacher').on('input', function(){
+        $.ajax({
+            url: 'process-search.php',
+            method: 'POST',
+            type: 'POST',
+            data: {
+                UserRName: $('#RName-Teacher').val(),
+                teacher_select: ""
+            },
+            success: function(data){
+                $('.teacher-select').html(data);
+            }
+        })
+    })
+
+    $('[name="txtTaiKhoan"]').on('change', function(){
+        $.ajax({
+            url: 'process-search.php',
+            method: 'POST',
+            type: 'POST',
+            data: {
+                UserName: $('[name="txtTaiKhoan"]').val(),
+                validate_userName: ""
+            },
+            success: function(data){
+                $('.modal-title').html(data);
+            }
+        })
+    })
+
+    $('#form_import_mon').on('submit',function(e){
+        e.preventDefault();
+        var data3 = new FormData(this);
+        data3.append('preview_mon','');
+
+        $.ajax({
+            url: 'display.php',
+            method: 'POST',
+            type: 'POST',
+            data: data3,
+            processData: false,
+            contentType: false,
+            success: function(data){
+                $('.modal_body_mon').html(data);
+            }
+        })
+    })
+
+    $('button[name="import_mon"]').on('click',function(e){ //lấy sự kiện cho nút
+        alert("data2");
+        var data2 = new FormData(form_import_mon);
+        data2.append('import_mon','');
+        $.ajax({
+            url: 'import.php',
+            method: 'POST',
+            type: 'POST',
+            data: data2,
+            processData: false,
+            contentType: false,
+            success: function(data2){
+               $('#table_mon').html(data2);
+            }
+        })
+    })
+
     $('body').on('click', '.student-item', function(){
         $('[name="Student_UserID"]').val($(this).attr('id'));
         $('.student-item').css('border', 'solid 1px #000');
+        $(this).css('border', 'solid 2px #20c2f388');
+    })
+
+    $('body').on('click', '.teacher-item', function(){
+        $('[name="Teacher_UserID"]').val($(this).attr('id'));
+        $('.teacher-item').css('border', 'solid 1px #000');
         $(this).css('border', 'solid 2px #20c2f388');
     })
 

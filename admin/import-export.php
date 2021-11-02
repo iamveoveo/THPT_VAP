@@ -104,3 +104,27 @@ if(isset($_GET["export_diem"])){
     fclose($output);  
 }  
 ?>
+<?php
+if(isset($_POST["export_mon"])){
+    header('Content-Encoding: UTF-8');
+    header('Content-Type: text/csv; charset=utf-8');  
+    header('Content-Disposition: attachment; filename=export_teach.csv');  
+    $output = fopen("php://output", "w");  
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    fputcsv($output, array("STT", "HoTenGV", "Lop", "Mon")); 
+
+    $sql_2="select * from teach, class, users where teach.Teacher_UserID = users.UserID and class.ClassID = teach.ClassID";
+    $result_2 = mysqli_query($conn,$sql_2);
+
+    $i = 0;
+    if (mysqli_num_rows($result_2) > 0)
+    {
+        while($row_2 = mysqli_fetch_assoc($result_2)){ 
+            $i++;
+            $new_row_2 = array($i, $row_2['UserRName'], $row_2['ClassName'], $row_2['TeachSubject']);
+            fputcsv($output, $new_row_2); 
+        }
+    }  
+    fclose($output);  
+}  
+?>

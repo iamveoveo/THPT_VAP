@@ -212,5 +212,53 @@ if(isset($_POST["preview_diem"])){
     <?php
     }
 }
+
+/* <!-- Môn --> */
+if(isset($_POST["preview_mon"])){
+    $filename=$_FILES["file_import_mon"]["tmp_name"];    
+    if($_FILES["file_import_mon"]["size"] > 0)
+    {      
+        $file = fopen($filename, "r");
+        ?>
+        <table class="table table-hover table-secondary ">
+            <thead>
+        <?php
+        while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+        {
+            $STT = $getData[0];
+            $hoTen = $getData[1];
+            $lop = $getData[2];
+            $mon = $getData[3];
+            
+            if($STT == "STT"){
+                ?>   
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Lớp</th>
+                        <th scope="col">Môn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+            }else{
+                ?>
+                    <tr>
+                        <th scope="row"><?php echo $STT; ?></th>
+                        <td><?php echo $hoTen; ?></td>
+                        <td><?php echo $lop; ?></td>
+                        <td><?php echo $mon; ?></td>
+                        
+                    </tr>
+                <?php
+            }
+        }
+        ?>
+        </tbody>
+    </table>
+        
+    <?php
+    }
+}
 ?>
 
