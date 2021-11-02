@@ -11,7 +11,7 @@ if ($conn->query($sql) === TRUE) {
   header('location:'.SITEURL.'admin/admin-qlph.php');
 } else {
   echo "xóa admin thất bại " . $conn->error;
-  
+  header('location:'.SITEURL.'admin/admin-qlph.php');
 $conn->close();}
 
 ?> 
