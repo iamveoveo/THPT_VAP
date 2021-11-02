@@ -1,7 +1,15 @@
 <?php include("template/header.php"); ?>
 
 <div class='dashboard'>
-    <?php include("template/admin.php");?>
+    <?php include("template/admin.php");
+        $AdId=$_SESSION['Ad_ID'];
+        $sql = "SELECT * FROM admin WHERE AdID = '$AdId'";
+        $query = mysqli_query($conn,$sql);
+        if(mysqli_num_rows($query)>0){
+            $row=mysqli_fetch_assoc($query) ;
+        
+        }
+    ?>
 
     <!-- bảng -->
     <div class='dashboard-app'>
@@ -33,10 +41,10 @@
                                                 <div class="account-settings">
                                                     <div class="user-profile">
                                                         <div class="user-avatar">
-                                                            <img src="../images/ava.png" alt="Maxwell Admin">
+                                                            <img src="images/<?php echo $row['AdAva'];?>" alt="" id="anh2" width="150px" height="150px" alt="user avatar">
                                                         </div>
-                                                        <h5 class="user-name">Yuki Hayashi</h5>
-                                                        <h6 class="user-email">yuki@Maxwell.com</h6>
+                                                        <h5 class="user-name"><?php echo $row['AdRName'];?></h5>
+                                                        <h6 class="user-email"><?php echo $row['AdEmail'];?></h6>
                                                     </div>
                                                     <div class="about">
                                                         <h5 class="mb-2 text-primary">About</h5>
@@ -51,46 +59,48 @@
                                             <div class="card-body">
                                                 <div class="row gutters">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <h6 class="mb-3 text-primary">Personal Details</h6>
+                                                        <h6 class="mb-3 text-primary">Thông tin tài khoản</h6>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                                        <div class="form-group">
+                                                            <label for="fullName">Họ và tên</label>
+                                                            <input type="text" value="<?php echo $row['AdRName'];?>" class="form-control" id="fullName" readonly >
+                                                        </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                         <div class="form-group">
-                                                            <label for="fullName">Họ và tên</label>
-                                                            <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                                                            <label for="fullName">Tên tài khoản</label>
+                                                            <input type="text" value="<?php echo $row['AdName'];?>" class="form-control" id="fullName" readonly >
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                         <div class="form-group">
                                                             <label for="eMail">Email</label>
-                                                            <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+                                                            <input type="email" value="<?php echo $row['AdEmail'];?>" class="form-control" id="eMail"  readonly >
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                         <div class="form-group">
                                                             <label for="phone">Số điện thoại</label>
-                                                            <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+                                                            <input type="tel" value="<?php echo $row['AdTel'];?>" class="form-control" id="phone"  readonly >
                                                         </div>
                                                     </div>
                                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                         <div class="form-group">
                                                             <label for="Street">Địa chỉ</label>
-                                                            <input type="name" class="form-control" id="Street" placeholder="Enter Street">
+                                                            <input type="name" value="<?php echo $row['AdAdd'];?>" class="form-control" id="Street"  readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                         <div class="form-group">
                                                             <label for="website">Ngày sinh</label>
-                                                            <input type="date" class="form-control" id="website" placeholder="Website url">
+                                                            <input type="date" value="<?php echo $row['AdBirth'];?>" class="form-control" id="website"  readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                         <label class="labels">Giới tính</label>
-                                                        <select class="form-select" aria-label="Default select example">
-                                                            <option selected>Chọn giới tính</option>
-                                                            <option value="1">Nam</option>
-                                                            <option value="2">Nữ</option>
-                                                        </select>
+                                                        <input type="text" value="<?php echo $row['AdGender'];?>" class="form-control" readonly>
                                                     </div>
                                                     
                                                 </div>
@@ -129,8 +139,8 @@
                                                             <div class="user-avatar">
                                                                 <img src="../images/ava.png" alt="Maxwell Admin">
                                                             </div>
-                                                            <h5 class="user-name">Yuki Hayashi</h5>
-                                                            <h6 class="user-email">yuki@Maxwell.com</h6>
+                                                            <h5 class="user-name"><?php echo $row['AdRName'];?></h5>
+                                                            <h6 class="user-email"><?php echo $row['AdEmail'];?></h6>
                                                         </div>
 
                                                         <!-- edit avtar -->
@@ -156,43 +166,50 @@
                                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                             <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                                         </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control form-profile" id="fullName" >
+                                                                <input type="text" class="form-control form-profile" name="txtHoTen" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label for="fullName">Tên tài khoản</label>
+                                                                <input type="text" class="form-control form-profile" name="txtTK" >
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="eMail">Email</label>
-                                                                <input type="email" class="form-control form-profile" id="eMail" placeholder="acb@gmail.com">
+                                                                <input type="email" class="form-control form-profile" name="txtEmail" placeholder="acb@gmail.com">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control form-profile" id="phone" placeholder="09x xxx xxxx">
+                                                                <input type="tel" class="form-control form-profile" name="sdt" placeholder="09x xxx xxxx">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="Street">Địa chỉ</label>
-                                                                <input type="name" class="form-control form-profile" id="Street" placeholder="Xã,phường/huyện/tỉnh">
+                                                                <input type="text" class="form-control form-profile" name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <div class="form-group">
                                                                 <label for="website">Ngày sinh</label>
-                                                                <input type="date" class="form-control form-profile" id="website" >
+                                                                <input type="date" name="ngaySinh" class="form-control form-profile" id="website" >
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                             <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Chọn giới tính</option>
-                                                                <option value="1">Nam</option>
-                                                                <option value="2">Nữ</option>
+                                                            <select class="form-select" aria-label="Default select example" name="txtGioiTinh">
+                                                                <option value=NULL>Chọn giới tính</option>
+                                                                <option value="Nam">Nam</option>
+                                                                <option value="Nữ">Nữ</option>
+                                                                <option value="Khác">Khác</option>
                                                             </select>
                                                         </div>
                                                         
@@ -205,7 +222,7 @@
                                     </div>
                                     <div class="modal-footer ">
                                         <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
+                                        <button type="button" name="up-profile" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
                                     </div>
                                     </div>
                                 </div>
