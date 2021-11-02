@@ -28,6 +28,12 @@
                     <div class='card-header'>
                         <h2>Quản lý tài khoản</h2>
                     </div>
+                    <?php
+                        if(isset($_SESSION['profile'])){
+                            echo $_SESSION['profile'];
+                            unset ($_SESSION['profile']);
+                        }
+                    ?>
 
                     <!-- profile -->
                     <!-- about: level này bạn có thể chỉnh sửa những gì -->
@@ -41,7 +47,7 @@
                                                 <div class="account-settings">
                                                     <div class="user-profile">
                                                         <div class="user-avatar">
-                                                            <img src="images/<?php echo $row['AdAva'];?>" alt="" id="anh2" width="150px" height="150px" alt="user avatar">
+                                                            <img src="images/avatar/<?php echo $row['AdAva'];?>" alt="Maxwell Admin">
                                                         </div>
                                                         <h5 class="user-name"><?php echo $row['AdRName'];?></h5>
                                                         <h6 class="user-email"><?php echo $row['AdEmail'];?></h6>
@@ -116,19 +122,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                               
+                            </div>                            
                         </div>
 
-                            <!-- Modal -->
-                            <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Sửa thông tin</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
+                        <!-- Modal -->
+                        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Sửa thông tin</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    
                                     <div class="row gutters">
                                         <!-- avtar -->
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -144,14 +150,14 @@
                                                         </div>
 
                                                         <!-- edit avtar -->
-                                                        <form action="" method="POST" enctype="multipart/form-data" id="form_avatar">
+                                                        <form action="update-profile.php" method="POST" enctype="multipart/form-data" id="form_avatar">
                                                             <div class="row justify-content-center align-items-center w-100 m-auto rounded" style="background-color:#e4e4e4;">
                                                                 <div class="col-8 ps-4" style="font-weight: 500; color: #223035;"> Chọn ảnh đại diện:</div>
                                                                 <div class="col-4 file-upload">
                                                                     <input type="file" name="file_image" />
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill w-100" data-mdb-ripple-color="dark" name = "submit">Cập nhật ảnh</button>
+                                                            <button type="submit" name="up-avatar" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill w-100" data-mdb-ripple-color="dark">Cập nhật ảnh</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -159,74 +165,76 @@
                                         </div>
 
                                         <!-- edit -->
-                                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                                            <div class="card card-col h-100">
-                                                <div class="card-body">
-                                                    <div class="row gutters">
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                        </div>
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control form-profile" name="txtHoTen" >
+                                        <form action="update-profile.php" method="POST" name='form_edit'>
+                                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                                <div class="card card-col h-100">
+                                                    <div class="card-body">
+                                                        <div class="row gutters">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="fullName">Tên tài khoản</label>
-                                                                <input type="text" class="form-control form-profile" name="txtTK" >
+                                                            
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Họ và tên</label>
+                                                                    <input type="text" value="<?php echo $row['AdRName'];?>" class="form-control form-profile" name="txtHoTen" >
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="eMail">Email</label>
-                                                                <input type="email" class="form-control form-profile" name="txtEmail" placeholder="acb@gmail.com">
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Tên tài khoản</label>
+                                                                    <input type="text" value="<?php echo $row['AdName'];?>" class="form-control form-profile" name="txtTK" >
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control form-profile" name="sdt" placeholder="09x xxx xxxx">
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Email</label>
+                                                                    <input type="email" value="<?php echo $row['AdEmail'];?>" class="form-control form-profile" name="txtEmail" placeholder="acb@gmail.com">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="Street">Địa chỉ</label>
-                                                                <input type="text" class="form-control form-profile" name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="phone">Số điện thoại</label>
+                                                                    <input type="tel" value="<?php echo $row['AdTel'];?>" class="form-control form-profile" name="sdt" placeholder="09x xxx xxxx">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="website">Ngày sinh</label>
-                                                                <input type="date" name="ngaySinh" class="form-control form-profile" id="website" >
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="Street">Địa chỉ</label>
+                                                                    <input type="text" value="<?php echo $row['AdAdd'];?>" class="form-control form-profile" name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="website">Ngày sinh</label>
+                                                                    <input type="date" value = "<?php echo $row['AdBirth'];?>" name="ngaySinh" class="form-control form-profile" id="website" >
+                                                                </div>
+                                                            </div>
 
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example" name="txtGioiTinh">
-                                                                <option value=NULL>Chọn giới tính</option>
-                                                                <option value="Nam">Nam</option>
-                                                                <option value="Nữ">Nữ</option>
-                                                                <option value="Khác">Khác</option>
-                                                            </select>
-                                                        </div>
-                                                        
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <label class="labels">Giới tính</label>
+                                                                <select class="form-select" aria-label="Default select example" name=txtGioiTinh>
+                                                                    <option value=null <?php if($row['AdGender']==""){echo 'selected';};?>>Chọn giới tính</option>
+                                                                    <option value="Nam" <?php if($row['AdGender']=="Nam"){echo 'selected';};?>>Nam</option>
+                                                                    <option value="Nữ" <?php if($row['AdGender']=="Nữ"){echo 'selected';};?>>Nữ</option>
+                                                                    <option value="Khác" <?php if($row['AdGender']=="Khác"){echo 'selected';};?>>Khác</option>
+                                                                </select>
+                                                            </div>
+                                                            
+                                                        </div>                                  
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
-                                        </div>
-                              
+                                        
+                                            <div class="modal-footer ">
+                                                <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
+                                                <button type="submit" name="up-profile" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
+                                            </div>   
+                                        </form>
                                     </div>
-                                    <div class="modal-footer ">
-                                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" name="up-profile" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
-                                    </div>
-                                    </div>
-                                </div>
+                                </div>  
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>

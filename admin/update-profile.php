@@ -5,9 +5,9 @@ include('../config/constants.php')
 <?php
 
 $AdId=$_SESSION['Ad_ID'];
-if(isset($_POST['up-profile'])){
+if(isset($_POST['up-avatar'])){
 
-    $target_dir = "images/";
+    $target_dir = "images/avatar/";
     $newFileName = $_POST['newFileName'];
     $target_file = $target_dir . basename($_FILES["file_image"]["name"]);
     $uploadOk = 1;
@@ -75,7 +75,7 @@ if(isset($_POST['up-profile'])){
 	//update
 	$sql="UPDATE admin SET
 	AdName='$hoten',
-	AdRName='$txtTK',
+	AdRName='$tenTK',
 	AdEmail='$email',
 	AdGender='$gioitinh',
 	AdAdd='$diachi', 
