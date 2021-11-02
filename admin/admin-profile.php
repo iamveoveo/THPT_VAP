@@ -33,7 +33,7 @@
                                                 <div class="account-settings">
                                                     <div class="user-profile">
                                                         <div class="user-avatar">
-                                                            <img src="../images/ava.png" alt="Maxwell Admin">
+                                                            <img src="../images/avatar/ava.png" alt="Maxwell Admin">
                                                         </div>
                                                         <h5 class="user-name">Yuki Hayashi</h5>
                                                         <h6 class="user-email">yuki@Maxwell.com</h6>

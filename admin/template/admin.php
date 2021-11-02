@@ -1,5 +1,5 @@
 <?php
-    include("login-check.php");
+    /* include("login-check.php"); */
 ?>
 <div class="dashboard-nav">
         <!-- logo -->
@@ -10,7 +10,7 @@
         
         <!-- avtar -->
         <div class="avatar_admin ">
-            <img src="../images/ava.png" alt="" id="avatar-admin" margin="auto" width="85px" height="85px" alt="user avatar">
+            <img src="../images/avatar/ava.png" alt="" id="avatar-admin" margin="auto" width="85px" height="85px" alt="user avatar">
         </div>
 
         <!-- navbar -->
