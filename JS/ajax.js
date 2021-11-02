@@ -4,6 +4,7 @@ if (typeof takeRoll == 'undefined') {
 var takeClass = "";
 var mail_sent = 0;
 var email_add = "";
+var username = "";
 
 $(document).ready(function(){
 
@@ -42,6 +43,53 @@ $(document).ready(function(){
                 $('.send-alert').html(data);
                 mail_sent = 1;
                 email_add = $('input[name="email"]').val() ;
+            }
+        })
+    })
+
+    $("form[name='send-mail-forgot-form']").on("submit", function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+        formData.append("send-mail-forgot", "");
+
+        $.ajax({
+            url: "send-confirm.php",
+            type: "POST",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                $('.send-alert').html(data);
+                mail_sent = 1;
+                username = $('input[name="username"]').val() ;
+            }
+        })
+    })
+
+    $("form[name='confirm-code-forgot-form']").on("submit", function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+        formData.append("confirm-forgot-code", "");
+        if(mail_sent==1){
+            formData.append("UserName", username);
+        }
+
+        $.ajax({
+            url: "send-confirm.php",
+            type: "POST",
+            method: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                var confirm = data.split('|');
+                if(confirm[0]=="updated"){
+                    var url = confirm[1] + "forgot-changepass.php";
+                    window.location.replace(url);
+                }else{
+                    $('.confirm-alert').html(confirm[1]);
+                }
             }
         })
     })

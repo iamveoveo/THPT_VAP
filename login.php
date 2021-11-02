@@ -1,4 +1,8 @@
-<?php include("template/header.php"); ?>
+<?php include("template/header.php"); 
+  if(isset($_SESSION['MyID'])){
+    header('location:'.SITEURL);
+  }
+?>
 
 <section class="gradient-custom">
   <div class="container py-5 h-100">
@@ -26,7 +30,7 @@
                   <label class="form-label" for="typePasswordX">Mật khẩu</label>
                   <input type="password" name="password" id="typePasswordX" class="form-control text-light form-control-lg bg-dark border-2" placeholder="Nhập mật khẩu"/>
                 </div>
-                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Quên mật khẩu?</a></p>
+                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="forgot-password.php">Quên mật khẩu?</a></p>
                 <button class="btn btn-outline-light btn-lg px-5" type="submit" name="login">Đăng nhập</button>
               </form>
             </div>
