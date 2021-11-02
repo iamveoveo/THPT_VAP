@@ -390,13 +390,8 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-<<<<<<< HEAD
                                     <form action="import.php" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
                                         <input type="file" name="file_import" >   
-=======
-                                    <form action="import-export.php" method="POST" enctype="multipart/form-data" id="import_hs" name="form_import">             
-                                        <input type="file" name="file_import_1" >   
->>>>>>> 70f51c48d90c8cb27c4c1d42b85098be4687900c
                                         <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -407,11 +402,7 @@
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
-<<<<<<< HEAD
-                                        <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-=======
                                         <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal" >Hủy</button>
->>>>>>> 70f51c48d90c8cb27c4c1d42b85098be4687900c
                                         <button type="button" class="btn" name="import_hs" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>

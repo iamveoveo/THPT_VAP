@@ -8,7 +8,7 @@
             $file = fopen($filename, "r");
             while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
             {
-                $sql = "SELECT * from class where ClassName='$getData[8]' ";
+                $sql = "SELECT * from class where ClassName='".$getData[8]."' ";
                 $res1 = mysqli_query($conn, $sql);
                 $row = [];
                 if(mysqli_num_rows($res1)>0){
@@ -38,14 +38,7 @@
                     $res3 = mysqli_query($conn, $sql_1);
                     if(!isset($res3))
                     {
-                        echo "<script type=\"text/javascript\">
-                        alert(\"Invalid File:Please Upload CSV File.\");
-                        window.location = \"index.php\"
-                        </script>"; 
-                    }
-                    else {
-                        echo "đúng";
-                    
+                        continue;
                     }
                 }
             }
@@ -131,13 +124,7 @@
                     $res_gv1 = mysqli_query($conn, $sql_gv1);
                     if(!isset($res_gv1))
                     {
-                        echo "<script type=\"text/javascript\">
-                        alert(\"Invalid File:Please Upload CSV File.\");
-                        window.location = \"index.php\"
-                        </script>"; 
-                    }
-                    else {
-                    
+                        continue;
                     }
                 }
             }

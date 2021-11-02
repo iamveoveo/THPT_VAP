@@ -128,3 +128,28 @@ if(isset($_POST["export_mon"])){
     fclose($output);  
 }  
 ?>
+<?php
+if(isset($_POST["export_admin"])){
+    header('Content-Encoding: UTF-8');
+    header('Content-Type: text/csv; charset=utf-8');  
+    header('Content-Disposition: attachment; filename=export_admin.csv');  
+    $output = fopen("php://output", "w");  
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF));
+    fputcsv($output, array("STT", "TenTaiKhoan", "HoTen", "Email", "soDiDong","GioiTinh","NgaySinh","Diachi")); 
+
+    $sql="SELECT * FROM admin";
+    $result = mysqli_query($conn,$sql);
+
+    $i = 0;
+    if (mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_assoc($result)){ 
+            $i++;
+            $new_row = array($i, $row['AdName'], $row['AdRName'], $row['AdEmail'], $row['AdTel'],
+                            $row['AdGender'], $row['AdBirth'], $row['AdAdd']);
+            fputcsv($output, $new_row); 
+        }
+    }  
+    fclose($output);  
+}  
+?>
