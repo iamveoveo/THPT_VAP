@@ -7,12 +7,14 @@
         $res = mysqli_query($conn, $sql);
         if(mysqli_num_rows($res)==1){
             $row = mysqli_fetch_assoc($res);
-            if($row['UserRoll']=="Phụ huynh" or $row['UserRoll']=="Giáo viên"){
+            if($row['UserRoll']=="Phụ huynh" or $row['UserRoll']=="Giáo viên")
+            {
                 ?>
                 <div class=" col-12">
                     <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
                         <div class="card-body">
                             <div class="row gutters">
+                                <input type="hidden" value="<?php echo $UserID;?>" name ="ID">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                 </div>
@@ -49,7 +51,7 @@
 
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                     <label class="labels">Giới tính</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name="Gioitinh">
                                         <option value=null <?php if($row['UserGender']==""){echo 'selected';};?>>Chọn giới tính</option>
                                         <option value="Nam" <?php if($row['UserGender']=="Nam"){echo 'selected';};?>>Nam</option>
                                         <option value="Nữ" <?php if($row['UserGender']=="Nữ"){echo 'selected';};?>>Nữ</option>
@@ -69,6 +71,7 @@
                     <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
                         <div class="card-body">
                             <div class="row gutters">
+                            <input type="hidden" value="<?php echo $UserID;?>" name ="ID">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                                 </div>
@@ -81,7 +84,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                     <div class="form-group">
                                         <label for="phone">Số điện thoại</label>
-                                        <input type="tel" class="form-control" value="<?php echo $row['UserTel'];?>" name="sdt" placeholder="09x xxx xxxx">
+                                        <input type="text" class="form-control" value="<?php echo $row['UserTel'];?>" name="sdt" placeholder="09x xxx xxxx">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -105,7 +108,7 @@
 
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                     <label class="labels">Giới tính</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name = "Gioitinh">
                                         <option value=null <?php if($row['UserGender']==""){echo 'selected';};?>>Chọn giới tính</option>
                                         <option value="Nam" <?php if($row['UserGender']=="Nam"){echo 'selected';};?>>Nam</option>
                                         <option value="Nữ" <?php if($row['UserGender']=="Nữ"){echo 'selected';};?>>Nữ</option>
@@ -154,13 +157,14 @@
                 <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
                     <div class="card-body">
                         <div class="row gutters">
+                        <input type="hidden" value="<?php echo $AdID;?>" name ="ID">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
                                     <label for="fullName">Họ và tên</label>
-                                    <input type="text" class="form-control" name="txtHoTen" value="<?php echo $row['AdRName'];?>">
+                                    <input type="text" class="form-control" name="txtHoTen" value="<?php echo $row['AdName'];?>">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -220,6 +224,8 @@
                 <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
                     <div class="card-body">
                         <div class="row gutters">
+                        <input type="hidden" value="<?php echo $UserID;?>" name ="ID">
+                        <input type="hidden" value="<?php echo $Subject;?>" name ="Subject">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin điểm</h6>
                             </div>

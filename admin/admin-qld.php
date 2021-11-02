@@ -66,6 +66,8 @@
                                         <th scope="col">Điểm cuối kì</th>
                                         <th scope="col">Sửa</th>
                                         <th scope="col">Xóa</th>
+                                        <th scope="col">Chi tiết</th>
+
                                     </tr>
                                     </thead>
                                     <tbody id="d-table">

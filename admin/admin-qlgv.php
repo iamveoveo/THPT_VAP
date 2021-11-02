@@ -29,6 +29,10 @@
                             echo $_SESSION['delete'];
                             unset($_SESSION['delete']);
                         }
+                        if(isset($_SESSION['update'])){
+                            echo $_SESSION['update'];
+                            unset($_SESSION['update']);
+                        }
                     ?>
                     <div class='card-body'>      
                         <div>
@@ -96,7 +100,7 @@
 
                                     <!--form add -->
                                     <h5 class="modal-title">Thêm thông tin</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="sa-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="process-add-qlgv.php" method="POST">
                                         <div class="modal-body">
@@ -182,7 +186,7 @@
                                     <h5 class="modal-title">Sửa thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-
+                                     <form action="" method="POST">
                                     <div class="modal-body editor-body">
                                         
                                     </div>
@@ -190,8 +194,9 @@
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="submit" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="submit" class="btn" name="qlgv-update" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +283,7 @@
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="submit" class="btn" name="qlhs-update" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>
@@ -332,85 +337,45 @@
         </div>
     </div>
 </div>
-<script>  
- $(document).ready(function(){  
-      $('#add').click(function(){  
-           $('#insert').val("Insert");  
-           $('#insert_form')[0].reset();  
-      });  
-      $(document).on('click', '.edit_data', function(){  
-           var employee_id = $(this).attr("id");  
-           $.ajax({  
-                url:"process-add-qlgv.php",  
-                method:"POST",  
-                data:{employee_id:employee_id},  
-                dataType:"json",  
-                success:function(data){  
-                     $('#UserRName').val(data.UserRName);  
-                     $('#UserName').val(data.UserName);  
-                     $('#UserPassword').val(data.UserPassword);  
-                     $('#UserTel').val(data.UserTel);  
-                     $('#UserAdd').val(data.UserAdd);  
-                     $('#UserBirth').val(data.UserBirth); 
-                     $('#UserGender').val(data.UserGender); 
-                     $('#insert').val("Update");  
-                     $('#add_data_Modal').modal('show');  
-                }  
-           });  
-      });  
-      $('#insert_form').on("submit", function(event){  
-           event.preventDefault();  
-           if($('#name').val() == "")  
-           {  
-                alert("Name is required");  
-           }  
-           else if($('#address').val() == '')  
-           {  
-                alert("Address is required");  
-           }  
-           else if($('#designation').val() == '')  
-           {  
-                alert("Designation is required");  
-           }  
-           else if($('#age').val() == '')  
-           {  
-                alert("Age is required");  
-           }  
-           else  
-           {  
-                $.ajax({  
-                     url:"insert.php",  
-                     method:"POST",  
-                     data:$('#insert_form').serialize(),  
-                     beforeSend:function(){  
-                          $('#insert').val("Inserting");  
-                     },  
-                     success:function(data){  
-                          $('#insert_form')[0].reset();  
-                          $('#add_data_Modal').modal('hide');  
-                          $('#employee_table').html(data);  
-                     }  
-                });  
-           }  
-      });  
-      $(document).on('click', '.view_data', function(){  
-           var employee_id = $(this).attr("id");  
-           if(employee_id != '')  
-           {  
-                $.ajax({  
-                     url:"select.php",  
-                     method:"POST",  
-                     data:{employee_id:employee_id},  
-                     success:function(data){  
-                          $('#employee_detail').html(data);  
-                          $('#dataModal').modal('show');  
-                     }  
-                });  
-           }            
-      });  
- });  
- </script>
 
+<?php
+
+if(isset ($_POST['qlgv-update']))
+   {    
+        $ID= $_POST['ID'];
+        $UserRName = $_POST['txtHoTen'];
+        $UserTel = $_POST['sdt'];
+        $UserEmail  = $_POST['txtEmail'];
+        $UserAdd  = $_POST['txtDiachi'];
+        $UserBirth = $_POST['ngaySinh"'];
+        $UserGender = $_POST['Gioitinh'];
+        //lệnh truy vấn sql để update
+        $sql = "UPDATE users set
+        UserRName = '$UserRName',
+        UserTel = '$UserTel',
+        UserEmail = '$UserEmail',
+        UserAdd = '$UserAdd',
+        UserBirth = '$UserBirth',
+        UserGender = '$UserGender'
+         WHERE UserID= $ID ";
+        //thưc hiện truy vấn 
+        $query = mysqli_query($conn, $sql); 
+
+        if($query==TRUE)
+        {
+            $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+            header('location: '.SITEURL.'admin/admin-qlgv.php');
+        }
+        else
+        {
+            $_SESSION['update']="<div class='text-danger'>Sửa thất bại.</div>";
+            header('location: '.SITEURL.'admin/admin-qlgv.php');
+       
+        }
+
+   }
+
+?>
 <?php include("template/footer.php"); ?>
 
 <!-- đoạn xử lý menu toogle -->

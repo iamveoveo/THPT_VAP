@@ -29,6 +29,10 @@
                             echo $_SESSION['delete'];
                             unset($_SESSION['delete']);
                         }   
+                        if(isset($_SESSION['update'])){
+                            echo $_SESSION['update'];
+                            unset($_SESSION['update']);
+                        }   
                     ?>
                     <div class='card-body'>      
                         <div>
@@ -201,16 +205,17 @@
                                     <h5 class="modal-title">Sửa thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <form action="" method="POST">                                 
+                                        <div class="modal-body editor-body">
+                                            
+                                        </div>
 
-                                    <div class="modal-body editor-body">
-                                        
-                                    </div>
-
-                                    <!-- btn hủy và lưu -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
-                                    </div>
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn" name="update-qlhs" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -355,7 +360,46 @@
         </div>
     </div>
 </div>
+<?php
 
+if(isset ($_POST['update-qlhs']))
+   {    
+        $ID= $_POST['ID'];
+        $UserRName = $_POST['txtHoTen'];
+        $UserTel = $_POST['sdt'];
+        $UserEmail  = $_POST['txtEmail'];
+        $UserAdd  = $_POST['txtDiachi'];
+        $UserBirth  = $_POST['ngaySinh'];
+        $UserGender  = $_POST['Gioitinh'];
+        $ClassName = $_POST['txtLop'];
+        //lệnh truy vấn sql để update
+        $sql = "UPDATE users set
+        UserRName = '$UserRName',
+        UserTel = '$UserTel',
+        UserEmail = '$UserEmail',
+        UserAdd = '$UserAdd',
+        UserBirth = '$UserBirth',
+        UserGender = '$UserGender',
+        UserClass = '$ClassName'
+         WHERE UserID= $ID ";
+        //thưc hiện truy vấn 
+        $query = mysqli_query($conn, $sql); 
+
+        if($query==TRUE)
+        {
+            $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+            header('location: '.SITEURL.'admin/admin-qlhs.php');
+        }
+        else
+        {
+            $_SESSION['update']="<div class='text-danger'>Sửa thất bại.</div>";
+            header('location: '.SITEURL.'admin/admin-qlhs.php');
+       
+        }
+
+   }
+
+?>
 <?php include("template/footer.php"); ?>
 
 <!-- đoạn xử lý menu toogle -->
