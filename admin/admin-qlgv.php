@@ -31,7 +31,7 @@
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
-                            <div id="table">
+                            <div id="table_gv" style="max-height:50vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                         <tr>
@@ -104,13 +104,13 @@
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Họ và tên</label>
-                                                                    <input type="text" class="form-control" name="UserRName"require="required" >
+                                                                    <input type="text" class="form-control" name="txtHoTen"require="required" >
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="eMail">Tên tài khoản</label>
-                                                                    <input type="text" class="form-control" name="UserName" require="required">
+                                                                    <input type="text" class="form-control" name="txtTaiKhoan" require="required">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -146,6 +146,7 @@
                                                                     <option value="">Chọn giới tính</option>
                                                                     <option value="Nam">Nam</option>
                                                                     <option value="Nữ">Nữ</option>
+                                                                    <option value="Khác">Khác</option>
                                                                 </select>
                                                             </div>
                                                             
@@ -346,15 +347,16 @@
                         <!-- btn import và export -->
                         <div class="center row">
                             <div class="btn-1 col-5">
-                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span>Nhập file</span></a>
                                 
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" id="form_hs" enctype="multipart/form-data" >     
+                                    <input type="hidden" name="export_gv" value="">
+                                    <a name="export" type="submit" role="button" data-mdb-ripple-color="dark">
+                                    <span style="color:#fff;">Xuất file</span></a> 
                                 </form>
                             </div>
                         </div>
@@ -365,20 +367,20 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
-                                        <input type="file" name="file_import" >   
-                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
+                                    <form action="import.php" method="POST" enctype="multipart/form-data" id="form_import_gv" name="form_import_gv">             
+                                        <input type="file" name="file_import_gv" >   
+                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview_gv">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body modal_body_gv">
                                     </div>
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="button" class="btn" name="import_gv" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>

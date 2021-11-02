@@ -31,7 +31,7 @@
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
-                            <div id="table">
+                        <div id="table" style="max-height:50vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                     <tr>
@@ -68,7 +68,7 @@
                                             <td><?php echo $row['UserTel']; ?></td>
                                             <td><?php echo $row['ClassName']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
+                                            <td><a href="http://localhost/THPT_VAP/admin/process-add.php?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>
@@ -368,18 +368,18 @@
                         </div>
                       
                         <!-- btn import và export -->
-                        <!-- btn import và export -->
                         <div class="center row">
                             <div class="btn-1 col-5">
-                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span>Nhập file</span></a>
                                 
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" id="form_hs" enctype="multipart/form-data" >     
+                                    <input type="hidden" name="export_hs" value="">
+                                    <a name="export" type="submit" role="button" data-mdb-ripple-color="dark">
+                                    <span style="color:#fff;">Xuất file</span></a> 
                                 </form>
                             </div>
                         </div>
@@ -390,20 +390,29 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
+<<<<<<< HEAD
+                                    <form action="import.php" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
                                         <input type="file" name="file_import" >   
+=======
+                                    <form action="import-export.php" method="POST" enctype="multipart/form-data" id="import_hs" name="form_import">             
+                                        <input type="file" name="file_import_1" >   
+>>>>>>> 70f51c48d90c8cb27c4c1d42b85098be4687900c
                                         <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body modal_body_hs">
                                     </div>
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
+<<<<<<< HEAD
                                         <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+=======
+                                        <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal" >Hủy</button>
+>>>>>>> 70f51c48d90c8cb27c4c1d42b85098be4687900c
+                                        <button type="button" class="btn" name="import_hs" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>

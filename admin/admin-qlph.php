@@ -31,7 +31,7 @@
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
-                            <div id="table">
+                            <div id="table_ph" style="max-height:50vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                     <tr>
@@ -92,18 +92,8 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-
-                                        <!--form add -->
-                                        
-                                        <div class="card w-100 h-100" style="background:rgb(88 116 149 / 19%)">
-                                            <form action="" class="d-flex " name="student_search">
-                                                <input type="text" name="inp_search" class="form-control form-input w-75" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"></span> 
-                                                <button type="submit" name="hs_search" class="btn btn-primary">Tìm kiếm</button>
-                                            </form>
-                                            <div class="bg-light w-100 h-25 search_content"> 
-                                                
-                                            </div>
-                                        </div>
+                                        <h5 class="modal-title">Sửa thông tin</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                           
                                     <form action="process-add.php" method="POST" >
@@ -128,6 +118,12 @@
                                                                     <input type="text" class="form-control" name="txtTaiKhoan" >
                                                                 </div>
                                                             </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Mật khẩu</label>
+                                                                    <input type="password" class="form-control" name="UserPassword" require="required">
+                                                                </div>
+                                                            </div>
                                                             
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
@@ -136,12 +132,6 @@
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Email</label>
-                                                                    <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                                </div>
-                                                            </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="phone">Địa chỉ</label>
@@ -161,10 +151,43 @@
                                                                     <option value="">Chọn giới tính</option>
                                                                     <option value="Nam">Nam</option>
                                                                     <option value="Nữ">Nữ</option>
+                                                                    <option value="Khác">Khác</option>
                                                                 </select>
-                                                            </div>                                                       
+                                                            </div>    
+                                                            
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="Street">Lớp</label>
+                                                                    <select  id="class-student" class="form-select" name="txtLop" aria-label="Default select example">
+                                                                        <option value="">Chọn lớp</option>
+                                                                        <?php
+                                                                        $sql_1 = "SELECT * FROM class";
+                                                                        $result_1 = mysqli_query($conn,$sql_1);
+                                            
+                                                                        //xử lý kết quả
+                                                                        if(mysqli_num_rows($result_1)>0){
+                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
+                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Tên học sinh</label>
+                                                                    <input id="RName-student" type="text" class="form-control" name="txtHoTenHS" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3" style="max-height:25vh; overflow-y:scroll;">
+                                                                <ul class="list-group student-select bg-light">
+                                                                    
+                                                                </ul>
+                                                                <input type="hidden" name="Student_UserID">
+                                                            </div>
                                                         
-                                                    
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,8 +211,8 @@
                                     <div class="modal-header">
 
                                     <!--form edit -->
-                                    <h5 class="modal-title">Sửa thông tin</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="modal-title">Sửa thông tin</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
                                     <div class="modal-body">
@@ -367,9 +390,10 @@
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" id="form_hs" enctype="multipart/form-data" >     
+                                    <input type="hidden" name="export_ph" value="">
+                                    <a name="export" type="submit" role="button" data-mdb-ripple-color="dark">
+                                    <span style="color:#fff;">Xuất file</span></a> 
                                 </form>
                             </div>
                         </div>
@@ -380,20 +404,20 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
-                                        <input type="file" name="file_import" >   
-                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
+                                    <form action="import.php" method="POST" enctype="multipart/form-data" id="form_import_ph" name="form_import_ph">             
+                                        <input type="file" name="file_import_ph" >   
+                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview_ph">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body modal_body_ph ">
                                     </div>
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="button" class="btn" name="import_ph" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>
@@ -410,6 +434,3 @@
 
 <!-- đoạn xử lý menu toogle -->
 <script src="JS/admin.js"></script>
-<script>
-    function takeid
-</script>

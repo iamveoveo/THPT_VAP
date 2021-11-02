@@ -252,11 +252,6 @@
                         <!-- btn import và export -->
                         <!-- btn import và export -->
                         <div class="center row">
-                            <div class="btn-1 col-5">
-                                <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <span>Nhập file</span></a>
-                                
-                            </div>
                 
                             <div class="btn-2 col-5">
                                 <form action="#" method="POST" enctype="multipart/form-data" >             

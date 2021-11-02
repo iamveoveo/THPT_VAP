@@ -175,7 +175,6 @@ a:hover{
     height: 70px;
     width: 70px;
     border-radius: 100%;
-    background-color: #000;
 }
 
 .item-detail{
@@ -368,4 +367,28 @@ a:hover{
 
 .ur-mess .mess-cell{
     background-color: #f1e5fe62;
+}
+
+.takeClass{
+    cursor: pointer;
+}
+
+#list-student{
+    height: 20vh;
+    overflow-y: scroll;
+    padding-right: 0;
+}
+
+.subject-select1{
+    display: none;
+}
+
+.student-select{
+    margin-top:3px;
+    border: solid 1px #000000;
+}
+
+.table-scroll.active{
+    max-height:50vh;
+    overflow-y:scroll;
 }
