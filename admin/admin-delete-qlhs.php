@@ -7,11 +7,11 @@
   //lấy id là UserID
   $id = $_GET['UserID'];
   
-  $sql1 = "delete from transcrip where Student_UserID = '$id'";
+  $sql1 = "delete from mess where ToUserID = '$id' or FromUserID = '$id'";
   $res1 = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
 
   if($res1){
-    $sql2 = "delete from class where ClassID = '$id'";
+    $sql2 = "delete from transcript where Student_UserID = '$id' or Subject = '$id' ";
     $res2 = mysqli_query($conn, $sql2) or die(mysqli_error($conn));
 
     if($res2){

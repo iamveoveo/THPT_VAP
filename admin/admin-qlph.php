@@ -55,12 +55,6 @@
 
                                         $sql="SELECT UserId, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass  FROM users  
                                             WHERE UserRoll='Phụ huynh'";
-
-                                        // $sql="SELECT u.UserID, u.UserName, u.UserEmail, u.UserAdd, u.UserTel, u.Gender, dv.UserParent, u1.UserName as UserParent from user as u, user as u1 where u.UserParent = u1.UserName AND UserRoll='Phụ huynh'
-                                        // UNION
-                                        // select UserName, UserAdd, UserEmail, UserAdd, UserGaneder, UserTell, UserParent, null as UserParent from user where UserParent is null";
-                                        // $result = mysqli_query($conn,$sql);
-
                                         $result = mysqli_query($conn,$sql);
 
                                         if(mysqli_num_rows($result)>0){
@@ -75,7 +69,7 @@
                                             <td><?php echo $row['UserTel']; ?></td>
                                             <td><?php echo $row['UserClass']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><a href="<?php echo SITEURL;?>admin/admin-delete-qlph.php?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin-delete-qlph.php?UserRoll=<?php echo $row['UserRoll'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>

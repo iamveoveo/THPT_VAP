@@ -11,7 +11,7 @@
   $res1 = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
 
   if($res1){
-    $sql2 = "delete from teach where Teacher_UserID = '$id'";
+    $sql2 = "delete from teach where Teacher_UserID = '$id' ";
     $res2 = mysqli_query($conn, $sql2) or die(mysqli_error($conn));
 
     if($res2){

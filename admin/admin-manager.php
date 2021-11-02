@@ -68,7 +68,7 @@
                                             <td><?php echo $row['AdTel']; ?></td>
                                             <td><?php echo $row['AdStatus']; ?></td>
                                             <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin-delete-manager.php?AdID=<?php echo $row['AdID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>
