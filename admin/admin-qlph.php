@@ -104,7 +104,6 @@
                                                         <div class="row gutters">
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                                <input type="hidden" name="StudenId" value="">
                                                             </div>
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">

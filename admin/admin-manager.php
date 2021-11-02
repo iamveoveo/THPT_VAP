@@ -59,7 +59,7 @@
 
                                         <tr>
                                             <th scope="row"><?php echo $i; ?></th>
-                                            <td><?php echo $row['AdName']; ?></td>
+                                            <td><?php echo $row['AdRName']; ?></td>
                                             <td><?php echo $row['AdEmail']; ?></td>
                                             <td><?php echo $row['AdTel']; ?></td>
                                             <td><?php echo $row['AdStatus']; ?></td>
@@ -97,6 +97,7 @@
                                                         <div class="row gutters">
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
+                                                                <input type="hidden" name="StudenId" value="">
                                                             </div>
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">
@@ -106,8 +107,8 @@
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="eMail">Email</label>
-                                                                    <input type="email" class="form-control" name="txtEmail" placeholder="acb@gmail.com">
+                                                                    <label for="fullName">Tên tài khoản</label>
+                                                                    <input type="text" class="form-control" name="txtTaiKhoan" >
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -119,24 +120,15 @@
                                                             
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for=" phone">Số điện thoại</label>
-                                                                    <input type="text" class="form-control" name="sdt" placeholder="09x xxx xxxx">
+                                                                    <label for="phone">Số điện thoại</label>
+                                                                    <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="Street">Địa chỉ</label>
-                                                                    <input type="text" class="form-control " name="txtDiaChi" placeholder="xã,phường/tỉnh/thành phố">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Giới tính</label>
-                                                                    <select class="form-select" name="txtGioiTinh" aria-label="Default select example">
-                                                                        <option selected>Chọn giới tính</option>
-                                                                        <option value="Nam">Nam</option>
-                                                                        <option value="Nữ">Nữ</option>
-                                                                    </select>
+                                                                    <label for="phone">Địa chỉ</label>
+                                                                    <input type="text" class="form-control " name="txtDiaChi" placeholder="Xã,phường/huyện/tỉnh">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -145,7 +137,18 @@
                                                                     <input type="date" class="form-control" name="ngaySinh" >
                                                                 </div>
                                                             </div>
-                                                        </div>                               
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <label class="labels">Giới tính</label>
+                                                                <select class="form-select" name="txtGioiTinh" aria-label="Default select example">
+                                                                    <option value="">Chọn giới tính</option>
+                                                                    <option value="Nam">Nam</option>
+                                                                    <option value="Nữ">Nữ</option>
+                                                                    <option value="Khác">Khác</option>
+                                                                </select>
+                                                            </div>                                                                
+                                                        
+                                                        </div>                   
                                                     </div>
                                                 </div>
                                             </div>
