@@ -1,6 +1,11 @@
 <?php 
   include("template/header.php"); 
+  $AdID = $_SESSION['Ad_ID'];
 ?>
+  
+<script>
+    var adID = <?php echo $AdID;?>;
+</script>
 
 <div class="container">
     <div class="row">
@@ -10,16 +15,18 @@
                     <h1>Xác thực</h1>
                     <p class="text-muted"> Xác nhận tài khoản của bạn ở đây. Với email đã đăng ký</p> 
                     
-                    <form action="email-verification.php" method="GET" name="form-send">
+                    <form action="" method="GET" name="send-mail-form">                        
                         <div class="d-flex">
-                            <input class="col-8 email" type="email" name="AdEmail" placeholder="Email"> 
+                            <input class="col-8 email" type="email" name="email" placeholder="Email"> 
                             <input class="col-4" type="submit" name="send-mail" value="Gửi mã" href="#">
                         </div> 
+                        <div class="send-alert"></div>
                     </form>  
                                       
-                    <form action="" method="POST" name="form-verify">
-                        <input class="col-12 code" type="text" name="" placeholder="Mã xác thực"> 
-                        <input type="submit" name="verify" value="Xác thực" href="#">
+                    <form action="" method="POST" name="confirm-code-form">                        
+                        <input class="col-12 code" type="text" name="code" placeholder="Mã xác thực"> 
+                        <div class="confirm-alert"></div>
+                        <input type="submit" name="confirm-code" value="Xác thực" href="#">
                     </form> 
                 </div>
                         

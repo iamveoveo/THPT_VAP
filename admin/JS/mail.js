@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    $("form[name='form-send']").on("submit", function(e){
+    $("form[name='send-mail-form']").on("submit", function(e){
         e.preventDefault();
         var formData = new FormData(this);
         formData.append("send-mail", "");
-        formData.append("UserID", userID);
+        formData.append("AdID", adID);
 
         $.ajax({
             url: "process-send-mail.php",
@@ -20,17 +20,17 @@ $(document).ready(function(){
         })
     })
 
-    $("form[name='form-verify']").on("submit", function(e){
+    $("form[name='confirm-code-form']").on("submit", function(e){
         e.preventDefault();
         var formData = new FormData(this);
         formData.append("confirm-code", "");
         if(mail_sent==1){
-            formData.append("UserEmail", email_add);
+            formData.append("AdEmail", email_add);
         }
-        formData.append("UserID", userID);
+        formData.append("AdID", adID);
 
         $.ajax({
-            url: "send-confirm.php",
+            url: "process-send-mail.php",
             type: "POST",
             method: "POST",
             data: formData,
@@ -46,4 +46,7 @@ $(document).ready(function(){
             }
         })
     })
+
+
 })
+

@@ -1,24 +1,24 @@
 <?php
     include("../config/constants.php");
-    $UserID = $_POST['UserID'];
+    $AdID = $_POST['AdID'];
+
     if(isset($_POST['send-mail'])){
         
-        $email = $_POST['AdEmail'];
-        $sql = "select * from users where UserID = $UserID";
+        $email = $_POST['email'];
+        $sql = "SELECT * FROM admin WHERE AdID = $AdID";
         $res = mysqli_query($conn, $sql);
         if(mysqli_num_rows($res)>0){
 
             $row = mysqli_fetch_assoc($res);
 
-            include("../config/mail-send.php");
+            include("config/mail-send.php");
             
             // Mail subject 
             $mail->Subject = 'XÁC THỰC TÀI KHOẢN ADMIN'; 
             
             // Mail body content 
-            $bodyContent = '<h1>Chào mừng '.$row['AdName'].'</h1><br>'; 
-            $bodyContent = '<p>Vui lòng nhập mã xác thực để hoàn tất việc kíc hoạt tài khoản</p><br>'; 
-            $bodyContent .= '<p>Mã xác thực của bạn là:<h2><b>'.$row['UserCode'].'</b></h2></p>'; 
+            $bodyContent = '<h1>Chào mừng '.$row['AdName'].'</h1>'; 
+            $bodyContent .= '<p>Mã xác thực của bạn là:<h2><b>'.$row['AdCode'].'</b></h2></p>'; 
             $mail->Body    = $bodyContent; 
             
             // Send email 
@@ -30,22 +30,21 @@
         }
     }
 ?>
-
 <?php
-    if(isset($_POST['verify'])){
-        if(isset($_POST['UserEmail'])){
-            $UserEmail = $_POST['UserEmail'];
+    if(isset($_POST['confirm-code'])){
+        if(isset($_POST['AdEmail'])){
+            $AdEmail = $_POST['AdEmail'];
             $code = $_POST['code'];
-            $sql_1 = "select * from users where UserID=$UserID and UserCode=$code";
-            $res_1 = mysqli_query($conn, $sql_1);
-            if(mysqli_num_rows($res_1)>0){
-                $row_1 = mysqli_fetch_assoc($res_1);
-                $sql_2 = "update users set UserStatus=1, UserEmail='$UserEmail' where UserID=$UserID";
-                $res_2 = mysqli_query($conn, $sql_2);
+            $sql1 = "SELECT * FROM admin WHERE AdID=$AdID and AdCode=$code";
+            $res1 = mysqli_query($conn, $sql1);
+            if(mysqli_num_rows($res1)>0){
+                $row1 = mysqli_fetch_assoc($res1);
+                $sql2 = "update Ads set AdStatus=1, AdEmail='$AdEmail' where AdID=$AdID";
+                $res2 = mysqli_query($conn, $sql2);
 
-                if($res_2==TRUE){
-                    $_SESSION['MyStatus'] = 1;
-                    echo "updated|".SITEURL."";
+                if($res2==TRUE){
+                    $_SESSION['AdStatus'] = 1;
+                    echo "updated|".SITEURL."admin/index.php";
                 }else{
                     echo "not update|<span class="."text-danger".">Lỗi trong quá trình xác thực</span>);</script>";
                 }
