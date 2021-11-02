@@ -184,14 +184,14 @@
 <?php
     if(isset($_POST['add-admin'])){
         $AdName  = $_POST['txtHoTen'];
-        $Adpass = $_POST['pass'];
+        $Adpass = $_POST['adpass'];
         $AdEmail = $_POST['txtEmail'];
         $AdTel = $_POST['sdt'];
         $AdAdd = $_POST['txtDiaChi'];
         $AdGender = $_POST['txtGioiTinh'];
         $AdBirth = $_POST['ngaySinh'];
 
-        $pass_hash1 = password_hash($pass1, PASSWORD_DEFAULT);
+        $pass_hash1 = password_hash($Adpass, PASSWORD_DEFAULT);
         $UserCode = rand(10000000, 99999999);
 
         //lệnh sql
