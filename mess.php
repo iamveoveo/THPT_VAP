@@ -6,7 +6,7 @@
         <div class="row h-100">
             <div class="col-3 mess-list">
                 <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item active">
                         <a href="">
                             <div class="mess-item">
                                 <div class="mess-ava">
@@ -18,7 +18,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="list-group-item active">
+                    <li class="list-group-item">
                         <a href="">
                             <div class="mess-item">
                                 <div class="mess-ava">
