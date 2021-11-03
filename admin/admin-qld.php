@@ -68,7 +68,7 @@
                        
                         
                         <div class="col-md-12">
-                            <div id="table_diem" style="max-height:50vh;overflow-y:scroll;">
+                            <div id="table_diem" style="max-height:90vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                     <tr>
@@ -226,7 +226,7 @@
                         </div>
                       
                         <!-- btn import và export -->
-                        <div class="center row">
+                        <div class="center row mt-2x">
                             <div class="btn-1 col-5">
                                 <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span>Nhập file</span></a>

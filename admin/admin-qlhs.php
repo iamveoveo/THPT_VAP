@@ -39,7 +39,7 @@
                             <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
                         </div>
                         <div class="col-md-12">
-                        <div id="table" style="max-height:50vh;overflow-y:scroll;">
+                        <div id="table" style="max-height:90vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                     <tr>
@@ -245,7 +245,7 @@
                       
                         <!-- btn import và export -->
                         <div class="center row">
-                            <div class="btn-1 col-5">
+                            <div class="btn-1 col-5 mt-4">
                                 <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span>Nhập file</span></a>
                                 
