@@ -1,3 +1,6 @@
+<?php
+   /*  include("login-check.php"); */
+?>
 <div class="dashboard-nav">
         <!-- logo -->
         <header>
@@ -27,6 +30,6 @@
         
             <a href="admin-profile.php" class="dashboard-nav-item"><i class="fas fa-user"></i> Tài khoản </a>
           <div class="nav-item-divider"></div>
-          <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất </a>
+          <a href="admin-logout.php" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất </a>
         </nav>
     </div>

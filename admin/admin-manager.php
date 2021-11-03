@@ -113,8 +113,8 @@
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
-                                                                    <label for="eMail">Mật khẩu</label>
-                                                                    <input type="password" class="form-control" name="UserPassword" require="required">
+                                                                    <label for="phone">Mật khẩu</label>
+                                                                    <input type="password" class="form-control " name="adpass" >
                                                                 </div>
                                                             </div>
                                                             
