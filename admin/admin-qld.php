@@ -8,9 +8,7 @@
         <div class='dashboard-toolbar row'>
             <div class="col-5"><a href="#!" class="menu-toggle "><i class="fas fa-bars"></i></a></div>
             <div class="row height d-flex justify-content-center align-items-center col-7">
-                <div class="form"> 
-                    <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone "></i></span> 
-                </div>
+
             </div>
         </div>
         <div class='dashboard-content'>
@@ -23,6 +21,14 @@
                         if(isset($_SESSION['add_diem'])){
                             echo $_SESSION['add_diem'];
                             unset($_SESSION['add_diem']);
+                        }
+                        if(isset($_SESSION['update'])){
+                            echo $_SESSION['update'];
+                            unset($_SESSION['update']);
+                        }
+                        if(isset($_SESSION['delete'])){
+                            echo $_SESSION['delete'];
+                            unset($_SESSION['delete']);
                         }
                     ?>
                     <div class='card-body'>     
@@ -60,7 +66,7 @@
                        
                         
                         <div class="col-md-12">
-                            <div id="table_diem" style="max-height:50vh;overflow-y:scroll;">
+                            <div id="table_diem" style="max-height:90vh;overflow-y:scroll;">
                                 <table class="table table-hover table-secondary ">
                                     <thead>
                                     <tr>
@@ -72,12 +78,12 @@
                                         <th scope="col">Điểm cuối kì</th>
                                         <th scope="col">Sửa</th>
                                         <th scope="col">Xóa</th>
+
                                     </tr>
                                     </thead>
                                     <tbody id="d-table">
                                     <?php
-                                        $sql="SELECT Student_UserID, Subject, MidTerm, FinalExam, UserID, UserRName, UserClass, ClassID, ClassName
-                                            FROM users, transcript ,class WHERE Student_UserID=UserID  AND UserClass=ClassID";
+                                        $sql="SELECT * FROM users, transcript ,class WHERE Student_UserID=UserID  AND UserClass=ClassID";
                                             
                                         $result = mysqli_query($conn,$sql);
                                         if(mysqli_num_rows($result)>0){
@@ -91,8 +97,9 @@
                                             <td><?php echo $row['Subject']; ?></td>
                                             <td><?php echo $row['MidTerm']; ?></td>
                                             <td><?php echo $row['FinalExam']; ?></td>
-                                            <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
+                                            <td><button id="<?php echo $row['UserID'];?>" subject="<?php echo $row['Subject'];?>" type="button" class="btn icon-admin icon-score" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_diem=&Student_UserID=<?php echo $row['Student_UserID'];?>&Subject=<?php echo $row['Subject'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+
                                         </tr>
                                         <?php
                                             $i++;
@@ -201,86 +208,23 @@
                                     <h5 class="modal-title">Sửa thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-
-                                    <div class="modal-body">
-                                        <div class=" col-12">
-                                            <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
-                                                <div class="card-body">
-                                                    <div class="row gutters">
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control" name="txtHoTen" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="eMail">Môn dạy</label>
-                                                                <input type="text" class="form-control" name="txtMon" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="Street">Lớp dạy</label>
-                                                                <input type="text" class="form-control" name="txtLopday" placeholder="VD:10A1,11A2,..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Email</label>
-                                                                <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Địa chỉ</label>
-                                                                <input type="text" class="form-control " name="txtDiachi" placeholder="Xã,phường/huyện/tỉnh">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="website">Ngày sinh</label>
-                                                                <input type="date" class="form-control" name="ngaySinh" >
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Chọn giới tính</option>
-                                                                <option value="1">Nam</option>
-                                                                <option value="2">Nữ</option>
-                                                            </select>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
+                                     <form action="" method="POST">                                  
+                                        <div class="modal-body editor-body">
+                                            
                                         </div>
-                                    </div>
 
-                                    <!-- btn hủy và lưu -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
-                                    </div>
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn" name="update-quanlidiem" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>  
                                 </div>
                             </div>
                         </div>
                       
                         <!-- btn import và export -->
-                        <div class="center row">
+                        <div class="center row mt-2x">
                             <div class="btn-1 col-5">
                                 <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span>Nhập file</span></a>
@@ -327,7 +271,37 @@
         </div>
     </div>
 </div>
+<?php
 
+if(isset($_POST['update-quanlidiem']))
+   {    $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+        $ID= $_POST['ID'];
+        $Subject = $_POST['Subject'];
+        $MidTerm = $_POST['MidTerm'];
+        $FinalExam = $_POST['FinalExam'];
+        
+        $sql = "UPDATE transcript set
+        MidTerm = '$MidTerm',
+        FinalExam = '$FinalExam'
+         WHERE Student_UserID= '$ID' and Subject = '$Subject' ";
+        //thưc hiện truy vấn 
+        $query = mysqli_query($conn, $sql); 
+
+        if($query==TRUE)
+        {
+            $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+            header('location: '.SITEURL.'admin/admin-qld.php');
+        }
+        else
+        {
+            $_SESSION['update']="<div class='text-danger'>Sửa thất bại.</div>";
+            header('location: '.SITEURL.'admin/admin-qld.php');
+       
+        }
+
+   }
+
+?>
 <?php include("template/footer.php"); ?>
 <script>var siteurl = "<?php echo SITEURL;?>";</script>
 <!-- đoạn xử lý menu toogle -->

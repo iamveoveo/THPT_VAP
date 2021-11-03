@@ -183,9 +183,9 @@
 <!-- admin -->
 <?php
     if(isset($_POST['add-admin'])){
-        $AdName  = $_POST['txtHoTen'];
+        $AdRName  = $_POST['txtHoTen'];
+        $AdName  = $_POST['txtTaiKhoan'];
         $Adpass = $_POST['adpass'];
-        $AdEmail = $_POST['txtEmail'];
         $AdTel = $_POST['sdt'];
         $AdAdd = $_POST['txtDiaChi'];
         $AdGender = $_POST['txtGioiTinh'];
@@ -197,9 +197,9 @@
         //lệnh sql
         $sql_4="INSERT INTO admin SET
         AdName = '$AdName',
+        AdRName = '$AdRName',
         AdPassword = '$pass_hash1',
-        AdEmail = '$AdEmail' , 
-        AdTel = $AdTel, 
+        AdTel = '$AdTel', 
         AdAdd = '$AdAdd',
         AdGender = '$AdGender', 
         AdCode = '$UserCode',

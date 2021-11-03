@@ -11,7 +11,8 @@
 
             $row = mysqli_fetch_assoc($res);
 
-            include("../config/mail-send.php");
+            include("template/mail-send.php");
+            $mail->addAddress($email); 
             
             // Mail subject 
             $mail->Subject = 'XÁC THỰC TÀI KHOẢN ADMIN'; 
