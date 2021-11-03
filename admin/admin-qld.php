@@ -8,9 +8,7 @@
         <div class='dashboard-toolbar row'>
             <div class="col-5"><a href="#!" class="menu-toggle "><i class="fas fa-bars"></i></a></div>
             <div class="row height d-flex justify-content-center align-items-center col-7">
-                <div class="form"> 
-                    <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone "></i></span> 
-                </div>
+
             </div>
         </div>
         <div class='dashboard-content'>
@@ -18,18 +16,19 @@
                 <div class='card'>
                     <div class='card-header'>
                         <h2>Quản lý điểm</h2>
-                        <?php
-                            
-                            if(isset($_SESSION['update'])){
-                                echo $_SESSION['update'];
-                                unset($_SESSION['update']);
-                            }
-                        ?>
                     </div>
                     <?php
                         if(isset($_SESSION['add_diem'])){
                             echo $_SESSION['add_diem'];
                             unset($_SESSION['add_diem']);
+                        }
+                        if(isset($_SESSION['update'])){
+                            echo $_SESSION['update'];
+                            unset($_SESSION['update']);
+                        }
+                        if(isset($_SESSION['delete'])){
+                            echo $_SESSION['delete'];
+                            unset($_SESSION['delete']);
                         }
                     ?>
                     <div class='card-body'>     
@@ -79,7 +78,6 @@
                                         <th scope="col">Điểm cuối kì</th>
                                         <th scope="col">Sửa</th>
                                         <th scope="col">Xóa</th>
-                                        <th scope="col">Chi tiết</th>
 
                                     </tr>
                                     </thead>
@@ -100,8 +98,8 @@
                                             <td><?php echo $row['MidTerm']; ?></td>
                                             <td><?php echo $row['FinalExam']; ?></td>
                                             <td><button id="<?php echo $row['UserID'];?>" subject="<?php echo $row['Subject'];?>" type="button" class="btn icon-admin icon-score" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
-                                            <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_diem=&Student_UserID=<?php echo $row['Student_UserID'];?>&Subject=<?php echo $row['Subject'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+
                                         </tr>
                                         <?php
                                             $i++;

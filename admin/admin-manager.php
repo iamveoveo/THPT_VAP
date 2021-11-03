@@ -1,5 +1,9 @@
 <?php include("template/header.php"); ?>
 
+<script>
+    var region = "manager";
+</script>
+
 <div class='dashboard'>
     <?php include("template/admin.php");?>
 
@@ -8,9 +12,9 @@
         <div class='dashboard-toolbar row'>
             <div class="col-5"><a href="#!" class="menu-toggle "><i class="fas fa-bars"></i></a></div>
             <div class="row height d-flex justify-content-center align-items-center col-7">
-                <div class="form"> 
-                    <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone"></i></span> 
-                </div>
+                <form class="form" id="header-search"> 
+                    <i class="fa fa-search"></i> <input name="key" type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone search-submit"></i></span> 
+                </form>
             </div>
         </div>
         <div class='dashboard-content'>
@@ -55,7 +59,7 @@
                                             <th scope="col">Xem chi tiết</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="main-tbody">
                                         <?php
 
                                         $sql="SELECT * FROM admin ";
@@ -75,8 +79,8 @@
                                             <td><?php echo $row['AdTel']; ?></td>
                                             <td><?php echo $row['AdStatus']; ?></td>
                                             <td><button id="<?php echo $row['AdID'];?>" type="button" class="btn icon-admin icon-manager" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
-                                            <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_admin=&AdID=<?php echo $row['AdID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                                            <td><button id="<?php echo $row['AdID'];?>" type="button" class="btn icon-manager-detail" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>
                                         <?php
@@ -194,6 +198,30 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
                                             <button type="submit" class="btn" name="update-admin" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- modal detail -->
+                        <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                    <!--form detail -->
+                                    <h5 class="modal-title">Thông tin chi tiết</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                     <form action="" method="POST">
+                                        <div class="modal-body detail-body">
+                                            
+                                        </div>
+
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Đống</button>
                                         </div>
                                     </form>
                                 </div>
