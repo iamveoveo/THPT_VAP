@@ -28,5 +28,13 @@ $(document).ready(function(){
       newFileName = userID + String(dt.getFullYear()) + String(dt.getMonth()+1) + String(dt.getDate()) + String(dt.getHours()) + String(dt.getMinutes()) + String(dt.getSeconds()) + "." + this.files[0].name.split('.').pop().toLowerCase();
     }
   })
+
+  $('input[name="newpass2"]').focusout(function() {
+    if($('[name="newpass1"]').val() == $('[name="newpass2"]').val()){
+      $('[name="newpass2"]').css('border', "2px solid #8cff93ab");
+    }else{
+      $('[name="newpass2"]').css('border', "2px solid #e68e8ec4");
+    }
+  })
 })
 

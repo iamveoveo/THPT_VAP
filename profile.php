@@ -40,6 +40,12 @@ include("template/header-menu.php");
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-uppercase text-right">Thông tin chi tiết</h4>
                     </div>
+                    <?php
+                        if(isset($_SESSION['change-pass'])){
+                            echo $_SESSION['change-pass'];
+                            unset($_SESSION['change-pass']);
+                        }
+                    ?>
                     <div class="infor">
                         <div class="row mt-3">
                             <div class="col-md-12 mt-2 ">
@@ -239,6 +245,15 @@ include("template/header-menu.php");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
+                <?php
+                    if(!isset($_GET['userID'])){
+                        ?>
+                            <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#change-password">
+                                Đổi mật khẩu
+                            </button>
+                        <?php
+                    }
+                ?>
                 <button name="save" type="button"  data-bs-dismiss="modal" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
             </div>
             </div>
@@ -249,7 +264,7 @@ include("template/header-menu.php");
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Bảng điểm</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -295,6 +310,43 @@ include("template/header-menu.php");
         </div>
     </div>
 
+    <div class="modal fade" id="change-password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ĐỔI MẬT KHÂU</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="POST" class="change-password" name="change_infor">
+                    <div class="modal-body">                   
+                        <div class="row mt-3">
+                            <div class="col-md-12 mt-2 ">
+                                <label class="labels">Nhập mật khẩu cũ</label>
+                                <input name="oldpass" type="password" class="form-control">
+                            </div>                        
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-12 mt-2 ">
+                                <label class="labels">Nhập mật khẩu mới</label>
+                                <input name="newpass1" type="password" class="form-control">
+                            </div>                        
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 mt-2 ">
+                                <label class="labels">Nhập lại mật khẩu mới</label>
+                                <input name="newpass2" type="password" class="form-control">
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" name="change-password" data-bs-dismiss="modal" class="btn btn-primary">Đổi mật khẩu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -317,6 +369,43 @@ fileInput.addEventListener( "change", function( event ) {
     the_return.innerHTML = this.value;  
 });  
 </script>
+
+<?php
+    if(isset($_POST['change-password'])){
+        $oldPass = $_POST['oldpass'];
+        $newPass1 = $_POST['newpass1'];
+        $newPass2 = $_POST['newpass2'];
+
+        $sql20 = "select * from users where UserID = '$UserID'";
+        $res20 = mysqli_query($conn, $sql20);
+
+        if(mysqli_num_rows($res20)>0){
+            $row20 = mysqli_fetch_assoc($res20);
+
+            if(password_verify($oldPass, $row20['UserPassword'])){
+                if($newPass1 == $newPass2){
+                    $newPass = password_hash($newPass2, PASSWORD_DEFAULT);
+                    $sql21 = "update users set UserPassword = '$newPass' where UserID = '$UserID'";
+                    $res21 = mysqli_query($conn, $sql21);
+
+                    if($res21){
+                        $_SESSION['change-pass']= "<div class='text-success'>Đổi mật khẩu thành công</div>";
+                        header('location:'.SITEURL.'profile.php');
+                    }else{
+                        $_SESSION['change-pass']= "<div class='text-danger'>Đổi mật khẩu thất bại</div>";
+                        header('location:'.SITEURL.'profile.php');
+                    }
+                }else{
+                    $_SESSION['change-pass']= "<div class='text-danger'>Đổi mật khẩu thất bại</div>";
+                    header('location:'.SITEURL.'profile.php');
+                }
+            }else{
+                $_SESSION['change-pass']= "<div class='text-danger'>Đổi mật khẩu thất bại</div>";
+                header('location:'.SITEURL.'profile.php');
+            }
+        }
+    }
+?>
 
 <?php include("template/footer.php"); ?>
 
