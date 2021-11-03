@@ -8,51 +8,53 @@ if(isset($_POST["preview"])){
     {      
         $file = fopen($filename, "r");
         ?>
-        
-        <table class="table table-secondary table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col">Tên tài khoản</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Giới tính</th>
-                    <th scope="col">Ngày sinh</th>
-                    <th scope="col">Địa chỉ</th>
-                    <th scope="col">Lớp </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
-                {
-                    $STT = $getData[0];
-                    $hoTen = $getData[1];
-                    $TenTK = $getData[2];
-                    $email = $getData[3];
-                    $sdt = $getData[4];
-                    $gioitinh = $getData[5];
-                    $Ngaysinh = $getData[6];
-                    $diaChi = $getData[7];
-                    $lop = $getData[8];
-                    ?>
-                     <tr>
-                        <th scope="row"><?php echo $STT; ?></th>
-                        <td><?php echo $hoTen; ?></td>
-                        <td><?php echo $TenTK; ?></td>
-                        <td><?php echo $email; ?></td>
-                        <td><?php echo $sdt; ?></td>
-                        <td><?php echo $gioitinh; ?></td> 
-                        <td><?php echo $Ngaysinh; ?></td> 
-                        <td><?php echo $diaChi; ?></td> 
-                        <td><?php echo $lop; ?></td> 
+        <div style="max-height:50vh;overflow-y:scroll;">
+            <table class="table table-striped table-bordered" style="background: #e0ebff;">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Lớp </th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+                    {
+                        $STT = $getData[0];
+                        $hoTen = $getData[1];
+                        $TenTK = $getData[2];
+                        $email = $getData[3];
+                        $sdt = $getData[4];
+                        $gioitinh = $getData[5];
+                        $Ngaysinh = $getData[6];
+                        $diaChi = $getData[7];
+                        $lop = $getData[8];
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $STT; ?></th>
+                            <td><?php echo $hoTen; ?></td>
+                            <td><?php echo $TenTK; ?></td>
+                            <td><?php echo $email; ?></td>
+                            <td><?php echo $sdt; ?></td>
+                            <td><?php echo $gioitinh; ?></td> 
+                            <td><?php echo $Ngaysinh; ?></td> 
+                            <td><?php echo $diaChi; ?></td> 
+                            <td><?php echo $lop; ?></td> 
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+       
         
         <?php
     }
@@ -67,47 +69,50 @@ if(isset($_POST["preview_gv"])){
     {      
         $file = fopen($filename, "r");
         ?>   
-        <table class="table table-secondary table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col">Tên tài khoản</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Giới tính</th>
-                    <th scope="col">Ngày sinh</th>
-                    <th scope="col">Địa chỉ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
-                {
-                    $STT = $getData[0];
-                    $hoTen = $getData[1];
-                    $TenTK = $getData[2];
-                    $email = $getData[3];
-                    $sdt = $getData[4];
-                    $gioitinh = $getData[5];
-                    $Ngaysinh = $getData[6];
-                    $diaChi = $getData[7];
-                    ?>
-                     <tr>
-                        <th scope="row"><?php echo $STT; ?></th>
-                        <td><?php echo $hoTen; ?></td>
-                        <td><?php echo $TenTK; ?></td>
-                        <td><?php echo $email; ?></td>
-                        <td><?php echo $sdt; ?></td>
-                        <td><?php echo $gioitinh; ?></td> 
-                        <td><?php echo $Ngaysinh; ?></td> 
-                        <td><?php echo $diaChi; ?></td> 
+        <div style="max-height:50vh;overflow-y:scroll;"style="background: #e0ebff;">
+            <table class="table table-striped table-bordered" >
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Địa chỉ</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+                    {
+                        $STT = $getData[0];
+                        $hoTen = $getData[1];
+                        $TenTK = $getData[2];
+                        $email = $getData[3];
+                        $sdt = $getData[4];
+                        $gioitinh = $getData[5];
+                        $Ngaysinh = $getData[6];
+                        $diaChi = $getData[7];
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $STT; ?></th>
+                            <td><?php echo $hoTen; ?></td>
+                            <td><?php echo $TenTK; ?></td>
+                            <td><?php echo $email; ?></td>
+                            <td><?php echo $sdt; ?></td>
+                            <td><?php echo $gioitinh; ?></td> 
+                            <td><?php echo $Ngaysinh; ?></td> 
+                            <td><?php echo $diaChi; ?></td> 
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+       
         
         <?php
     }
@@ -122,47 +127,49 @@ if(isset($_POST["preview_ph"])){
     {      
         $file = fopen($filename, "r");
         ?>   
-        <table class="table table-secondary table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col">Tên tài khoản</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Giới tính</th>
-                    <th scope="col">Ngày sinh</th>
-                    <th scope="col">Địa chỉ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
-                {
-                    $STT = $getData[0];
-                    $hoTen = $getData[1];
-                    $TenTK = $getData[2];
-                    $email = $getData[3];
-                    $sdt = $getData[4];
-                    $gioitinh = $getData[5];
-                    $Ngaysinh = $getData[6];
-                    $diaChi = $getData[7];
-                    ?>
-                     <tr>
-                        <th scope="row"><?php echo $STT; ?></th>
-                        <td><?php echo $hoTen; ?></td>
-                        <td><?php echo $TenTK; ?></td>
-                        <td><?php echo $email; ?></td>
-                        <td><?php echo $sdt; ?></td>
-                        <td><?php echo $gioitinh; ?></td> 
-                        <td><?php echo $Ngaysinh; ?></td> 
-                        <td><?php echo $diaChi; ?></td> 
+        <div style="max-height:50vh;overflow-y:scroll;"style="background: #e0ebff;">
+            <table class="table table-striped table-bordered" >
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Địa chỉ</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+                    {
+                        $STT = $getData[0];
+                        $hoTen = $getData[1];
+                        $TenTK = $getData[2];
+                        $email = $getData[3];
+                        $sdt = $getData[4];
+                        $gioitinh = $getData[5];
+                        $Ngaysinh = $getData[6];
+                        $diaChi = $getData[7];
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $STT; ?></th>
+                            <td><?php echo $hoTen; ?></td>
+                            <td><?php echo $TenTK; ?></td>
+                            <td><?php echo $email; ?></td>
+                            <td><?php echo $sdt; ?></td>
+                            <td><?php echo $gioitinh; ?></td> 
+                            <td><?php echo $Ngaysinh; ?></td> 
+                            <td><?php echo $diaChi; ?></td> 
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
         
         <?php
     }
@@ -177,41 +184,43 @@ if(isset($_POST["preview_diem"])){
     {      
         $file = fopen($filename, "r");
         ?>   
-         <table class="table table-hover table-secondary ">
-            <thead>
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col"> Môn học</th>
-                    <th scope="col">Điểm giữa kì</th>
-                    <th scope="col">Điểm cuối kì</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
-                {
-                    $STT = $getData[0];
-                    $hoTen = $getData[1];
-                    $mon = $getData[2];
-                    $diemGiuaKi = $getData[3];
-                    $DiemCuoiKi = $getData[4];
-                   
-                    ?>
-                     <tr>
-                        <th scope="row"><?php echo $STT; ?></th>
-                        <td><?php echo $hoTen; ?></td>
-                        <td><?php echo $mon; ?></td>
-                        <td><?php echo $diemGiuaKi; ?></td>
-                        <td><?php echo $DiemCuoiKi; ?></td>
-                        
+        <div style="max-height:50vh;overflow-y:scroll;" style="background: #e0ebff;">
+            <table class="table table-hover table-secondary ">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col"> Môn học</th>
+                        <th scope="col">Điểm giữa kì</th>
+                        <th scope="col">Điểm cuối kì</th>
+                    
                     </tr>
-                    <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <?php
+                    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE)
+                    {
+                        $STT = $getData[0];
+                        $hoTen = $getData[1];
+                        $mon = $getData[2];
+                        $diemGiuaKi = $getData[3];
+                        $DiemCuoiKi = $getData[4];
+                    
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $STT; ?></th>
+                            <td><?php echo $hoTen; ?></td>
+                            <td><?php echo $mon; ?></td>
+                            <td><?php echo $diemGiuaKi; ?></td>
+                            <td><?php echo $DiemCuoiKi; ?></td>
+                            
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
         
         <?php
     }
