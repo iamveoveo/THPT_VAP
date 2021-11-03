@@ -26,11 +26,10 @@
     $mail->CharSet = 'UTF-8';
 
     // Sender info 
-    $mail->setFrom('vinhveoveo21@gmail.com', 'local'); 
-    $mail->addReplyTo('vinhveoveo21@gmail.com', 'local'); 
+    $mail->setFrom('vinhveoveo21@gmail.com', 'THPT_VAP'); 
+    $mail->addReplyTo('vinhveoveo21@gmail.com', 'THPT_VAP'); 
 
     // Add a recipient 
-    $mail->addAddress($email); 
 
     //$mail->addCC('cc@example.com'); 
     //$mail->addBCC('bcc@example.com'); 
