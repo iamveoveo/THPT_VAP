@@ -1,5 +1,9 @@
 <?php include("template/header.php"); ?>
 
+<script>
+    var region = "student";
+</script>
+
 <div class='dashboard'>
     <?php include("template/admin.php");?>
 
@@ -8,9 +12,9 @@
         <div class='dashboard-toolbar row'>
             <div class="col-5"><a href="#!" class="menu-toggle "><i class="fas fa-bars"></i></a></div>
             <div class="row height d-flex justify-content-center align-items-center col-7">
-                <div class="form"> 
-                    <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone"></i></span> 
-                </div>
+                <form class="form" id="header-search"> 
+                    <i class="fa fa-search"></i> <input name="key" type="text" class="form-control form-input" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"><i class="fa fa-microphone search-submit"></i></span> 
+                </form>
             </div>
         </div>
         <div class='dashboard-content'>
@@ -55,7 +59,7 @@
                                         <th scope="col">Xem chi tiết</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="main-tbody">
                                         <?php
                                         $sql="SELECT UserID, UserName, UserRName,UserStatus, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll, UserClass, ClassName, ClassID
                                             FROM users ,class WHERE  UserRoll='Học sinh' AND UserClass=ClassID";
@@ -245,7 +249,7 @@
                       
                         <!-- btn import và export -->
                         <div class="center row">
-                            <div class="btn-1 col-5 mt-4">
+                            <div class="btn-1 col-5">
                                 <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span>Nhập file</span></a>
                                 

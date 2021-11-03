@@ -147,4 +147,113 @@
             echo "<span class='text-success'>Tên tài khoản chưa tồn tại</span>";
         }
     }
+
+    if(isset($_POST['search'])){
+        $key = $_POST['key'];
+        $region = $_POST['region'];
+
+        if($region == "manager"){
+            $sql="SELECT * FROM admin where AdRName like '%".$key."%'";
+                                            
+            $result = mysqli_query($conn,$sql);
+
+            if(mysqli_num_rows($result)>0){
+                $i=1;                                            
+                while($row = mysqli_fetch_assoc($result)){
+                    ?>
+
+                    <tr>
+                        <th scope="row"><?php echo $i; ?></th>
+                        <td><?php echo $row['AdName']; ?></td>
+                        <td><?php echo $row['AdRName']; ?></td>
+                        <td><?php echo $row['AdEmail']; ?></td>
+                        <td><?php echo $row['AdTel']; ?></td>
+                        <td><?php echo $row['AdStatus']; ?></td>
+                        <td><button id="<?php echo $row['AdID'];?>" type="button" class="btn icon-admin icon-manager" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                        <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_admin=&AdID=<?php echo $row['AdID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                        <td><button id="<?php echo $row['AdID'];?>" type="button" class="btn icon-manager-detail" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+
+                    </tr>
+                    <?php
+                    $i++;
+                }
+            }
+        }else if($region == "student"){
+            $sql="SELECT * FROM users ,class WHERE UserRName like '%".$key."%' and UserRoll='Học sinh' AND UserClass=ClassID";
+                
+            $result = mysqli_query($conn,$sql);
+
+            if(mysqli_num_rows($result)>0){
+                $i=1;                                            
+                while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                        <tr>
+                            <th scope="row"><?php echo $i; ?></th>
+                            <td><?php echo $row['UserRName']; ?></td>
+                            <td><?php echo $row['UserName']; ?></td>
+                            <td><?php echo $row['UserEmail']; ?></td>
+                            <td><?php echo $row['UserStatus']; ?></td>
+                            <td><?php echo $row['UserTel']; ?></td>
+                            <td><?php echo $row['ClassName']; ?></td>
+                            <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                            <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_hs=&UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                            <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-detail" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+
+                        </tr>
+                    <?php
+                    $i++;
+                }
+            }
+        }else if($region == "teacher"){
+            $sql="SELECT UserID, UserName, UserRName, UserEmail, UserTel, UserAdd, UserGender,UserStatus, UserBirth, UserRoll, UserClass
+                FROM users  WHERE UserRName like '%".$key."%' and UserRoll='Giáo viên' ";
+                    
+            $result = mysqli_query($conn,$sql);
+
+            if(mysqli_num_rows($result)>0){
+                $i=1;                                            
+                while($row = mysqli_fetch_assoc($result)){
+                ?>
+                    <tr>
+                        <th scope="row"><?php echo $i; ?></th>
+                        <td><?php echo $row['UserName']; ?></td>
+                        <td><?php echo $row['UserRName']; ?></td>
+                        <td><?php echo $row['UserEmail']; ?></td>
+                        <td><?php echo $row['UserTel']; ?></td>
+                        <td><?php echo $row['UserStatus']; ?></td>
+                        <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                        <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_gv=&UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                        <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-detail" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+                    </tr>
+                <?php
+                $i++;
+                }
+            }
+        }else if($region == "parent"){
+            $sql="SELECT * FROM users  
+                WHERE UserRName like '%".$key."%' and UserRoll='Phụ huynh'";
+            $result = mysqli_query($conn,$sql);
+
+            if(mysqli_num_rows($result)>0){
+                $i=1;                                            
+                while($row = mysqli_fetch_assoc($result)){
+                    ?>     
+                        <tr>
+                            <th scope="row"><?php echo $i; ?></th>
+                            <td><?php echo $row['UserRName']; ?></td>
+                            <td><?php echo $row['UserName']; ?></td>
+                            <td><?php echo $row['UserEmail']; ?></td>
+                            <td><?php echo $row['UserTel']; ?></td>
+                            <td><?php echo $row['UserClass']; ?></td>
+                            <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                            <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_ph=&UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
+                            <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-detail" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+
+                        </tr>
+                    <?php
+                    $i++;
+                }
+            }
+        }
+    }
 ?>

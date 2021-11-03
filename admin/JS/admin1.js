@@ -112,4 +112,23 @@ $(document).ready(function(){
             }
         })
     })
+
+    $('#header-search').on('submit', function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+        formData.append("region", region);
+        formData.append("search", "");
+
+        $.ajax({
+            url: 'process-search.php',
+            type: 'POST',
+            method: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function(data){
+                $('#main-tbody').html(data);
+            }
+        })
+    })
 })
