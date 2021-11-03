@@ -105,7 +105,8 @@
             $sql9 = "select * from users where UserName = '$UserName' and UserCode = '$code'";
             $res9 = mysqli_query($conn, $sql9);
             if(mysqli_num_rows($res9)>0){
-                $_SESSION['MyStatus'] = 1;
+                $row9 = mysqli_fetch_assoc($res9);
+                $_SESSION['wander'] = $row9['UserID'];
                 echo "updated|".SITEURL."";
             }else{
                 echo "wrong code|<span class="."text-danger".">Mã xác thực không đúng</span>";
