@@ -18,6 +18,13 @@
                 <div class='card'>
                     <div class='card-header'>
                         <h2>Quản lý điểm</h2>
+                        <?php
+                            
+                            if(isset($_SESSION['update'])){
+                                echo $_SESSION['update'];
+                                unset($_SESSION['update']);
+                            }
+                        ?>
                     </div>
                     <div class='card-body'>     
                         <div class="d-flex flex-row">
@@ -191,16 +198,17 @@
                                     <h5 class="modal-title">Sửa thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                     <form action="" method="POST">                                  
+                                        <div class="modal-body editor-body">
+                                            
+                                        </div>
 
-                                    <div class="modal-body editor-body">
-                                        
-                                    </div>
-
-                                    <!-- btn hủy và lưu -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
-                                    </div>
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn" name="update-quanlidiem" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>  
                                 </div>
                             </div>
                         </div>
@@ -253,7 +261,37 @@
         </div>
     </div>
 </div>
+<?php
 
+if(isset($_POST['update-quanlidiem']))
+   {    $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+        $ID= $_POST['ID'];
+        $Subject = $_POST['Subject'];
+        $MidTerm = $_POST['MidTerm'];
+        $FinalExam = $_POST['FinalExam'];
+        
+        $sql = "UPDATE transcript set
+        MidTerm = '$MidTerm',
+        FinalExam = '$FinalExam'
+         WHERE Student_UserID= '$ID' and Subject = '$Subject' ";
+        //thưc hiện truy vấn 
+        $query = mysqli_query($conn, $sql); 
+
+        if($query==TRUE)
+        {
+            $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+            header('location: '.SITEURL.'admin/admin-qld.php');
+        }
+        else
+        {
+            $_SESSION['update']="<div class='text-danger'>Sửa thất bại.</div>";
+            header('location: '.SITEURL.'admin/admin-qld.php');
+       
+        }
+
+   }
+
+?>
 <?php include("template/footer.php"); ?>
 <script>var siteurl = "<?php echo SITEURL;?>";</script>
 <!-- đoạn xử lý menu toogle -->

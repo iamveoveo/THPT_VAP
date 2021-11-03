@@ -5,7 +5,7 @@ $(document).ready(function(){
             type: 'POST',
             method: 'POST',
             data: {
-                UserID: $(this).attr('id'),
+                AdID: $(this).attr('id'),
                 take_infor: "",
             },
             success: function(data){

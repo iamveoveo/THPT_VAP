@@ -157,14 +157,14 @@
                 <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
                     <div class="card-body">
                         <div class="row gutters">
-                        <input type="hidden" value="<?php echo $AdID;?>" name ="ID">
+                        <input type="hidden" value="<?php echo $AdID;?>" name ="AdID">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
                                     <label for="fullName">Họ và tên</label>
-                                    <input type="text" class="form-control" name="txtHoTen" value="<?php echo $row['AdName'];?>">
+                                    <input type="text" class="form-control" name="txtHoTen" value="<?php echo $row['AdRName'];?>">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -194,7 +194,7 @@
 
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <label class="labels">Giới tính</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name = "Gioitinh">
                                     <option value=null <?php if($row['AdGender']==""){echo 'selected';};?>>Chọn giới tính</option>
                                     <option value="Nam" <?php if($row['AdGender']=="Nam"){echo 'selected';};?>>Nam</option>
                                     <option value="Nữ" <?php if($row['AdGender']=="Nữ"){echo 'selected';};?>>Nữ</option>
