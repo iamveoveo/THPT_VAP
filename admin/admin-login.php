@@ -66,7 +66,7 @@
         }
         else{
           $_SESSION['Ad_ID'] = $row['AdID'];
-          $_SESSION['Ad_Status'] = $row['Ad_Status'];
+          $_SESSION['Ad_Status'] = $row['AdStatus'];
           header("location:".SITEURL."admin/index.php");
         }
       }

@@ -231,7 +231,7 @@ $(document).ready(function () {
         })
     })
 
-    $('button[name="import_diem"]').on('click',function(e){ //lấy sự kiện cho nút
+    $('button[name="import_diem"]').on('click',function(e){
         if(class_select=="" && subject_select==""){
             alert('Bạn cần chọn lớp, môn cần thêm điểm trước.');
         }else{

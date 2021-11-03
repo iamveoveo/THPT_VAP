@@ -114,7 +114,7 @@
                                                 <div class="row gutters">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
                                                         <div class="text-right">
-                                                            <button type="button" id="submit" name="submit" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa thông tin</button>
+                                                            <button type="button" id="edit-modal" name="submit" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Sửa thông tin</button>
                                                           
                                                         </div>
                                                     </div>
@@ -144,7 +144,7 @@
                                                     <div class="account-settings">
                                                         <div class="user-profile">
                                                             <div class="user-avatar">
-                                                                <img src="../images/avatar/<?php echo $row['AdAva'];?>" id="ava" alt="Ảnh đại diện Admin">
+                                                                <img src="../images/avatar/<?php echo $row['AdAva'];?>" id="ava1" alt="Ảnh đại diện Admin">
                                                             </div>
                                                             <h5 class="user-name"><?php echo $row['AdRName'];?></h5>
                                                             <h6 class="user-email"><?php echo $row['AdEmail'];?></h6>

@@ -71,6 +71,7 @@ $(document).ready(function(){
            contentType: false,
            success: function(){
               $('#ava').attr('src','../images/avatar/'+newFileName);
+              $('#ava1').attr('src','../images/avatar/'+newFileName);
            }
         })
     })
@@ -93,7 +94,7 @@ $(document).ready(function(){
            
            success: function(){
               alert('Đã lưu thay đổi');
-              $('#txtHoTen').text(dt.get('txthoten'));
+              $('#txtHoTen').text(dt.get('txtHoTen'));
               $('#txtTK').text(dt.get('txtTK'));
               $('#txtEmail').text(dt.get('txtEmail'));
               $('#sdt').text(dt.get('sdt'));
@@ -103,6 +104,9 @@ $(document).ready(function(){
               
            }   
         })
+    })
+    $('#edit-modal').on('click',function(){
+        $('#ava1').attr('src',$('#ava').attr('src'));
     })
 })
 

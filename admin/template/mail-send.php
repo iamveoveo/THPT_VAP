@@ -3,9 +3,9 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    require 'PHPMailer/Exception.php'; 
-    require 'PHPMailer/PHPMailer.php'; 
-    require 'PHPMailer/SMTP.php';
+    require '../PHPMailer/Exception.php'; 
+    require '../PHPMailer/PHPMailer.php'; 
+    require '../PHPMailer/SMTP.php';
 
     $mail = new PHPMailer; 
 
@@ -30,7 +30,6 @@
     $mail->addReplyTo('vinhveoveo21@gmail.com', 'THPT_VAP'); 
 
     // Add a recipient 
-    $mail->addAddress($email); 
 
     //$mail->addCC('cc@example.com'); 
     //$mail->addBCC('bcc@example.com'); 

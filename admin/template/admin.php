@@ -1,5 +1,5 @@
 <?php
-    include("login-check.php");
+   include("login-check.php");
 ?>
 <div class="dashboard-nav">
         <!-- logo -->
