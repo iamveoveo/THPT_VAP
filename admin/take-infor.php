@@ -58,6 +58,31 @@
                                         <option value="Khác" <?php if($row['UserGender']=="Khác"){echo 'selected';};?>>Khác</option>
                                     </select>
                                 </div>
+
+                                <?php
+                                    if($row['UserChild']!=""){
+                                        $sql3 = "select users1.UserRName, class.ClassName from users as users, users as users1, class where users.UserID='$UserID' and users.UserChild = users1.UserID and users1.UserClass = class.ClassID";
+                                        $res3 = mysqli_query($conn, $sql3);
+
+                                        if(mysqli_num_rows($res3)>0){
+                                            $row3 = mysqli_fetch_assoc($res3);
+                                            ?>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                    <div class="form-group">
+                                                        <label for="phone">Phụ huynh của</label>
+                                                        <input type="text" class="form-control" value="<?php echo $row3['UserRName'];?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                    <div class="form-group">
+                                                        <label for="phone">Lớp</label>
+                                                        <input type="text" class="form-control" value="<?php echo $row3['ClassName'];?>">
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        }
+                                    }
+                                ?>
                                 
                             </div>
                             
@@ -242,6 +267,37 @@
                                 </div>
                             </div>
                             
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    }
+
+    if(isset($_POST['take_teach_infor'])){
+        $teachID = $_POST['teachID'];
+        $sql2 = "select * from teach where TeachID = '$teachID'";
+        $res2 = mysqli_query($conn, $sql2);
+
+        if(mysqli_num_rows($res2)>0){
+            $row2 = mysqli_fetch_assoc($res2);
+            ?>
+            <div class=" col-12">
+                <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <input type="hidden" value="<?php echo $teachID;?>" name ="TeachID">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-3 text-primary fs-5 text">Thông tin môn</h6>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                <div class="form-group">
+                                    <label for="phone">Môn</label>
+                                    <input type="text" class="form-control" value="<?php echo $row2['TeachSubject'];?>" name="txtMon">
+                                </div>
+                            </div>
                         </div>
                         
                     </div>
