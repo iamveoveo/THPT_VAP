@@ -27,8 +27,39 @@
                             }      
                     ?>
                     <div class='card-body'>      
-                        <div>
-                            <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm mới</a>
+                        <div class="d-flex">
+                            <div>
+                                <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm lớp</a>
+                            </div>
+                            <div>
+                                <a class="btn m-3 btn-lg " data-bs-toggle="modal" data-bs-target="#add1" href="#" style="    background-color: #7d9fb9;color: #fff;" role="button">Thêm Môn</a>
+                            </div>
+                            <div class="col-md-3"  style="margin:15px">
+                                <select id="class-select1" class="form-select" aria-label="Default select example">
+                                    <option selected>Chọn theo lớp</option>
+                                    <?php
+                                        $sql2 = "select * from class";
+                                        $res2 = mysqli_query($conn, $sql2);
+
+                                        if(mysqli_num_rows($res2)>0){
+                                            while($row2 = mysqli_fetch_assoc($res2)){
+                                                ?>
+                                                <option value="<?php echo $row2['ClassID'];?>"><?php echo $row2['ClassName'];?></option>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-3" style="margin:15px">
+                                <select id="subject-select1" class="form-select " aria-label="Default select example">
+                                    <option value="" selected>Chọn theo môn</option>
+                                    <!-- option chọn môn -->
+                                </select>
+                            </div>
+                            <div class="col-md-1" style="margin:15px">
+                                <a id="selected1" class="btn btn-lg " style="background-color: #7d9fb9;color: #fff;padding:3px;" role="button">Chọn</a>
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <div id="table" style="max-height:50vh;overflow-y:scroll;">
@@ -44,10 +75,10 @@
                                             <th scope="col">Xóa</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="d-table">
                                         <?php
 
-                                        $sql="SELECT * FROM users,class, teach  WHERE teach.TeachID=users.UserID AND class.ClassID=teach.ClassID ";
+                                        $sql="SELECT * FROM users, class, teach  WHERE teach.Teacher_UserID=users.UserID AND class.ClassID=teach.ClassID ";
                                             
                                          $result = mysqli_query($conn,$sql);
 
@@ -101,38 +132,17 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="fullName">Khối</label>
-                                                                    <input type="text" class="form-control" name="txtHoTen" >
+                                                                    <select class="form-select" name="txtKhoi" aria-label="Default select example">
+                                                                        <option value="10">10</option>
+                                                                        <option value="11">11</option>
+                                                                        <option value="12">12</option>
+                                                                    </select>     
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="Street">Lớp dạy</label>
-                                                                    <select class="form-select" name="txtLop" aria-label="Default select example">
-                                                                        <option value="">Chọn lớp</option>
-                                                                        <?php
-                                                                        $sql_1 = "SELECT * FROM class";
-                                                                        $result_1 = mysqli_query($conn,$sql_1);
-                                            
-                                                                        //xử lý kết quả
-                                                                        if(mysqli_num_rows($result_1)>0){
-                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
-                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
-                                                                            }
-                                                                        }
-                                                                        ?>
-                                                                    </select>          
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="eMail">Môn học</label>
-                                                                    <input type="text" class="form-control" name="tenTaiKhoan">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="eMail">Giáo viên</label>
-                                                                    <input type="text" class="form-control" name="txtMon">
+                                                                    <input type="text" class="form-control" name="txtNewLop">      
                                                                 </div>
                                                             </div>
                                                             
@@ -146,7 +156,82 @@
                                         <!-- btn hủy và lưu -->
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                            <button type="submit" class="btn" name="add-qlgv" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                            <button type="submit" class="btn" name="add-qll" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- modal add1 -->
+                        <div class="modal fade" id="add1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                    <!--form add1 -->
+                                    <h5 class="modal-title">Thêm thông tin</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="process-add.php" method="POST">
+                                        <div class="modal-body">
+                                            <div class=" col-12">
+                                                <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
+                                                    <div class="card-body">
+                                                        <div class="row gutters">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Lớp học</label>
+                                                                    <select id="class-teacher" class="form-select" name="txtLop" aria-label="Default select example">
+                                                                        <option value="">Chọn lớp</option>
+                                                                        <?php
+                                                                        $sql_1 = "SELECT * FROM class";
+                                                                        $result_1 = mysqli_query($conn,$sql_1);
+                                            
+                                                                        //xử lý kết quả
+                                                                        if(mysqli_num_rows($result_1)>0){
+                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
+                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>    
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="Street">Môn dạy</label>
+                                                                    <input type="text" class="form-control" name="txtMon">      
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Họ và tên</label>
+                                                                    <input id="RName-Teacher" type="text" class="form-control" name="txtHoTen" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3" style="max-height:25vh; overflow-y:scroll;">
+                                                                <ul class="list-group teacher-select bg-light">
+                                                                    
+                                                                </ul>
+                                                                <input type="hidden" name="Teacher_UserID">
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn" name="add-qll1" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                         </div>
                                     </form>
                                 </div>
@@ -240,96 +325,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- modal detail -->
-                        <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-
-                                    <!--form detail -->
-                                    <h5 class="modal-title">Xem thông tin chi tiết</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class=" col-12">
-                                            <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
-                                                <div class="card-body">
-                                                    <div class="row gutters">
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control" name="txtHoTen" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="eMail">Môn dạy</label>
-                                                                <input type="text" class="form-control" name="txtMon" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="Street">Lớp dạy</label>
-                                                                <input type="text" class="form-control" name="txtLopday" placeholder="VD:10A1,11A2,..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Email</label>
-                                                                <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Địa chỉ</label>
-                                                                <input type="text" class="form-control " name="txtDiachi" placeholder="Xã,phường/huyện/tỉnh">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="website">Ngày sinh</label>
-                                                                <input type="date" class="form-control" name="ngaySinh" >
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Chọn giới tính</option>
-                                                                <option value="1">Nam</option>
-                                                                <option value="2">Nữ</option>
-                                                            </select>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- btn hủy và lưu -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                       
-                        <!-- btn import và export -->
                         <!-- btn import và export -->
                         <div class="center row">
                             <div class="btn-1 col-5">
@@ -339,9 +335,10 @@
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" id="form_hs" enctype="multipart/form-data" >     
+                                    <input type="hidden" name="export_mon" value="">
+                                    <a name="export" type="submit" role="button" data-mdb-ripple-color="dark">
+                                    <span style="color:#fff;">Xuất file</span></a> 
                                 </form>
                             </div>
                         </div>
@@ -352,20 +349,20 @@
                                     <div class="modal-header">
 
                                     <!--up file  -->
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import" name="form_import">             
-                                        <input type="file" name="file_import" >   
-                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview">Xem trước tệp</button>
+                                    <form action="" method="POST" enctype="multipart/form-data" id="form_import_mon" name="form_import_mon">             
+                                        <input type="file" name="file_import_mon" >   
+                                        <button type="submit" class="btn btn-outline-primary mt-2 btn-rounded rounded-pill" data-mdb-ripple-color="dark" name = "preview_mon">Xem trước tệp</button>
                                     </form>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body modal_body_mon">
                                     </div>
 
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color:#A6ABAF" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        <button type="button" class="btn" name="import_mon" style="background-color: #855DBD; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
                                 </div>
                             </div>

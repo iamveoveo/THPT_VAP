@@ -21,10 +21,18 @@
                     </div>
                     <?php
                         if(isset($_SESSION['add_parent']))
-                            {
+                        {
                             echo $_SESSION['add_parent'];
                             unset($_SESSION['add_parent']);
-                            }      
+                        }    
+                        if(isset($_SESSION['delete'])){
+                            echo $_SESSION['delete'];
+                            unset($_SESSION['delete']);
+                        }  
+                        if(isset($_SESSION['update'])){
+                            echo $_SESSION['update'];
+                            unset($_SESSION['update']);
+                        }  
                     ?>
                     <div class='card-body'>      
                         <div>
@@ -49,7 +57,7 @@
                                     <tbody>
                                     <?php
 
-                                        $sql="SELECT UserId, UserName,UserRName, UserEmail, UserTel, UserAdd, UserGender, UserBirth, UserRoll,UserClass  FROM users  
+                                        $sql="SELECT * FROM users  
                                             WHERE UserRoll='Phụ huynh'";
 
                                         // $sql="SELECT u.UserID, u.UserName, u.UserEmail, u.UserAdd, u.UserTel, u.Gender, dv.UserParent, u1.UserName as UserParent from user as u, user as u1 where u.UserParent = u1.UserName AND UserRoll='Phụ huynh'
@@ -70,8 +78,8 @@
                                             <td><?php echo $row['UserEmail']; ?></td>
                                             <td><?php echo $row['UserTel']; ?></td>
                                             <td><?php echo $row['UserClass']; ?></td>
-                                            <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                                            <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
+                                            <td><button id="<?php echo $row['UserID'];?>" type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                                            <td><a href="<?php echo SITEURL;?>admin/admin_delete_qlph?UserID=<?php echo $row['UserID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
                                         </tr>
@@ -92,18 +100,8 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-
-                                        <!--form add -->
-                                        
-                                        <div class="card w-100 h-100" style="background:rgb(88 116 149 / 19%)">
-                                            <form action="" class="d-flex " name="student_search">
-                                                <input type="text" name="inp_search" class="form-control form-input w-75" placeholder="Tìm kiếm mọi thứ..."> <span class="left-pan"></span> 
-                                                <button type="submit" name="hs_search" class="btn btn-primary">Tìm kiếm</button>
-                                            </form>
-                                            <div class="bg-light w-100 h-25 search_content"> 
-                                                
-                                            </div>
-                                        </div>
+                                        <h5 class="modal-title">Sửa thông tin</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                           
                                     <form action="process-add.php" method="POST" >
@@ -114,7 +112,6 @@
                                                         <div class="row gutters">
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                                <input type="hidden" name="StudenId" value="">
                                                             </div>
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                                                                 <div class="form-group">
@@ -128,6 +125,12 @@
                                                                     <input type="text" class="form-control" name="txtTaiKhoan" >
                                                                 </div>
                                                             </div>
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Mật khẩu</label>
+                                                                    <input type="password" class="form-control" name="UserPassword" require="required">
+                                                                </div>
+                                                            </div>
                                                             
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
@@ -136,12 +139,6 @@
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <label for="phone">Email</label>
-                                                                    <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                                </div>
-                                                            </div>
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                                                 <div class="form-group">
                                                                     <label for="phone">Địa chỉ</label>
@@ -161,10 +158,43 @@
                                                                     <option value="">Chọn giới tính</option>
                                                                     <option value="Nam">Nam</option>
                                                                     <option value="Nữ">Nữ</option>
+                                                                    <option value="Khác">Khác</option>
                                                                 </select>
-                                                            </div>                                                       
+                                                            </div>    
+                                                            
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="Street">Lớp</label>
+                                                                    <select  id="class-student" class="form-select" name="txtLop" aria-label="Default select example">
+                                                                        <option value="">Chọn lớp</option>
+                                                                        <?php
+                                                                        $sql_1 = "SELECT * FROM class";
+                                                                        $result_1 = mysqli_query($conn,$sql_1);
+                                            
+                                                                        //xử lý kết quả
+                                                                        if(mysqli_num_rows($result_1)>0){
+                                                                            while($row_1 = mysqli_fetch_assoc($result_1)){
+                                                                                echo '<option value = "'.$row_1['ClassID'].'">'.$row_1['ClassName'].'</option>';
+                                                                            }
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Tên học sinh</label>
+                                                                    <input id="RName-student" type="text" class="form-control" name="txtHoTenHS" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3" style="max-height:25vh; overflow-y:scroll;">
+                                                                <ul class="list-group student-select bg-light">
+                                                                    
+                                                                </ul>
+                                                                <input type="hidden" name="Student_UserID">
+                                                            </div>
                                                         
-                                                    
                                                         </div>
                                                     </div>
                                                 </div>
@@ -187,84 +217,21 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
 
-                                    <!--form edit -->
-                                    <h5 class="modal-title">Sửa thông tin</h5>
+                                    <!--form detail -->
+                                    <h5 class="modal-title">Xem thông tin chi tiết</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-
-                                    <div class="modal-body">
-                                        <div class=" col-12">
-                                            <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
-                                                <div class="card-body">
-                                                    <div class="row gutters">
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control" name="txtHoTen" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="eMail">Môn dạy</label>
-                                                                <input type="text" class="form-control" name="txtMon" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="Street">Lớp dạy</label>
-                                                                <input type="text" class="form-control" name="txtLopday" placeholder="VD:10A1,11A2,..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Email</label>
-                                                                <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Địa chỉ</label>
-                                                                <input type="text" class="form-control " name="txtDiachi" placeholder="Xã,phường/huyện/tỉnh">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="website">Ngày sinh</label>
-                                                                <input type="date" class="form-control" name="ngaySinh" >
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Chọn giới tính</option>
-                                                                <option value="1">Nam</option>
-                                                                <option value="2">Nữ</option>
-                                                            </select>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
+                                    <form action="" method="POST">  
+                                        <div class="modal-body editor-body">
+                                            
                                         </div>
-                                    </div>
 
-                                    <!-- btn hủy và lưu -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
-                                    </div>
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn" name="update-qlph" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>   
                                 </div>
                             </div>
                         </div>
@@ -367,9 +334,10 @@
                             </div>
                 
                             <div class="btn-2 col-5">
-                                <form action="#" method="POST" enctype="multipart/form-data" >             
-                                    <a href="" name="sbm-export" type="submit" role="button" data-mdb-ripple-color="dark">
-                                    <span>Xuất file</span></a> 
+                                <form action="import-export.php" method="POST" id="form_hs" enctype="multipart/form-data" >     
+                                    <input type="hidden" name="export_ph" value="">
+                                    <a name="export" type="submit" role="button" data-mdb-ripple-color="dark">
+                                    <span style="color:#fff;">Xuất file</span></a> 
                                 </form>
                             </div>
                         </div>
@@ -405,7 +373,43 @@
         </div>
     </div>
 </div>
+<?php
 
+if(isset ($_POST['update-qlph']))
+{    
+    $ID= $_POST['ID'];
+    $UserRName = $_POST['txtHoTen'];
+    $UserTel = $_POST['sdt'];
+    $UserEmail  = $_POST['txtEmail'];
+    $UserAdd  = $_POST['txtDiachi'];
+    $UserBirth = $_POST['ngaySinh"'];
+    $UserGender = $_POST['Gioitinh'];
+    //lệnh truy vấn sql để update
+    $sql = "UPDATE users set
+    UserRName = '$UserRName',
+    UserTel = '$UserTel',
+    UserEmail = '$UserEmail',
+    UserAdd = '$UserAdd',
+    UserBirth = '$UserBirth',
+    UserGender = '$UserGender'
+     WHERE UserID= $ID ";
+    //thưc hiện truy vấn 
+    $query = mysqli_query($conn, $sql); 
+
+    if($query==TRUE)
+    {
+        $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+        header('location: '.SITEURL.'admin/admin-qlph.php');
+    }
+    else
+    {
+        $_SESSION['update']="<div class='text-danger'>Sửa thất bại.</div>";
+        header('location: '.SITEURL.'admin/admin-qlph.php');
+   
+    }
+
+}
+?>
 <?php include("template/footer.php"); ?>
 
 <!-- đoạn xử lý menu toogle -->
