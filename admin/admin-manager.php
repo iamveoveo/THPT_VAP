@@ -20,11 +20,20 @@
                         <h2>Quản lý Admin</h2>
                     </div>
                     <?php
+                        if(isset($_SESSION['delete'])){
+                            echo $_SESSION['delete'];
+                            unset($_SESSION['delete']);
+                        }
                         if(isset($_SESSION['add_admin']))
-                            {
+                        {
                             echo $_SESSION['add_admin'];
                             unset($_SESSION['add_admin']);
-                            }      
+                        }      
+                        if(isset($_SESSION['update']))
+                        {
+                            echo $_SESSION['update'];
+                            unset($_SESSION['update']);
+                        }   
                     ?>
                     <div class='card-body'>      
                         <div>
@@ -36,6 +45,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">STT</th>
+                                            <th scope="col">Tên tài khoản</th>
                                             <th scope="col">Họ và tên</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Số điện thoại</th>
@@ -59,11 +69,12 @@
 
                                         <tr>
                                             <th scope="row"><?php echo $i; ?></th>
+                                            <td><?php echo $row['AdName']; ?></td>
                                             <td><?php echo $row['AdRName']; ?></td>
                                             <td><?php echo $row['AdEmail']; ?></td>
                                             <td><?php echo $row['AdTel']; ?></td>
                                             <td><?php echo $row['AdStatus']; ?></td>
-                                            <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
+                                            <td><button id="<?php echo $row['AdID'];?>" type="button" class="btn icon-admin icon-manager" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
                                             <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
                                             <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
 
@@ -174,80 +185,17 @@
                                     <h5 class="modal-title">Sửa thông tin</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-
-                                    <div class="modal-body">
-                                        <div class=" col-12">
-                                            <div class="card h-100" style="background:rgb(88 116 149 / 19%)">
-                                                <div class="card-body">
-                                                    <div class="row gutters">
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <h6 class="mb-3 text-primary fs-5 text">Thông tin tài khoản</h6>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="fullName">Họ và tên</label>
-                                                                <input type="text" class="form-control" name="txtHoTen" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="eMail">Môn dạy</label>
-                                                                <input type="text" class="form-control" name="txtMon" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Số điện thoại</label>
-                                                                <input type="tel" class="form-control " name="sdt" placeholder="09x xxx xxxx">
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="Street">Lớp dạy</label>
-                                                                <input type="text" class="form-control" name="txtLopday" placeholder="VD:10A1,11A2,..">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Email</label>
-                                                                <input type="email" class="form-control " name="txtEmail" placeholder="acb@gmail.com">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="phone">Địa chỉ</label>
-                                                                <input type="text" class="form-control " name="txtDiachi" placeholder="Xã,phường/huyện/tỉnh">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <div class="form-group">
-                                                                <label for="website">Ngày sinh</label>
-                                                                <input type="date" class="form-control" name="ngaySinh" >
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                                            <label class="labels">Giới tính</label>
-                                                            <select class="form-select" aria-label="Default select example">
-                                                                <option selected>Chọn giới tính</option>
-                                                                <option value="1">Nam</option>
-                                                                <option value="2">Nữ</option>
-                                                            </select>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
+                                     <form action="" method="POST">
+                                        <div class="modal-body editor-body">
+                                            
                                         </div>
-                                    </div>
 
-                                    <!-- btn hủy và lưu -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn" name="sbm-import" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
-                                    </div>
+                                        <!-- btn hủy và lưu -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                            <button type="submit" class="btn" name="update-admin" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +244,43 @@
         </div>
     </div>
 </div>
+<?php
 
+if(isset ($_POST['update-admin']))
+{    
+    $ID= $_POST['AdID'];
+    $AdRName = $_POST['txtHoTen'];
+    $AdTel = $_POST['sdt'];
+    $AdEmail  = $_POST['txtEmail'];
+    $AdAdd  = $_POST['txtDiachi'];
+    $AdBirth = $_POST['ngaySinh"'];
+    $AdGender = $_POST['Gioitinh'];
+    //lệnh truy vấn sql để update
+    $sql = "UPDATE admin set
+    AdRName = '$AdRName',
+    AdTel = '$AdTel',
+    AdEmail = '$AdEmail',
+    AdAdd = '$AdAdd',
+    AdBirth = '$AdBirth',
+    AdGender = '$AdGender'
+     WHERE AdID= $ID ";
+    //thưc hiện truy vấn 
+    $query = mysqli_query($conn, $sql); 
+
+    if($query==TRUE)
+    {
+        $_SESSION['update']="<div class='text-success'>sửa thành công.</div>";
+        header('location: '.SITEURL.'admin/admin-manager.php');
+    }
+    else
+    {
+        $_SESSION['update']="<div class='text-danger'>Sửa thất bại.</div>";
+        header('location: '.SITEURL.'admin/admin-manager.php');
+   
+    }
+
+}
+?>
 <?php include("template/footer.php"); ?>
 
 <!-- đoạn xử lý menu toogle -->
