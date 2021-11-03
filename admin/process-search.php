@@ -69,9 +69,8 @@
                     <td><?php echo $row2['Subject']; ?></td>
                     <td><?php echo $row2['MidTerm']; ?></td>
                     <td><?php echo $row2['FinalExam']; ?></td>
-                    <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                    <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
-                    <td><button type="button" class=" btn" data-bs-toggle="modal" data-bs-target="#detail"> <i class="fas fa-info-circle" style="font-size:25px"></i></button></td>
+                    <td><button id="<?php echo $row2['UserID'];?>" subject="<?php echo $row2['Subject'];?>" type="button" class="btn icon-admin icon-score" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                    <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_diem=&Student_UserID=<?php echo $row2['Student_UserID'];?>&Subject=<?php echo $row2['Subject'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                 </tr>
                 <?php
             }
@@ -96,8 +95,8 @@
                     <td><?php echo $row2['ClassName']; ?></td>
                     <td><?php echo $row2['UserRName']; ?></td>
                     <td><?php echo $row2['TeachSubject']; ?></td>
-                    <td><button type="button" class="btn icon-admin" data-bs-toggle="modal" data-bs-target="#add" ><i class="fas fa-edit " ></i></button></td>
-                    <td><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></td>
+                    <td><button id="<?php echo $row2['TeachID'];?>" type="button" class="btn icon-admin icon-class" data-bs-toggle="modal" data-bs-target="#editor" ><i class="fas fa-edit " ></i></button></td>
+                    <td><a href="<?php echo SITEURL;?>admin/admin_delete.php?Delete_mon=&TeachID=<?php echo $row2['TeachID'];?>"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt "></i></button></a></td>
                 </tr>
                 <?php
             }

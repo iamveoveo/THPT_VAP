@@ -10,7 +10,9 @@
         
         <!-- avtar -->
         <div class="avatar_admin ">
-            <img src="../images/avatar/ava.png" alt="" id="avatar-admin" margin="auto" width="85px" height="85px" alt="user avatar">
+            <?php $a = mysqli_query($conn, "select * from admin where AdID = '".$_SESSION['Ad_ID']."'");
+                    $a = mysqli_fetch_assoc($a);?>
+            <img src="../images/avatar/<?php echo $a['AdAva'];?>" alt="" id="avatar-admin" margin="auto" width="85px" height="85px" alt="user avatar" style="border-radius:100%;">
         </div>
 
         <!-- navbar -->
