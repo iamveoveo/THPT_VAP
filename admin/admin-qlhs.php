@@ -426,6 +426,3 @@
 </div>
 
 <?php include("template/footer.php"); ?>
-
-<!-- đoạn xử lý menu toogle -->
-<script src="JS/admin.js"></script>

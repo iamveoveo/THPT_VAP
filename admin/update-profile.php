@@ -1,5 +1,5 @@
 <?php
-include('../config/constants.php')
+include('../config/constants.php');
 ?>
 
 <?php
@@ -7,13 +7,13 @@ include('../config/constants.php')
 $AdId=$_SESSION['Ad_ID'];
 if(isset($_POST['up-avatar'])){
 
-    $target_dir = "images/avatar/";
+    $target_dir = "../images/avatar/";
     $newFileName = $_POST['newFileName'];
     $target_file = $target_dir . basename($_FILES["file_image"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
  
-    if(isset($_POST["submit"])) {
+    if(isset($_POST["up-avatar"])) {
         $check = getimagesize($_FILES["file_image"]["tmp_name"]);
         if($check !== false) {
             echo "Tệp đã có 1 ảnh - " . $check["mime"] . ".";
@@ -48,7 +48,7 @@ if(isset($_POST['up-avatar'])){
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["file_image"]["tmp_name"], $target_dir.$newFileName)) {
-            echo "The file ". htmlspecialchars( basename( $_FILES["file_image"]["name"])). " has been uploaded.";
+            echo "Ảnh ". htmlspecialchars( basename( $_FILES["file_image"]["name"])). " Tải thành công";
         } else {
             echo "Xin lỗi, tải file ảnh thất bại.";
         }
@@ -60,7 +60,7 @@ if(isset($_POST['up-avatar'])){
 }
 ?>
 
-<!-- sửa trên database -->
+<!-- sửa profile-->
 <?php
 
 if(isset($_POST['up-profile'])){

@@ -46,16 +46,19 @@ $(document).ready(function(){
             }
         })
     })
+
+    var newFileName = '';//biến để đổi tên
+    var id = $('#AdID').text();
     $('#form_avatar').on('submit',function(e){
-        e.preventDefault();//ngắn k cho gửi đi method post
+        e.preventDefault();
   
         //khởi tạo biến để đổi tên file 
         var dt = new Date();
         var filename = new FormData(this);
+
         newFileName = id + String(dt.getFullYear()) + String(dt.getMonth()+1) + String(dt.getDate()) + String(dt.getHours()) + String(dt.getMinutes()) + String(dt.getSeconds()) + "." + filename.get('file_image').name.split('.').pop().toLowerCase();
        
-        filename.append('submit',''); //theem 1 submit vào data
-  
+        filename.append('up-avatar','');
         //để thêm dữ liệu gửi đi
         filename.append('newFileName',newFileName);
   
@@ -67,14 +70,14 @@ $(document).ready(function(){
            processData: false,
            contentType: false,
            success: function(){
-              $('#anh2').attr('src','images/avatar/'+newFileName);
+              $('#ava').attr('src','../images/avatar/'+newFileName);
            }
         })
+    })
+    
   
-     })
-  
-     //cho form sửa
-     $('#edit_profile').on('submit',function(e){
+     //sửa profile
+     $('#form_edit').on('submit',function(e){
         e.preventDefault();
         var dt = new FormData(this);
         dt.append('up-profile','');
@@ -90,17 +93,16 @@ $(document).ready(function(){
            
            success: function(){
               alert('Đã lưu thay đổi');
-              $('#txthoten').text(dt.get('txthoten'));
-              $('#txtdiachi').text(dt.get('txtdiachi'));
-              $('#txtgioitinh').text(dt.get('txtgioitinh'));
-              $('#ngaySinh').text(dt.get('txtngaysinh'));
+              $('#txtHoTen').text(dt.get('txthoten'));
+              $('#txtTK').text(dt.get('txtTK'));
+              $('#txtEmail').text(dt.get('txtEmail'));
               $('#sdt').text(dt.get('sdt'));
-              $('#txtemail').text(dt.get('txtemail'));
+              $('#txtDiaChi').text(dt.get('txtDiaChi'));
+              $('#ngaySinh').text(dt.get('ngaySinh'));
+              $('#txtGioiTinh').text(dt.get('txtGioiTinh'));
               
-           }
-           
+           }   
         })
-     })
-
+    })
 })
 

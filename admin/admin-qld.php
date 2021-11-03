@@ -330,5 +330,3 @@
 
 <?php include("template/footer.php"); ?>
 <script>var siteurl = "<?php echo SITEURL;?>";</script>
-<!-- đoạn xử lý menu toogle -->
-<script src="JS/admin.js"></script>
