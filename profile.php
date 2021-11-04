@@ -187,7 +187,7 @@ include("template/header-menu.php");
                                         </button>
                                     </div>
                                     <?php
-                                }else{
+                                }else if($UserRoll=="me"){
                                     ?>
                                     <div class="mt-4 text-center me-3">
                                         <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">

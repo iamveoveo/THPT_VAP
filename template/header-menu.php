@@ -2,7 +2,7 @@
 <header>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-fixed-top" style="background-color:#ffffff00;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><i class="fas fa-school" style="font-size:30px;color:#9C19E0;"></i></a>
+        <a class="navbar-brand" <?php echo 'href="'.SITEURL.'"';?>><i class="fas fa-school" style="font-size:30px;color:#9C19E0;"></i></a>
 
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -11,7 +11,7 @@
                 </li>
                 <li class="nav-item">
                     <?php if($_SESSION['MyRoll']!="Học sinh"){
-                        echo '<a class="nav-link" href="mess.php">Gửi phản hồi</a>';
+                        echo '<a class="nav-link" href="mess.php">Phản hồi</a>';
                     }?>
                 </li>
             </ul>

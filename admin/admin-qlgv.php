@@ -197,8 +197,29 @@
                                     <!-- btn hủy và lưu -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" style="background-color: #937da9" data-bs-dismiss="modal">Hủy</button>
+                                        <button type="button" id="reset"  class="btn btn-secondary" style="background-color: #937da9" data-bs-toggle="modal" data-bs-target="#reset-pass" data-bs-dismiss="modal">Đặt lại mật khẩu</button>
                                         <button type="submit" class="btn" name="qlgv-update" style="background-color: #3D56B2; color:#fff;" data-bs-dismiss="modal" >Lưu</button>
                                     </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- modal reset password -->
+                        <div class="modal fade" id="reset-pass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                     <form action="" method="POST">
+                                        <div class="modal-body">
+                                            <input type="hidden" name="user-reset" >
+                                            <div class="p-4">
+                                                <h5 class="text-center" style="font-weight: 700;">Đặt lại mật khẩu của người dùng này thành mặc định?</h5>
+                                            </div>
+                                            <div class="row" style="justify-content: space-evenly;">
+                                                <button type="button" class="col-5 btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                                <button type="submit" name="reset-pass" class="col-5 btn btn-primary">Xác nhận</button>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -314,6 +335,38 @@ if(isset ($_POST['qlgv-update']))
 
    }
 
+if(isset($_POST['reset-pass'])){
+    $UserID = $_POST['user-reset'];
+
+    $sql_reset = "select UserName from users where UserID = '$UserID'";
+    $res_reset = mysqli_query($conn, $sql_reset);
+
+    if(mysqli_num_rows($res_reset)>0){
+        $row_reset = mysqli_fetch_assoc($res_reset);
+        $pass_reset = password_hash($row_reset['UserName'], PASSWORD_DEFAULT);
+
+        $sql_reset1 = "update users set UserPassword='$pass_reset' where UserID='$UserID'";
+        $res_reset1 = mysqli_query($conn, $sql_reset1);
+
+        if($res_reset1){
+            $_SESSION['update']="<div class='text-success'>Đặt lại thành công.</div>";
+            header('location: '.SITEURL.'admin/admin-qlgv.php');
+        }else{
+            $_SESSION['update']="<div class='text-danger'>Đạt lại thất bại.</div>";
+            header('location: '.SITEURL.'admin/admin-qlgv.php');
+        }
+    }else{
+        $_SESSION['update']="<div class='text-danger'>Đạt lại thất bại.</div>";
+        header('location: '.SITEURL.'admin/admin-qlgv.php');
+    }
+}
 ?>
 <?php include("template/footer.php"); ?>
 
+<script>
+    $(document).ready(function(){
+        $('#reset').on('click', function(){
+            $('[name="user-reset"]').val($('[name="ID"]').val());
+        })
+    })
+</script>
