@@ -241,7 +241,7 @@ include("template/header-menu.php");
                             <div class="justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Sửa thông tin tài khoản</h4>
                             </div>
-                            <form class="infor-edit" name="change_infor">
+                            <form class="infor-edit" id="change_infor" name="change_infor">
                                 
                             </form>
                         </div>
