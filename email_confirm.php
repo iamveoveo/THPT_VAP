@@ -1,7 +1,10 @@
 <?php 
   include("template/header.php"); 
-  include("template/login-check.php");
-  $UserID = $_SESSION['MyID'];
+  if(isset($_SESSION['MyID'])){
+    $UserID = $_SESSION['MyID'];
+  }else{
+    header(header('location:'.SITEURL.'login.php'));
+  }
 ?>
 
 <script>

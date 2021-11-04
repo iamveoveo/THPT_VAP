@@ -18,7 +18,7 @@
               <form action="" method="GET" name="send-mail-forgot-form">
                 <div class="form-outline form-white mb-1 d-flex justify-content-between">
                   <div class="w-75">
-                      <input name="username" type="text" id="typeEmailX" placeholder="example@gmail.com" class="form-control text-light form-control-lg bg-dark border-2" />
+                      <input name="username" type="text" id="typeEmailX" placeholder="example" class="form-control text-light form-control-lg bg-dark border-2" />
                   </div>
                   <button name="send-mail" class="btn btn-outline-light btn-lg px-5 mb-5" type="submit">Enter</button>
                 </div>

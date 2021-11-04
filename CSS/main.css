@@ -305,6 +305,10 @@ a:hover{
 }
 
 .mess-content{
+    background-image: url(../images/arrow.png);
+    background-position:bottom;
+    background-repeat: no-repeat;
+    background-size:contain;
     height: 88%;
     overflow-y: scroll;
     padding-top: 10px;
@@ -366,7 +370,7 @@ a:hover{
 }
 
 .ur-mess .mess-cell{
-    background-color: #f1e5fe62;
+    background-color: #e9e0f3;
 }
 
 .takeClass{

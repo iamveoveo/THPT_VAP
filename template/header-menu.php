@@ -10,7 +10,9 @@
                     <a class="nav-link active" <?php echo 'href="'.SITEURL.'"';?>>Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mess.php">Gửi phản hồi</a>
+                    <?php if($_SESSION['MyRoll']!="Học sinh"){
+                        echo '<a class="nav-link" href="mess.php">Gửi phản hồi</a>';
+                    }?>
                 </li>
             </ul>
             <?php
@@ -20,7 +22,9 @@
             <div class="text-light">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
                     <li class="nav-item me-2"><a href="profile.php"><img src="images/avatar/<?php echo $b['UserAva'];?>" class="small-ava" alt="avatar"></a></li>
-                    <li class="nav-item me-2"><a href="mess.php"><i class="fab fa-facebook-messenger" style="font-size: 38px; color:#3E00FF;"></i></a></li>
+                    <?php if($_SESSION['MyRoll']!="Học sinh"){
+                        echo '<li class="nav-item me-2"><a href="mess.php"><i class="fab fa-facebook-messenger" style="font-size: 38px; color:#3E00FF;"></i></a></li>';
+                    }?>
                     <li class="nav-item me-2"><a href="logout.php"><i class="fas fa-sign-out-alt" style="font-size: 38px;color:white;"></i></a></li>
                 </ul>
             </div>

@@ -285,6 +285,52 @@ $(document).ready(function(){
             }
         })
     })
+
+    $('body').on('click', '.mess-click', function(){
+        $('.mess-click').removeClass('active');
+        $(this).addClass('active');
+        $('[name="ToUserID"]').val($(this).attr('id'));
+        
+        $.ajax({
+            url: 'mess-action.php',
+            type: 'POST',
+            method: 'POST',
+            data: {
+                ToUserID: $(this).attr('id'),
+                take_mess_content: ""
+            },
+            success: function(data){
+                data = data.split("||");
+                $('.mess-content').html(data[0]);
+                $('.mess-list').html(data[1]);
+            }
+        })
+    })
+
+    $('#mess-form').on('submit', function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+        formData.append("message-send", "");
+        formData.append("take_mess_content", "");
+
+        if($('#message-input').val() != ""){
+            $.ajax({
+                url: "mess-action.php",
+                method: 'POST',
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    data = data.split("||");
+                    $('.mess-content').html(data[0]);
+                    $('.mess-list').html(data[1]);
+                    $('#message-input').val("");
+                }
+            })
+        }
+        
+    })
     
     $('.take-roll').on("click", function(){
         takeRoll = $(this).text();
