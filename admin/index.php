@@ -17,6 +17,12 @@
                     <div class='card-header'>
                         <h2>Chào mừng admin</h2>
                     </div>
+                    <?php
+                      if(isset($_SESSION['cannotAccess'])){
+                        echo $_SESSION['cannotAccess'];
+                        unset($_SESSION['cannotAccess']);
+                      }
+                    ?>
                     <div class='card-body'> 
                         <!-- demo -->
                         <div class="hihi">

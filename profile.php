@@ -114,6 +114,11 @@ include("template/header-menu.php");
                                             Sửa thông tin
                                         </button>
                                     </div>
+                                    <div class="mt-4 text-center me-3">
+                                        <a href="<?php echo SITEURL;?>mess.php?newMess=<?php echo $UserID?>" name="edit" type="button" class="btn" style="background: #663399; color:#fff;">
+                                            Gửi tin nhắn
+                                        </a>
+                                    </div>
                                     <?php
                                 }else if($UserRoll=="Học sinh"){
                                     ?>
@@ -158,10 +163,10 @@ include("template/header-menu.php");
                                     <?php
                                 }else if($UserRoll=="Giáo viên"){
                                     ?>
-                                    <div class="mt-4 text-center">
-                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;">
-                                            Phản hồi
-                                        </button>
+                                    <div class="mt-4 text-center me-3">
+                                        <a href="<?php echo SITEURL;?>mess.php?newMess=<?php echo $UserID?>" name="edit" type="button" class="btn" style="background: #663399; color:#fff;">
+                                            Gửi tin nhắn
+                                        </a>
                                     </div>
                                     <?php
                                 }else if($UserRoll=="me"){
@@ -182,7 +187,7 @@ include("template/header-menu.php");
                                         </button>
                                     </div>
                                     <?php
-                                }else{
+                                }else if($UserRoll=="me"){
                                     ?>
                                     <div class="mt-4 text-center me-3">
                                         <button name="edit" type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#edit">
