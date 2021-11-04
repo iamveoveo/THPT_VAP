@@ -9,7 +9,8 @@ var username = "";
 $(document).ready(function(){
 
     $("[name='save']").on("click", function(){
-        var formData = new FormData(change_infor);
+        var myForm = document.getElementById('change_infor');
+        var formData = new FormData(myForm);
         formData.append("save", "");
         formData.append("UserID", userID);
 
