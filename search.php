@@ -15,7 +15,7 @@ if(isset($_GET['takeName'])){
     <div class="container">
         <div class="search mb-4 justify-content-center">
             <form class="w-50 d-flex" action="search.php" method="GET">
-                <input type="text" class="searchTerm" placeholder="Bạn đang tìm kiếm học sinh nào?">
+                <input type="text" name="takeName" class="searchTerm" placeholder="Bạn đang tìm kiếm học sinh nào?">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>

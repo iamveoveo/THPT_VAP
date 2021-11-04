@@ -194,6 +194,11 @@ include("template/header-menu.php");
                                             Sửa thông tin
                                         </button>
                                     </div>
+                                    <div class="mt-4 text-center">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#student-transcript">
+                                            Xem điểm
+                                        </button>
+                                    </div>
                                     <?php
                                 }
                             }
