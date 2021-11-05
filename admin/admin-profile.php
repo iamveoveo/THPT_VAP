@@ -52,8 +52,8 @@
                                                         <h6 class="user-email"><?php echo $row['AdEmail'];?></h6>
                                                     </div>
                                                     <div class="about">
-                                                        <h5 class="mb-2 text-primary">About</h5>
-                                                        <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+                                                        <h5 class="mb-2 text-primary">Quyền</h5>
+                                                        <p>Có quyền quản lý các tài khoản của người dùng, quản lý điểm và lớp<?php if($_SESSION['Ad_Status']==2){echo ", quản lý các tài khoản quản trị viên";} ?>.</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,6 +228,7 @@
                                             
                                                 <div class="modal-footer ">
                                                     <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Hủy</button>
+                                                    <button type="button" name="up-profile" class="btn"style="background: #6600CC; color:#fff;" data-bs-toggle="modal" data-bs-target="#change-password">Thay đổi mật khẩu</button>
                                                     <button type="submit" name="up-profile" class="btn"style="background: #6600CC; color:#fff;" >Lưu thay đổi</button>
                                                 </div>   
                                             </form>
@@ -243,5 +244,79 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="change-password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ĐỔI MẬT KHÂU</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="POST" class="change-password" name="change_infor">
+                <div class="modal-body card-col">                   
+                    <div class="row mt-3">
+                        <div class="col-md-12 mt-2 ">
+                            <label class="labels">Nhập mật khẩu cũ</label>
+                            <input name="oldpass" type="password" class="form-control">
+                        </div>                        
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-12 mt-2 ">
+                            <label class="labels">Nhập mật khẩu mới</label>
+                            <input name="newpass1" type="password" class="form-control">
+                        </div>                        
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 mt-2 ">
+                            <label class="labels">Nhập lại mật khẩu mới</label>
+                            <input name="newpass2" type="password" class="form-control">
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" name="change-password" data-bs-dismiss="modal" class="btn btn-primary">Đổi mật khẩu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php
+    if(isset($_POST['change-password'])){
+        $oldPass = $_POST['oldpass'];
+        $newPass1 = $_POST['newpass1'];
+        $newPass2 = $_POST['newpass2'];
+
+        $sql20 = "select * from admin where AdID = '$AdId'";
+        $res20 = mysqli_query($conn, $sql20);
+
+        if(mysqli_num_rows($res20)>0){
+            $row20 = mysqli_fetch_assoc($res20);
+
+            if(password_verify($oldPass, $row20['AdPassword'])){
+                if($newPass1 == $newPass2){
+                    $newPass = password_hash($newPass2, PASSWORD_DEFAULT);
+                    $sql21 = "update admin set AdPassword = '$newPass' where AdID = '$AdId'";
+                    $res21 = mysqli_query($conn, $sql21) or die(mysqli_error());
+
+                    if($res21 === TRUE){
+                        $_SESSION['profile']= "<div class='text-success'>Đổi mật khẩu thành công</div>";
+                        header('location:'.SITEURL.'/admin/admin-profile.php');
+                    }else{
+                        $_SESSION['profile']= "<div class='text-danger'>Đổi mật khẩu thất bại</div>";
+                        header('location:'.SITEURL.'/admin/admin-profile.php');
+                    }
+                }else{
+                    $_SESSION['profile']= "<div class='text-danger'>Đổi mật khẩu thất bại</div>";
+                    header('location:'.SITEURL.'/admin/admin-profile.php');
+                }
+            }else{
+                $_SESSION['profile']= "<div class='text-danger'>Đổi mật khẩu thất bại</div>";
+                header('location:'.SITEURL.'/admin/admin-profile.php');
+            }
+        }
+    }
+?>
 
 <?php include("template/footer.php"); ?>
