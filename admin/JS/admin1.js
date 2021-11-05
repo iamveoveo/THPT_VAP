@@ -131,4 +131,12 @@ $(document).ready(function(){
             }
         })
     })
+    
+    $('input[name="newpass2"]').focusout(function() {
+        if($('[name="newpass1"]').val() == $('[name="newpass2"]').val()){
+            $('[name="newpass2"]').css('border', "2px solid #8cff93ab");
+        }else{
+            $('[name="newpass2"]').css('border', "2px solid #e68e8ec4");
+        }
+    })
 })
