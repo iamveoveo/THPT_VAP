@@ -19,6 +19,16 @@
                 $b = mysqli_query($conn, "select UserAva from users where UserID='".$_SESSION['MyID']."'");
                 $b = mysqli_fetch_assoc($b);
             ?>
+            <div class="" style="margin-right:10px">
+                <form action="search.php" method="GET" class="navbar-form navbar-left" >
+                    <div class="form-group">
+                        <input name="takeName" type="text" class="form-control" placeholder="Tìm kiếm">
+                    </div>
+                </form>
+                
+            </div>
+            
+
             <div class="text-light">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
                     <li class="nav-item me-2"><a href="profile.php"><img src="images/avatar/<?php echo $b['UserAva'];?>" class="small-ava" alt="avatar"></a></li>
