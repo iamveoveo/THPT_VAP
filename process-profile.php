@@ -73,7 +73,6 @@
 
         $sql5 = "update users set
                 UserRName = '$UserRName',
-                UserClass = '$UserClass',
                 UserTel = '$UserTel',
                 UserEmail = '$UserEmail',
                 UserAdd = '$UserAdd',

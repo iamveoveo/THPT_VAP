@@ -216,6 +216,7 @@
                     UserBirth ='".$getData[6]."',
                     UserAdd = '".$getData[7]."',
                     UserCode = '".$UserCode."',
+                    UserChild = '".$row_ph1['UserID']."',
                     UserRoll ='Phụ huynh'
                     ";
 

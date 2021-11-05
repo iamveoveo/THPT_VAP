@@ -4,7 +4,7 @@
     session_start();
 
     //Create Constants to Store Non Repeating Values
-    define('SITEURL', 'http://localhost:8000/THPT_VAP/');
+    define('SITEURL', 'http://localhost/THPT_VAP/');
     define('LOCALHOST', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');

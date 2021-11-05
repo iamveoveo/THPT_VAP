@@ -194,6 +194,11 @@ include("template/header-menu.php");
                                             Sửa thông tin
                                         </button>
                                     </div>
+                                    <div class="mt-4 text-center">
+                                        <button name="transcript"  type="button" class="btn" style="background: #663399; color:#fff;" data-bs-toggle="modal" data-bs-target="#student-transcript">
+                                            Xem điểm
+                                        </button>
+                                    </div>
                                     <?php
                                 }
                             }
@@ -241,7 +246,7 @@ include("template/header-menu.php");
                             <div class="justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Sửa thông tin tài khoản</h4>
                             </div>
-                            <form class="infor-edit" name="change_infor">
+                            <form class="infor-edit" id="change_infor" name="change_infor">
                                 
                             </form>
                         </div>
@@ -284,7 +289,7 @@ include("template/header-menu.php");
                         </thead>
                         <tbody>
                         <?php
-                            if($UserRoll=="Học sinh"){
+                            if($UserRoll=="Học sinh" || $UserRoll=="me"){
                                 $sql19 = "select * from transcript where Student_UserID = '$UserID'";
                                 $res19 = mysqli_query($conn, $sql19);
                                 $i = 0;
