@@ -4,20 +4,67 @@
 <script>var takeName="";</script>
 <script>var takeRoll="Học sinh";</script>
 
-<div class="position-relative">
-    <div class="container-fluid bg-dark header-menu" style="height:90vh;"></div>
-    <div class="wrap big-title">
-        <H1>THPT Chu Văn An</H1>
-        <form class="search mt-4" action="search.php" method="GET">
-            <input name="takeName" type="text" class="searchTerm" placeholder="Bạn đang tìm kiếm học sinh nào?">
-            <button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-            </button>
-        </form>
+<div id="carouselExampleCaptions" class="carousel slide banner-main" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/workbench.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <div class="container">
+                <div class="carousel-caption relative" >
+                <h1 class="shadow">Trường Trung học phổ thông<br> Chu Văn An</h1>
+                <p style="color:balck;">Học để biết, học để làm, học để tự khẳng định mình, học để cùng chung sống. <br>
+                    Thi đua Dạy tốt - Học tốt. <br>
+                    Nghĩ tích cực - Học chăm ngoan - Làm việc tốt - Sống có ích. <br>
+                    Thầy cô mẫu mực, học sinh tích cực.</p>
+                
+                </div>
+            </div>
+      </div>
     </div>
-</div>
+    <div class="carousel-item">
+      <img src="images/hoc.png" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block">
+      <div class="relative" >
+          <div class="container " style="margin-top:-100px">
+              <h1 class="shadow">Trường Trung học phổ thông<br> Chu Văn An</h1>
+            <h4 style="color:balck;">Xây dựng trường học thân thiện học sinh tích cực <br>
+                Dân chủ - Kỷ cương – Tình thương – Trách nhiệm
+            </h4>
+            
+            </div>
+          </div>
+            
+      </div>
+    </div>
 
-<!-- <link rel="stylesheet" href="CSS/style_home.css"> -->
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<style>
+     h1, h2, h3, h4, h5, h6 {
+     letter-spacing: 0;
+     font-weight: normal;
+     position: relative;
+     padding: 0 0 10px 0;
+     font-weight: normal;
+     line-height: normal;
+     color: #111111;
+     margin: 0 
+}
+</style>
 
 <div class="container">
     <div class="d-flex justidy-content-center">
@@ -114,4 +161,73 @@
     </div>
 </div>
 
+<div class="about">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="aboutheading">
+                <h2>Giới Thiệu<strong class="black"></strong></h2>
+                <span>Trường THCS Chu Văn An toạ lạc tại số 115 Cống Quỳnh, P.Nguyễn Cư Trinh, Quận 1, Tp.HCM chịu sự quản lý của UBND Quận 1 trực tiếp là Phòng Giáo dục và Đào tạo Quận 1. Trường có diện tích 1.300m2,</span>
+            </div>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
+            <div class="about-box">
+                <p> 
+                Chức năng nhiệm vụ chính trị được giao : nâng cao chất lượng đào tạo, ứng dụng tốt công nghệ thông tin, thực hiện đổi mới công tác quản lý và giảng dạy. <br>
+
+                Hiện nay, nhà trường có 86 cán bộ, giáo viên, công nhân viên và 1220 học sinh; có 07 tổ bộ môn. Ngoài ra, trường có 2 phòng máy vi tính, 1 phòng Lab, 2 phòng thí nghiệm Lý – Hoá – Sinh, 1 phòng ứng dụng công nghệ thông tin,  phòng bộ môn dinh dưỡng, 12 phòng học tiếng anh nâng cao, … <br>
+                Tập thể sư phạm nhà trường gồm đội ngũ cán bộ quản lý, giáo viên, nhân viên yêu trẻ và tâm huyết với nghề. Trong những năm qua, nhà trường đã có các Thầy Cô giáo đạt giải thưởng cao trong các hội thi cấp Quận và Thành Phố như hội thi: “Cô giáo tài năng” (1994), “Người mẹ duyên dáng” (1995), “Viên phấn vàng”, “Trái tim người thầy”, “Giáo viên giỏi”. Là đơn vị dẫn đầu trong các hội thi về ĐDDH trong việc đổi mới phương pháp dạy và học bằng việc ứng dụng Công nghệ thông tin.</p>
+            </div>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+            <div class="about-box">
+                <figure><img src="images/about.png" alt="img" /></figure>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container mt-5 ">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-8 col-lg-6">
+            <!-- Section Heading-->
+            <div class="section_heading text-center wow fadeInUp bold"  data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+              <h2 class="fw-bold mb-3" style="color:red;">Một số giáo viên tiêu biểu </h2>
+              
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <?php 
+            $sql28 = "select * from users where UserRoll ='Giáo viên' limit 4";
+            $res28 = mysqli_query($conn, $sql28);
+
+            if(mysqli_num_rows($res28)>0){
+              while($row28 = mysqli_fetch_assoc($res28)){
+                ?>
+                <!-- Single Advisor-->
+                <a class="col-12 col-sm-6 col-lg-3" href="<?php echo SITEURL?>profile.php?userID=<?php echo $row28  ['UserID'];?>">
+                  <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <!-- Team Thumb-->
+                    <div class="advisor_thumb"><img src="images/avatar/<?php echo $row28['UserAva'];?>" alt="">
+                    </div>
+                    <!-- Team Details-->
+                    <div class="single_advisor_details_info">
+                      <h6><?php echo $row28['UserRName'];?></h6>
+                      <p class="designation"><?php echo $row28['UserRoll'];?></p>
+                    </div>
+                  </div>
+                </a>
+                <?php
+              }
+            }
+          ?>
+        </div>
+      </div>
+
 <?php include("template/footer.php"); ?>
+    
