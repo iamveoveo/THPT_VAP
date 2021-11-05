@@ -21,7 +21,6 @@
                     Thi đua Dạy tốt - Học tốt. <br>
                     Nghĩ tích cực - Học chăm ngoan - Làm việc tốt - Sống có ích. <br>
                     Thầy cô mẫu mực, học sinh tích cực.</p>
-                <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
                 
                 </div>
             </div>
@@ -36,7 +35,6 @@
             <h4 style="color:balck;">Xây dựng trường học thân thiện học sinh tích cực <br>
                 Dân chủ - Kỷ cương – Tình thương – Trách nhiệm
             </h4>
-            <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
             
             </div>
           </div>
@@ -181,8 +179,6 @@
 
                 Hiện nay, nhà trường có 86 cán bộ, giáo viên, công nhân viên và 1220 học sinh; có 07 tổ bộ môn. Ngoài ra, trường có 2 phòng máy vi tính, 1 phòng Lab, 2 phòng thí nghiệm Lý – Hoá – Sinh, 1 phòng ứng dụng công nghệ thông tin,  phòng bộ môn dinh dưỡng, 12 phòng học tiếng anh nâng cao, … <br>
                 Tập thể sư phạm nhà trường gồm đội ngũ cán bộ quản lý, giáo viên, nhân viên yêu trẻ và tâm huyết với nghề. Trong những năm qua, nhà trường đã có các Thầy Cô giáo đạt giải thưởng cao trong các hội thi cấp Quận và Thành Phố như hội thi: “Cô giáo tài năng” (1994), “Người mẹ duyên dáng” (1995), “Viên phấn vàng”, “Trái tim người thầy”, “Giáo viên giỏi”. Là đơn vị dẫn đầu trong các hội thi về ĐDDH trong việc đổi mới phương pháp dạy và học bằng việc ứng dụng Công nghệ thông tin.</p>
-
-                <a href="#">Đọc thêm</a>
             </div>
         </div>
         <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
@@ -214,7 +210,7 @@
               while($row28 = mysqli_fetch_assoc($res28)){
                 ?>
                 <!-- Single Advisor-->
-                <a class="col-12 col-sm-6 col-lg-3" href="<?php echo SITEURL?>profile.php?userID=<?php echo $row28['UserID'];?>">
+                <a class="col-12 col-sm-6 col-lg-3" href="<?php echo SITEURL?>profile.php?userID=<?php echo $row28  ['UserID'];?>">
                   <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                     <!-- Team Thumb-->
                     <div class="advisor_thumb"><img src="images/avatar/<?php echo $row28['UserAva'];?>" alt="">
