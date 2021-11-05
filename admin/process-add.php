@@ -12,6 +12,7 @@
         $diachi = $_POST['UserAdd'];
         $gioitinh = $_POST['UserGender'];
         $ngaySinh = $_POST['UserBirth'];
+        if($ngaySinh==""){$ngaySinh="0000-00-00";}
 
         $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
         $UserCode = rand(10000000, 99999999);
@@ -57,6 +58,7 @@
         $diachi = $_POST['txtDiaChi'];
         $gioitinh = $_POST['txtGioiTinh'];
         $ngaySinh = $_POST['ngaySinh'];
+        if($ngaySinh==""){$ngaySinh="0000-00-00";}
         $Student_UserID = $_POST['Student_UserID'];
 
         if($_POST['Student_UserID']!=""){
@@ -114,6 +116,7 @@
         $diachi = $_POST['txtDiaChi'];
         $gioitinh = $_POST['txtGioiTinh'];
         $ngaySinh = $_POST['ngaySinh'];
+        if($ngaySinh==""){$ngaySinh="0000-00-00";}
         $lop = $_POST['txtLop'];
 
         $pass_hash_2 = password_hash($matkhau, PASSWORD_DEFAULT);
@@ -190,6 +193,7 @@
         $AdAdd = $_POST['txtDiaChi'];
         $AdGender = $_POST['txtGioiTinh'];
         $AdBirth = $_POST['ngaySinh'];
+        if($AdBirth==""){$AdBirth="0000-00-00";}
 
         $pass_hash1 = password_hash($Adpass, PASSWORD_DEFAULT);
         $UserCode = rand(10000000, 99999999);
@@ -214,7 +218,7 @@
         }
         else
         {
-            $_SESSION['add_admin']="<div class='text-danger'>Thêm Admin thất bại.</div>";
+            $_SESSION['add_admin']="".$AdBirth."<div class='text-danger'>Thêm Admin thất bại.</div>";
             header('location:' .SITEURL. 'admin/admin-manager.php');
         }
     }

@@ -304,6 +304,21 @@ $(document).ready(function () {
         })
     })
 
+    $('#admin-txtTaiKhoan').on('change', function(){
+        $.ajax({
+            url: 'process-search.php',
+            method: 'POST',
+            type: 'POST',
+            data: {
+                AdName: $('#admin-txtTaiKhoan').val(),
+                validate_userName: ""
+            },
+            success: function(data){
+                $('.modal-title').html(data);
+            }
+        })
+    })
+
     $('#form_import_mon').on('submit',function(e){
         e.preventDefault();
         var data3 = new FormData(this);
