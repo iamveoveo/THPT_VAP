@@ -199,73 +199,37 @@
           <div class="col-12 col-sm-8 col-lg-6">
             <!-- Section Heading-->
             <div class="section_heading text-center wow fadeInUp bold"  data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-              <h2 class="fw-bold mb-3" style="color:red;">Gương giáo viên học sinh tiêu biểu </h2>
+              <h2 class="fw-bold mb-3" style="color:red;">Một số giáo viên tiêu biểu </h2>
               
               <div class="line"></div>
             </div>
           </div>
         </div>
         <div class="row">
-          <!-- Single Advisor-->
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-              <!-- Team Thumb-->
-              <div class="advisor_thumb"><img src="images/thay-minh.png" alt="">
-                <!-- Social Info-->
-                <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
-              </div>
-              <!-- Team Details-->
-              <div class="single_advisor_details_info">
-                <h6>Thầy Phạm Bá Minh</h6>
-                <p class="designation">Hiệu trưởng</p>
-              </div>
-            </div>
-          </div>
-          <!-- Single Advisor-->
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-              <!-- Team Thumb-->
-              <div class="advisor_thumb"><img src="images/co-xuyen.png" alt="">
-                <!-- Social Info-->
-                <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
-              </div>
-              <!-- Team Details-->
-              <div class="single_advisor_details_info">
-                <h6>Cô Nguyễn Kim Xuyến</h6>
-                <p class="designation">Phó hiệu trưởng</p>
-              </div>
-            </div>
-          </div>
-          <!-- Single Advisor-->
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-              <!-- Team Thumb-->
-              <div class="advisor_thumb"><img src="images/hsinh-thanh.png" alt="">
-                <!-- Social Info-->
-                <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
-              </div>
-              <!-- Team Details-->
-              <div class="single_advisor_details_info">
-                <h6>Học sinh Trần Tiến Thành</h6>
-                <p class="designation">Thủ Khoa khối 12</p>
-              </div>
-            </div>
-          </div>
-          <!-- Single Advisor-->
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-              <!-- Team Thumb-->
-              <div class="advisor_thumb"><img src="images/thay-nam.png" alt="">
-                <!-- Social Info-->
-                <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
-              </div>
-              <!-- Team Details-->
-              <div class="single_advisor_details_info">
-                <h6>Thầy Tô Bảo Nam</h6>
-                <p class="designation">Giải nhất giáo viên giỏi thành phố</p>
-              </div>
-            </div>
-          </div>
+          <?php 
+            $sql28 = "select * from users where UserRoll ='Giáo viên' limit 4";
+            $res28 = mysqli_query($conn, $sql28);
+
+            if(mysqli_num_rows($res28)>0){
+              while($row28 = mysqli_fetch_assoc($res28)){
+                ?>
+                <!-- Single Advisor-->
+                <a class="col-12 col-sm-6 col-lg-3" href="<?php echo SITEURL?>profile.php?userID=<?php echo $row28['UserID'];?>">
+                  <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <!-- Team Thumb-->
+                    <div class="advisor_thumb"><img src="images/avatar/<?php echo $row28['UserAva'];?>" alt="">
+                    </div>
+                    <!-- Team Details-->
+                    <div class="single_advisor_details_info">
+                      <h6><?php echo $row28['UserRName'];?></h6>
+                      <p class="designation"><?php echo $row28['UserRoll'];?></p>
+                    </div>
+                  </div>
+                </a>
+                <?php
+              }
+            }
+          ?>
         </div>
       </div>
 
