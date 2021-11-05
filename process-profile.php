@@ -93,7 +93,7 @@
                     <label class="labels">Lớp</label>
                     <select disabled="disabled" readonly="readonly" name="Class" id="class" class='form-control'>
                         <?php
-                            $sql4 = "select * from Class";
+                            $sql4 = "select * from class";
                             $res4 = mysqli_query($conn, $sql4);
                             if(mysqli_num_rows($res4)>0){
                                 while($row4 = mysqli_fetch_assoc($res4)){

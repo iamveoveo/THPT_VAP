@@ -135,15 +135,28 @@
     }
 
     if(isset($_POST['validate_userName'])){
-        $UserName = $_POST['UserName'];
+        if(isset($_POST['UserName'])){
+            $UserName = $_POST['UserName'];
 
-        $sql4 = "select * from users where UserName='$UserName'";
-        $res4 = mysqli_query($conn, $sql4);
+            $sql4 = "select * from users where UserName='$UserName'";
+            $res4 = mysqli_query($conn, $sql4);
 
-        if(mysqli_num_rows($res4)>0){
-            echo "<span class='text-danger'>Tên tài khoản đã tồn tại</span>";
+            if(mysqli_num_rows($res4)>0){
+                echo "<span class='text-danger'>Tên tài khoản đã tồn tại</span>";
+            }else{
+                echo "<span class='text-success'>Tên tài khoản chưa tồn tại</span>";
+            }
         }else{
-            echo "<span class='text-success'>Tên tài khoản chưa tồn tại</span>";
+            $AdName = $_POST['AdName'];
+
+            $sql4 = "select * from admin where AdName='$AdName'";
+            $res4 = mysqli_query($conn, $sql4);
+
+            if(mysqli_num_rows($res4)>0){
+                echo "<span class='text-danger'>Tên tài khoản đã tồn tại</span>";
+            }else{
+                echo "<span class='text-success'>Tên tài khoản chưa tồn tại</span>";
+            }
         }
     }
 
