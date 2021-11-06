@@ -9,7 +9,7 @@
         <div class="row mt-4">
         <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-4">Giới thiệu</h5>
+            <h5 class="text-uppercase mb-4 text-light">Giới thiệu</h5>
 
             <p>
             Là một trong số những ngôi trường cổ lâu đời nhất của Hà Nội, trường THPT Chu Văn An ghi dấu ấn đậm nét trong tâm trí người Việt như một biểu tượng đẹp về hào khí trí tuệ, đào tạo nhân tài cho Thủ đô và đất nước. 
@@ -32,7 +32,7 @@
 
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-4 pb-1">Thông tin liên hệ</h5>
+            <h5 class="text-uppercase mb-4 pb-1 text-light">Thông tin liên hệ</h5>
             <ul class="fa-ul" style="margin-left: 1.65em;">
                 <li class="mb-3">
                     <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Số 10 Thụy Khuê, Thụy Khuê, Tây Hồ</span>
@@ -49,7 +49,7 @@
 
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-4">Giờ mở cửa</h5>
+            <h5 class="text-uppercase mb-4 text-light">Giờ mở cửa</h5>
 
             <table class="table text-center text-white">
                 <tbody class="fw-normal">
